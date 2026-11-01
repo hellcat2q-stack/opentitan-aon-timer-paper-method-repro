@@ -1,0 +1,64 @@
+{
+  "schema": "paper-method-repro-toolbox-source-v1",
+  "source_root": "C:\\Users\\Admin\\Desktop\\论文复现\\toolbox\\toolbox",
+  "included": [
+    {
+      "project_path": "02_服务器与仿真器验收/algorithm_source/vericov",
+      "sha256": "dc6817df1bae9f04dc3acee34d925be4a3b964b9d61c8884672b73ae6111f6f3"
+    },
+    {
+      "project_path": "02_服务器与仿真器验收/algorithm_source/verisim",
+      "sha256": "0c102b87f8c3c8154c60c6bac7db9ef8077e59d8a62b7113070167dca4b97849"
+    },
+    {
+      "project_path": "05_初始语料/algorithm_source/sequence_based_parallel_test.py",
+      "sha256": "f3e1d662728b7b31e0a2f6e094e6e9484fdbfc738802309b2dd98a315af1c0f2"
+    },
+    {
+      "project_path": "06_覆盖数据转换/algorithm_source/process_csv.py",
+      "sha256": "b463b75554a5e3c29168d9f09e1688a3a1553ec1221f0c73e536ce9d3c23c165"
+    },
+    {
+      "project_path": "07_聚类与信息评分/algorithm_source/dbscan_clustering.py",
+      "sha256": "1c327243bf38827ed8311499327997527839a88fdb92ac4860a8563deb5ac053"
+    },
+    {
+      "project_path": "07_聚类与信息评分/algorithm_source/dbscan_clustering_new.py",
+      "sha256": "95c9222d823ecc049c9e221c29c5a46bbcb2d37548a28758fc27ad9779bdced6"
+    },
+    {
+      "project_path": "07_聚类与信息评分/algorithm_source/dbscan_clustering_new2.py",
+      "sha256": "58c8ebf3e258f2fe8906a2a43744ab2dcc3b0d92f811558bd9a5315d4d36a55c"
+    },
+    {
+      "project_path": "07_聚类与信息评分/algorithm_source/dbscan_clustering_new3.py",
+      "sha256": "0e2e672ec011c6f97fb06ae45f79f460f1690b0ad537dd1c058d9efb32086535"
+    },
+    {
+      "project_path": "08_两层UCB在线复现/algorithm_source/generic_adaptive_runner_ucb_continuous_refill_norepeat_poolmi.py",
+      "sha256": "3f5c0b7d03cf752f1233f65e6800e3bb899e440ae420fa8cc9d7c3aab97dc1b4"
+    },
+    {
+      "project_path": "09_对照与消融/algorithm_source/coverage_plot_script.py",
+      "sha256": "d9f364f8b375f6afd87f0b53ad20c1ebda292420d99e08bd611ccca82024871e"
+    },
+    {
+      "project_path": "09_对照与消融/algorithm_source/draw.py",
+      "sha256": "b9d723abc21abd6346b0018a213d1adaa8692c1bfefc65aae302bf52207b58f6"
+    },
+    {
+      "project_path": "09_对照与消融/algorithm_source/draw_new.py",
+      "sha256": "55802e4cf8cbaa39d50295180ebef0c290d276228333d16f0a479372f37680dd"
+    },
+    {
+      "project_path": "09_对照与消融/algorithm_source/generic_parallel_test.py",
+      "sha256": "587c6f01ffcd13ababe3bcab3e9d0db38c8ac0946f7322acb32acdece524f311"
+    }
+  ],
+  "excluded_config_templates": [
+    "configs/config_bayes.yaml",
+    "configs/config_uart.yaml",
+    "configs/config_uart_parallel.yaml",
+    "configs/config_uart_early_parallel.yaml"
+  ]
+}

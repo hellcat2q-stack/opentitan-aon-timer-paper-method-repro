@@ -1,0 +1,7 @@
+method,submitted,completed,failed,covered_bins,total_bins,coverage_percent,accumulated_runtime_s,walltime_s
+Full,,,,,,,
+NoIncrementalRefill,,,,,,,
+NoRuntimePenalty,,,,,,,
+RandomSelection,,,,,,,
+SequenceUCBOnly,,,,,,,
+ClusterUCBOnly,,,,,,,

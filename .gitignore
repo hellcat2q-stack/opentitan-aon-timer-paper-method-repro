@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+results/
+evidence/raw/
+server/
+*.vdb
+*.zdb
+simv
+v_simv
+v_simv.so
+*.so
+*.o
+*.log

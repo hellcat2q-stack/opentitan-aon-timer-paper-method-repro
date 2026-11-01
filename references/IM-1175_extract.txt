@@ -1,0 +1,552 @@
+pages=6
+---PAGE 1---
+Entropy-Aware and UCB-Driven Coverage Closure
+for Hardware Verification
+Bangliang Chen1, Xiexi Xiong1, Yiqiu Liu1,2,*
+1. South China University of Technology, Guangzhou, China
+2. The Engineering Center for DTCO of Integrated Circuits, Ministry of Education, China
+* Corresponding author: yiqiuliu@scut.edu.cn
+Abstract—Coverage closure remains a bottleneck in selects target clusters and sequences, with a runtime penalty
+constrained-random hardware verification because late- for simulation cost [5], [6].
+stage simulation often repeatedly exercises behaviors that have
+The main contributions are: (1) an information-based scor-
+already been covered. This paper presents an entropy-aware
+ing model for prioritizing functional-coverage clusters; (2)
+and upper-confidence-bound (UCB)-driven framework for
+coverage-directed simulation. Functional coverage bins are a component-aware clustering procedure that converts raw
+grouped into semantic clusters and assigned static importance coverage bins into schedulable target regions; and (3) a
+scores based on rarity, entropy-shaped uncertainty, diversity, continuous-refill two-level UCB scheduler that jointly con-
+structural complexity, and cluster size. During online execution,
+siders target priority, historical sequence gain and simulation
+theseprioritiesareupdatedaccordingtotheremainingcoverage
+runtime.
+opportunity. A continuous-refill two-level UCB scheduler selects
+a target cluster and a corresponding test sequence, while
+II. RELATEDWORK
+runtime-aware scoring accounts for heterogeneous simulation
+costs. Experiments on OpenTitan AON Timer and a 19,919- Coverage-directed generation uses simulation feedback to
+bin industrial IP demonstrate improved late-stage coverage bias stimuli or predict promising tests [1]–[3], [7], [8]. We
+growth over random selection and scheduler ablations under
+instead cluster bins, assign information-aware utility, and
+comparable simulation budgets. On the industrial IP, the full
+schedule clusters and sequences online.
+method reaches 60.16% raw coverage, compared with 57.87%
+for No Info and 55.09% for Random Selection. Regression test selection, novelty detection, and learning-
+IndexTerms—coverageclosure,hardwareverification,entropy, based verification reduce simulation cost by selecting repre-
+upper confidence bound sentative or promising tests [4], [9]–[16]. Huang et al. tune
+high-levelconstrained-randomtestparametersusingcoverage-
+I. INTRODUCTION guided random search and Bayesian optimization [17], while
+Masambaetal.usesupervisedlearningtoprioritizetestslikely
+Functional coverage is a central progress metric in to exercise remaining coverage holes [18].
+constrained-randomhardwareverification.Modernverification RTL fuzzing systems such as RFUZZ and DirectFuzz
+environments can generate large numbers of legal tests under use coverage feedback for directed exploration [19], [20],
+user-definedconstraints,buttheystillrequirefeedbackmecha- and MABFuzz applies bandit policies to hardware fuzzing
+nismstodecidewhichpartsofthestimulusspacedeservemore [21]. Most closely related to our scheduler, Dimitrakopoulos
+simulation effort [1]. Coverage-directed generation addresses et al. formulate autonomous test-sequence application as a
+this problem by using coverage results to guide future tests, multi-armed bandit problem [22]. Our method instead uses
+and prior work has explored learning-based models for this information-theoreticclusterpriorsandtwo-levelUCBtofirst
+feedback loop [2], [3]. Despite these advances, coverage select a target coverage cluster and then a target-conditioned
+closureremainsdifficultinthelatestage:mosteasybinshave sequence while accounting for simulation runtime.
+already been exercised, while the remaining bins are sparse,
+correlated, and unevenly distributed across coverpoints and
+III. BACKGROUNDANDMOTIVATION
+cross-coverage structures. Recent work on last-mile coverage A. Coverage Closure
+further highlights that these hard-to-reach bins remain a prac- Let B denote the set of functional coverage bins and let
+tical bottleneck even in automated flows [4]. h (t) be the hit count of bin b after simulation t. Standard
+b
+A key limitation of coverage metrics based only on newly coverage closure treats all uncovered bins equally, ignoring
+covered-bin counts is that all new bins receive equal credit. that some bins are structurally more valuable and some are
+In practice, rarely exercised, structurally complex, or weakly empirically rarer under existing tests.
+correlated bins may represent less-explored regions of the
+verification space. B. Rarity and Information of Bins
+Weclusterbinsusingsemanticnamefeatures,scoreclusters Following the self-information view from information the-
+byrarity,uncertainty,diversity,size,andstructuralcomplexity, ory [5], a rare event carries larger information. We first
+and update their importance online. A two-level UCB policy convert the historical coverage data into a normalized relative
+---PAGE 2---
+hit frequency f = h¯ / (cid:80) h¯ , where h¯ is its average A. Offline Coverage Abstraction and Prior Construction
+b b b′∈B b′ b
+initial-corpus hit count. The bin-level rarity, expressed as
+1) Component-Aware Coverage Clustering: Bin labels are
+self-information, is I(b) = −log(f ), where a numerical
+b parsedintonamespace,component,method,parameter,range,
+floor handles zero frequency. The static cluster-level rarity
+is the average I (C) =
+|C|−1(cid:80)
+I(b). Thus, I(b)
+and structural features, distinguishing cross bins from cover-
+avg b∈C points. Component partitions exceeding a size limit are split
+and I (C) quantify rarity; they are not online rewards.
+avg by DBSCAN [23].
+The self-information score is used to construct a cluster-
+2) Information-Based Cluster Scoring: For cluster C, the
+level scheduling prior rather than as the online reward it-
+score uses:
+self. Online reward is determined from newly covered bins,
+as described in Section IV-B. Rarity is complemented by • rarity score R(C) = N(I avg (C)), computed from the
+U(b)=−f logf −(1−f )log(1−f ),anditsclusteraverage mean self-information of bins in C;
+b b b b
+is U avg (C) = |C|−1(cid:80) b∈C U(b). The entropy-shaped term is • uncertainty score E(C) = N(U avg (C)), computed from
+a heuristic uncertainty indicator over historical hit share, not the entropy-shaped function of the historical relative hit
+the entropy of a binary coverage event. frequency;
+Let x ∈{0,1}N denote the binary hit observations of bin • diversity score D(C) = N(Div(C)), estimated as one
+b
+b over N historical simulation runs, where x(r) = 1 if run r minusaverageabsolutecorrelationamongbin-hitvectors;
+b
+covers bin b and 0 otherwise. • size-balance score S(C) = N(log(1+|C|)), computed
+from the cluster size;
+Let V = {b ∈ C | Var(x ) > 0} denote the set of bins
+C b
+with non-constant hit vectors in cluster C. The redundancy • structural bonus X(C) = N(X raw (C)), assigned to
+cross-like and structurally complex coverage bins.
+and diversity scores are defined as
+Thesestaticmetricsarenormalizedbytheirpositive-cluster
+2 (cid:88) mean:
+Red(C)= |ρ (x ,x )|,
+|V |(|V |−1) P i j z(C)
+C C
+i,j i< ∈V j C (1) N(z(C))= 1 (cid:80) z(C′) , (3)
+|C+| C′∈C+
+Div(C)=1−Red(C).
+where C+ ={C |z(C)>0}.
+A high absolute correlation indicates redundant evidence, The structural bonus captures bins that are likely to encode
+so clusters containing weakly dependent bins receive higher interaction behavior:
+diversity scores. Here ρ (x ,x ) is the Pearson correlation
+P i j
+|{b∈C |b is cross-like}|
+coefficient between the binary hit vectors of bins i and j. We X (C)= +δ(C), (4)
+define Red(C)=0 when |V |<2. raw |C|
+C
+where δ(C) is a small residual-cluster bonus; cross-like bins
+C. UCB Exploration and Test Scheduling contain a cross-coverage marker or template structure.
+The final static cluster importance is a weighted combina-
+Coverage-directedschedulingisanonlinedecisionproblem:
+tion:
+theschedulerchoosesasequencebeforeobservingitscoverage
+reward.WeusetheUCBruletobalanceempiricalrewardand W(C)=k R(C)+k E(C)+k D(C)+k S(C)+k X(C),
+R E D S X
+exploration: (5)
+(cid:115)
+where R(C), E(C), D(C), S(C), and X(C) denote normal-
+log(N(t)+1)
+UCB(a,t)=r¯ a (t)+c n (t)+ϵ , (2) ized rarity, entropy-shaped uncertainty, diversity, size balance,
+a and structural bonus respectively.
+Theweightsk , k , k , k , k arefixedforallevaluated
+where r¯ (t) is the empirical reward, n (t) is the number of R E D S X
+a a
+designs, with larger value assigned to rarity and uncertainty.
+selections of action a, N(t) is the total number of selections,
+3) Dynamic cluster prior Update: We define the dynamic
+c controls exploration, and ϵ avoids division by zero. Sec-
+clusterprior,whichcombinesstaticimportancewithremaining
+tionIV-Bextendsthisruleintoatwo-levelpolicyoverclusters
+opportunityandisrefreshedaftereverycompletedsimulation.
+and sequences.
+Its logarithmic residual term L (C) is distinct from the linear
+t
+uncoveredratioQ (C),whichisusedlaterintheopportunity-
+t
+IV. PROPOSEDFRAMEWORK weighted online reward.
+Letc (C)bethenumberofbinsinclusterC thathavebeen
+Fig. 1 summarizes the framework. Offline clustering and t
+covered in the accumulated coverage state before scheduling
+scoring transform raw simulation feedback into information-
+step t. We define a residual information term
+aware clusters; online execution updates coverage, dynamic
+importance, rewards, and runtime statistics before refilling (cid:18) c (C)+1 (cid:19)
+L (C)=−log t , (6)
+freed worker slots with two-level UCB scheduling. t |C|+1
+---PAGE 3---
+1.Coverage
+2.Prioritize 3.Schedule
+Abstraction
+⇒ Rarity+uncertainty+diversity+ ⇒ Target-clusterUCB
+Semanticclusteringof
+residualopportunity SequenceUCBandsimulatorsubmission
+coverageCSV
+Fig.1. Closed-loopoperationoftheframework.Offlineabstractionconvertscoveragenamesandinitialrunsintosemanticclusters.Information-basedscoring
+assigns cluster priorities, and the two-level UCB scheduler selects a target cluster and a test sequence for simulation. Each completed run updates new-bin
+rewards,dynamicclusterprior,andruntimestatisticsbeforethefreedworkerisrefilledandfuturesubmissionsarereselected.
+whereadd-onesmoothingkeepstheresidualfinite.Itismean- of newly covered bins, ∆ (r) = |∆B |. The second is the
+bin r
+normalized as target-cluster gain,
+L(cid:98)t (C)=
+1 (cid:80)
+L t (C)
+L (C′)
+, (7) ∆ tar (r)=|{b∈∆B r |b∈C r sub}|, (10)
+|C t +| C′∈C t + t Let ϕ : B → C map each bin to its cluster. The opportunity-
+where C+ ={C |L (C)>0}. weighted gain is
+t t
+(cid:88)
+The dynamic cluster prior is defined as ∆ (r)= (1+Q (ϕ(b))), (11)
+opp r−
+P
+t
+(C)=W(C)L(cid:98)t (C). (8)
+b∈∆Br
+where r− is the state before incorporating run r; the ratio
+The two-level UCB utilizes its mean-normalized form rewards new bins in less-complete clusters.
+The three signals serve different purposes: ∆ updates
+P (C) tar
+P(cid:101)t (C)= 1 (cid:80) t P (C′) , (9) cluster reward, ∆ bin updates sequence reward and progress,
+|C t P| C′∈C t P t and ∆ opp triggers reselection.
+2) First-level UCB for Cluster Selection: The first-level
+where CP ={C |P (C)>0}.
+t t policy chooses the next coverage cluster to target. For each
+For example, consider a cluster containing ten bins, of
+unsaturated cluster C, the scheduler estimates its exploitation
+which two have been covered. Its static score summarizes
+value from the remaining uncovered bins and the historical
+rarity, uncertainty, diversity, size, and structure in the initial
+gain observed when C was selected:
+corpus, while its residual term reflects the eight remaining
+bins. Their product forms the dynamic prior used by the first- Γ (t)=u (t)(η+g¯ (t)), (12)
+C C C
+levelUCB.Afterthisclusterisselected,thesecond-levelUCB
+where g¯ (t) is the empirical mean of target-cluster gains (10)
+chooses a historically associated sequence, and only newly C
+from completed runs whose submitted target was C. η is a
+covered bins contribute to subsequent online rewards.
+small value preventing clusters with no observed gain from
+B. Continuous-Refill Two-Level UCB Scheduling being assigned zero exploitation value.
+To make the online scheduler sensitive to the information
+The test sequence scheduler consists of two UCB levels.
+content estimated from both the initial corpus and the current
+The first UCB level selects a target cluster using P(cid:101)t (C)
+coverage state, the first-level UCB rule uses the normalized
+and the second selects a matching test sequence. Completed
+dynamic cluster prior P(cid:101)t (C) from Section IV-A3. This value
+simulations update feedback immediately and freed worker
+is refreshed after each completed simulation, after the accu-
+slots are refilled without waiting for a batch.
+mulated coverage map has been updated. Therefore, a cluster
+1) Online feedback and continuous refill: Let C be the
+can lose priority as it becomes covered, while clusters that
+set of coverage clusters and S be the set of available test
+remainunder-coveredandinformation-richcontinuetoreceive
+sequencesforselection.Atschedulingstept,theaccumulated
+additional pressure.
+coverage state determines whether a bin has already been
+The cluster-level UCB score consists of a cluster-prior-
+covered. We define the remaining opportunity of cluster C
+weighted exploitation term and a second term for exploration,
+as u (t) = |{b ∈ C | b has not been covered before t}|.
+C and is denoted as
+The corresponding runtime uncovered ratio is Q (C) =
+t (cid:115)
+u (t)/|C| = 1−|{b ∈ C | h (t) > 0}|/|C|. A cluster with (cid:16) (cid:17) log(N (t)+1)
+u
+C
+C (t) = 0 is excluded for se
+b
+lection. The run budget is H,
+U
+C
+(t)=Γ
+C
+(t) 1+β(P(cid:101)t (C)−1) +λ
+C
+(ρ
+t
+)
+n C (
+C
+t)+1
+,
+withatmostP concurrentsimulations;reselectionaffectsonly (13)
+future submissions. where β is a tunable coefficient controlling the strength of
+Because workers finish asynchronously, each submitted run the mean-normalized dynamic cluster prior. Here n (t) is
+C
+retains the target cluster assigned at submission time. For a the number of times cluster C has been selected, N (t) =
+C
+completed run r, let Csub denote this submitted target and (cid:80) n (t) is the total number of cluster selections, and
+r C′ C′
+let ∆B be the bins covered by run r that remain uncovered ρ = |{b ∈ B | b has been covered before t}|/|B| is the
+r t
+in the accumulated state immediately before processing that global coverage progress. The cluster-level exploration coeffi-
+result. We use three feedback signals. The first is the number cientisdefinedasanon-increasingcoverage-progressschedule
+---PAGE 4---
+λ C (ρ t )=λm C ax−(λm C ax−λm C in)ρ t , where λm C ax ≥λm C in >0. TABLEI
+In(13),thefirsttermfavorsclusterswithsubstantialremaining MAINSCORINGANDSCHEDULINGPARAMETERS.
+coverage opportunity, higher observed historical gain, and
+Parameter Value Role
+larger dynamic cluster priors; the second term allows clusters
+with limited observations to remain competitive even when k k R S, , k k X E,kD 0 0 . . 4 1 0 0 , , 0 0 . . 2 0 5 5 ,0.20 staticscoreweights
+their historical reward is low. β 0.20 dynamic-priorstrength
+η 0.05 clustercold-startprior
+The implementation instantiates this monotonic schedule ϵ 10−8 sequenceUCBstability
+with a piecewise progress-aware policy. λm C in,λm C ax 1.2,5.0 clusterexplorationschedule
+λmin,λmax 1.0,3.0 sequenceexplorationschedule
+Whennodirectedfallbackisinvoked,thefirst-leveldecision α S min,α S max 0.10,0.50 runtimepenaltyrange
+is C =argmax U (t).
+t C∈C,uC(t)>0 C
+3) Second-Level UCB for Sequence Selection: After se-
+lecting the target cluster C , the scheduler uses the available target. non-increasing coverage-progress schedule λ (ρ ) =
+t S t
+coverage vectors to construct a target-conditioned sequence λmax−(λmax−λmin)ρ , where λmax ≥λmin >0.
+S S S t S S
+domain. A sequence is regarded as empirically relevant to a) Runtime-aware sequence scoring.: Simulation run-
+the current target if its historical executions have exercised time is an important practical cost in verification. A se-
+at least one bin in C : S ={s∈S |H(s,C )=1}, where quencethatoccasionallyproducesnewcoveragebutconsumes
+t Ct t
+H(s,C ) = 1 means that a historical execution of sequence much longer simulation time may be less attractive than a
+t
+s covered at least one bin in C ; otherwise, H(s,C ) = 0. shorter sequence with comparable expected gain. The sched-
+t t
+When the available data provide no such evidence for the ulerthereforeappliesaruntime-awarepenaltyaftercomputing
+selectedcluster,thedomaindefaultstothecompletesequence sequence-level UCB. Let T (t) be the empirical average
+s
+set,i.e.,S =S,sothattheschedulingdecisionremainswell runtime of sequence s, and define the normalized runtime
+Ct
+defined. This construction treats observed target reachability as T˜ (t) = T (t)/max T (t). If no positive runtime
+s s s′∈S s′
+as a practical relevance prior and concentrates the second- observation is available, the normalized penalties are set to
+level comparison on sequences with empirical support for the zero. The penalty coefficient grows with coverage progress as
+selected coverage region. α(ρ ) = α +(α −α )ρ , where α < α so
+t min max min t min max
+For each candidate sequence s, the scheduler estimates its that runtime cost is penalized more strongly near coverage
+target-conditioned incremental gain as saturation.
+g¯ s,Ct (t)= |R 1 (t)| (cid:88) |∆B r ∩C t |, (14) A s (t|C t )=U s (t|C t ) (cid:16) 1−α(ρ t )T˜ s (t) (cid:17) . (16)
+s
+r∈Rs(t)
+The scheduler selects the sequence with the largest runtime-
+where R s (t) is the set of completed adaptive runs generated aware action score s t = argmax s∈SCt A s (t | C t ). This
+by sequence s before decision step t, and ∆B r contains separate multiplicative correction preserves U s (t | C t ) as
+the bins that remain uncovered in the accumulated global indicator for coverage potential while making A (t | C )
+s t
+coveragestateimmediatelybeforethecompletionresultofrun reflect practical execution cost. A long-running sequence can
+r is processed. Hence, only newly discovered bins within the still be selected, but it must provide higher expected coverage
+selected target cluster contribute to the exploitation estimate; value to compensate for its runtime.
+repeated hits of previously covered bins receive no additional b) Closed-loop submission.: The selected pair (C ,s )
+t t
+reward. We set g¯ s,Ct (t) = 0 when R s (t) is empty. The is then submitted to the simulator, forming a closed loop in
+sequence-level UCB score is whichcoverageinformationdefinesvalue,UCBdecideswhere
+(cid:115) andhowtospendsimulationeffort,andruntime-awarescoring
+log(N (t)+1)
+U (t|C )=g¯ (t)+λ (ρ ) S , (15) accounts for cost.
+s t s,Ct S t n (t)+ϵ
+s
+V. EXPERIMENTALMETHODOLOGY
+where n (t) = |R (t)| is the number of completed adaptive
+s s
+(cid:80) A. Design Under Test
+executions of sequence s, N (t) = n (t) is the total
+S s′ s′
+number of completed adaptive executions, and ϵ is a small Our method is implemented as an automated simulation-
+constant for numerical stability. Initial coverage vectors may feedback flow around a commercial simulator and functional-
+providereachabilityevidenceforconstructingS ,buttheydo coverage analysis tool. Reports are parsed into a bin-by-run
+Ct
+not contribute to R (t) or the incremental reward. Sequences coverage table, raw bin labels are grouped into information-
+s
+with n (t)=0 are handled as cold-start actions. scored clusters, and completed simulations update coverage
+s
+Similarly, the sequence-level exploration coefficient is de- rewards,runtimestatistics,dynamicclusterprior,andthenext
+fined as a UCB decision. We evaluate it on OpenTitan AON Timer and
+This schedule controls exploration among candidate se- a large industrial IP with 19,919 bins.
+quencesconditionedontheselectedtargetcluster.Exploration Due to industrial confidentiality restrictions, only a subset
+is performed within S ; the full sequence space is used of the regression test cases was available for evaluation.
+Ct
+only when no sequence has observed support for the selected Historicalrunsofthisaccessiblesubsetreachedapproximately
+---PAGE 5---
+TABLEII Coverage vs Runtime: Full vs Random Select
+AONTIMERABLATIONRESULTS. 80
+70
+Method Cov.(%) Runtime(s) Walltime(s)
+60
+Full 75.33 2928.25 4764.13
+NoIncrementalRefill 75.33 3009.35 6160.74 50
+NoRuntimePenalty 75.33 2949.53 4943.13 40
+RandomSelection 16.67 15355.71 4450.20
+SequenceUCBOnly 52.15 9594.78 4698.70 30
+ClusterUCBOnly 27.17 47728.17 6629.73
+20
+10
+0
+65% raw functional coverage, which we use as an empirical 0 0.2 0.4 0.6 0.8 1.0 1.2 1.4 1.6
+reference level κ = 0.65. We therefore also report the Accumulated Simulation Runtime (x10 4 s)
+normalized coverage, i.e.,
+Cov (t)
+Cov (t)= raw . (17)
+ref κ
+Note that this normalization is not intended to represent a
+formally established reachability bound.
+All methods use the same initial coverage corpus, total
+simulation budget, parallelism, and random seed. The eval-
+uation uses a logical batch size of 10, 100 logical batches,
+1000 submitted simulations in total, 10 parallel workers, and
+a random seed.
+B. Compared Methods and Metrics
+Our method, denoted as Full, combines continuous refill,
+cluster-level UCB, sequence-level UCB, and runtime-aware
+scoring. We compare it with Random Selection and ablations
+that remove individual scheduling components. Accumulated
+runtime is the sum of simulator runtimes across completed
+runs, whereas wall time is the end-to-end elapsed time in-
+cluding parallel execution, coverage-report generation, and
+scheduling overhead. We report final coverage, accumulated
+runtime, and wall time.
+VI. RESULTS
+A. Overall Comparison
+Table II summarizes the ablation results. The full method
+reaches 75.33% coverage, while random selection reaches
+only16.67%despiteconsumingmoreaccumulatedsimulation
+runtime.
+Fig. 2 shows that Full reaches 75.33% coverage with much
+less runtime than Random Selection.
+Full achieves a 4.22× higher final-coverage-to-wall-clock
+ratio than Random Selection.
+B. Large Industrial IP Case Study
+We further evaluate the scheduler on the large industrial IP
+underthesamefixedregressionpool.Rawfunctionalcoverage
+is the primary metric; coverage normalized by the empirical
+reference level κ is reported as a supplementary measure.
+TableIIIcomparesclosureresultsfromthesameinitialcov-
+erage state. No Info removes the information-derived cluster-
+prior factor from target selection while retaining continu-
+ous refill, both UCB levels, and runtime-aware scoring. Full
+reaches 60.16% raw coverage, compared with 57.87% for No
+Info and 55.09% for Random Selection, and uses 3.2% less
+)%(
+egarevoC
+75.33%
+Full
+Random Select
+16.67%
+Fig.2. AONTimercoveragegrowth.
+TABLEIII
+COVERAGERESULTONTHELARGEINDUSTRIALIP.
+Metric Random NoInfo Full
+Finalcov.(raw) 55.09% 57.87% 60.16%
+Finalcov.(normalized) 84.75% 89.03% 92.55%
+Normalizedgain 15.52pp 19.80pp 23.32pp
+Runtime(106s) 1.91 1.86 1.80
+accumulated runtime than No Info. Because No Info already
+reaches57.87%againstthe65%empiricalreferencelevel,the
+2.29 percentage-point raw gain of Full closes 32.1% of the
+remaining reference-level gap. The corresponding normalized
+values are reported only as supplementary results in Table III.
+Theseresultssuggestthatthedynamicclusterpriorprovides
+an additional benefit beyond the two-level UCB scheduler in
+this late-stage industrial regression setting.
+C. Ablation Analysis
+In the AON Timer experiment, the complete two-level
+scheduler outperforms both single-level ablations. Sequence
+UCBOnlyreaches52.15%,indicatingthatsequencefeedback
+helps, but it remains 23.18 percentage points below Full
+because it lacks explicit target-cluster selection. Cluster UCB
+Only reaches 27.17% and consumes substantially higher run-
+time, indicating that cluster prioritization alone is insufficient
+in this experiment.
+Continuous refill mainly improves wall-clock time rather
+thanfinalcoverage.FullandNoIncrementalRefillbothreach
+75.33% final coverage, but Full reduces wall-clock time from
+6160.74s to 4764.13s, a 22.7% reduction. This is consistent
+with the motivation of asynchronous refill: when simulations
+have heterogeneous runtimes, waiting for an entire batch
+delaystheuseoffeedbackfromfastertestsandleavesworker
+slots underutilized.
+Runtime-awarescoringprovidesanadditionalefficiencyim-
+provement. Full and No Runtime Penalty reach the same final
+coverage of 75.33%, but Full reduces wall-clock time from
+4943.13s to 4764.13s, a 3.6% reduction. This is consistent
+with the runtime-aware score in Section IV-B: long-running
+sequencescanstillbeselected,buttheymustprovidestronger
+expected coverage value.
+---PAGE 6---
+Coverage vs Runtime: Full vs Random Select
+100
+90
+80
+70
+60
+0 0.5 1.0 1.5 2.0
+Accumulated Simulation Runtime (x10 6 s)
+)%(
+egarevoc
+dezilamron-looP
+[6] P. Auer, N. Cesa-Bianchi, and P. Fischer, “Finite-time analysis of the
+multiarmed bandit problem,” Machine Learning, vol. 47, no. 2–3, pp.
+235–256,2002.
+Full
+Random Select [7] A. Jayasena and P. Mishra, “Directed test generation for hardware
+92.55% validation:Asurvey,”ACMComputingSurveys,vol.56,no.5,pp.1–36,
+84.75% 2024.
+[8] K. A. Ismail and M. A. Abd El Ghany, “Survey on machine learning
+algorithms enhancing the functional verification process,” Electronics,
+vol.10,no.21,p.2688,2021.
+[9] O. Guzey, L.-C. Wang, J. R. Levitt, and H. Foster, “Functional test
+selectionbasedonunsupervisedsupportvectoranalysis,”inProceedings
+of the 45th Annual Design Automation Conference. New York, NY,
+USA:ACM,2008,pp.262–267.
+[10] ——,“Increasingtheefficiencyofsimulation-basedfunctionalverifica-
+tionthroughunsupervisedsupportvectoranalysis,”IEEETransactions
+onComputer-AidedDesignofIntegratedCircuitsandSystems,vol.29,
+no.1,pp.138–148,2010.
+Fig.3. Normalizedindustrial-IPcoverageclosureprocess. [11] W. Chen, N. Sumikawa, L.-C. Wang, J. Bhadra, X. Feng, and M. S.
+Abadir, “Novel test detection to improve simulation efficiency: A
+commercialexperiment,”inProceedingsoftheIEEE/ACMInternational
+ConferenceonComputer-AidedDesign. NewYork,NY,USA:ACM,
+Together,theseresultsshowthatdynamic-information-prior
+2012,pp.101–108.
+two-level UCB drives coverage growth, while continuous [12] G. Parthasarathy, A. Rushdi, P. Choudhary, S. Nanda, M. Evans,
+refill and runtime-aware scoring improve practical simulation H. Gunasekara, and S. Rajakumar, “RTL regression test selection
+using machine learning,” in 2022 27th Asia and South Pacific Design
+efficiency.
+AutomationConference. Piscataway,NJ,USA:IEEE,2022,pp.281–
+Limitations.Theevaluationusesonerandomseedandtwo 287.
+designs, so the results are case-study evidence rather than [13] R.Liang,N.Pinckney,Y.Chai,H.Ren,andB.Khailany,“Latebreaking
+results:TestselectionforRTLcoveragebyunsupervisedlearningfrom
+statistical proof. Weight sensitivity, multi-seed tests, industrial
+fastfunctionalsimulation,”in202360thACM/IEEEDesignAutomation
+ablations, and common-infrastructure comparisons remain fu- Conference. Piscataway,NJ,USA:IEEE,2023,pp.1–2.
+ture work. [14] F. Wang, H. Zhu, P. Popli, Y. Xiao, P. Bogdan, and S. Nazarian, “Ac-
+celerating coverage directed test generation for functional verification:
+VII. CONCLUSION Aneuralnetwork-basedframework,”inProceedingsoftheGreatLakes
+SymposiumonVLSI. NewYork,NY,USA:ACM,2018,pp.207–212.
+Thispaperproposesanentropy-awareandUCB-drivencov- [15] S. Vasudevan, W. Jiang, D. Bieber, R. Singh, H. Shojaei, R. Ho,
+erage closure framework for hardware verification. By com- and C. Sutton, “Learning semantic representations to verify hardware
+designs,”AdvancesinNeuralInformationProcessingSystems,vol.34,
+biningdynamicclusterprioritization,two-levelUCBselection,
+pp.23491–23504,2021.
+continuous refill, and runtime-aware scoring, the method im- [16] Y. Lu, C. Bai, Y. Zhao, Z. Zheng, Y. Lyu, M. Liu, and B. Yu,
+provescoveragegrowthandsimulationefficiencyoverrandom “DeepVerifier: Learning to update test sequences for coverage-guided
+verification,” ACM Transactions on Design Automation of Electronic
+selection and evaluated ablations on OpenTitan AON Timer
+Systems,vol.31,no.4,pp.1–23,2026.
+and an industrial IP. [17] Q. Huang, H. Shojaei, F. Zyda, A. Nazi, S. Vasudevan, S. Chatterjee,
+andR.Ho,“Fastercoverageconvergencewithautomatictestparameter
+ACKNOWLEDGMENT tuninginconstrainedrandomverification,”inWorkshoponLanguages,
+Tools,andTechniquesforAcceleratorDesign(LATTE),2021.
+This work was supported in part by the 2025 Basic and [18] N. Masamba, K. Eder, and T. Blackmore, “Supervised learning for
+Applied Basic Research Program of Guangzhou Municipal coverage-directed test selection in simulation-based verification,” in
+2022 IEEE International Conference on Artificial Intelligence Testing
+Science and Technology Bureau (Young Doctor “Qihang”
+(AITest),2022,pp.19–25.
+Project, Task No. 2025A04J4001), and in part by Shenzhen [19] K. Laeufer, J. Koenig, D. Kim, J. Bachrach, and K. Sen, “RFUZZ:
+Bureau of Science and Technology Research under Grant No. Coverage-directed fuzz testing of RTL on FPGAs,” in Proceedings of
+the IEEE/ACM International Conference on Computer-Aided Design.
+KJZD20240903102708012.
+NewYork,NY,USA:ACM,2018,pp.1–8.
+[20] S. Canakci, L. Delshadtehrani, F. Eris, M. B. Taylor, M. Egele, and
+REFERENCES
+A.Joshi,“DirectFuzz:AutomatedtestgenerationforRTLdesignsusing
+[1] F. Haedicke, H. M. Le, D. Grosse, and R. Drechsler, “CRAVE: An
+directedgrayboxfuzzing,”in202158thACM/IEEEDesignAutomation
+advancedconstrainedRAndomverificationenvironmentforSystemC,” Conference. Piscataway,NJ,USA:IEEE,2021,pp.529–534.
+in2012InternationalSymposiumonSystemonChip. Piscataway,NJ, [21] V. Gohil, R. Kande, C. Chen, A.-R. Sadeghi, and J. Rajendran,
+USA:IEEE,2012,pp.1–7. “MABFuzz: Multi-armed bandit algorithms for fuzzing processors,” in
+[2] S. Fine and A. Ziv, “Coverage directed test generation for functional
+2024 Design, Automation & Test in Europe Conference & Exhibition.
+verificationusingbayesiannetworks,”inProceedingsofthe40thAnnual Piscataway,NJ,USA:IEEE,2024,pp.1–6.
+DesignAutomationConference. NewYork,NY,USA:ACM,2003,pp. [22] G. Dimitrakopoulos, E. Kallitsounakis, Z. Takakis, A. Stefanidis, and
+286–291. C.Nicopoulos,“Multi-armedbanditsforautonomoustestapplicationin
+[3] C. Ioannides and K. I. Eder, “Coverage-directed test generation auto-
+RISC-Vprocessorverification,”in202312thInternationalConference
+mated by machine learning: A review,” ACM Transactions on Design on Modern Circuits and Systems Technologies (MOCAST), 2023, pp.
+AutomationofElectronicSystems,vol.17,no.1,pp.1–21,2012. 1–5.
+[4] C. Liu, J. P. Parlapalli, D. K. Houngninou, M. Quinn, A. Tyagi, and [23] M. Ester, H.-P. Kriegel, J. Sander, and X. Xu, “A density-based al-
+J.Hu,“Improvinglast-milecoverageinfunctionalverification,”in2025 gorithm for discovering clusters in large spatial databases with noise,”
+ACM/IEEE7thSymposiumonMachineLearningforCAD. Piscataway, in Proceedings of the Second International Conference on Knowledge
+NJ,USA:IEEE,2025,pp.1–7. DiscoveryandDataMining. Portland,OR,USA:AAAIPress,1996,
+[5] C. E. Shannon, “A mathematical theory of communication,” The Bell pp.226–231.
+SystemTechnicalJournal,vol.27,no.3,pp.379–423,1948.

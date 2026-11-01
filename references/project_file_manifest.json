@@ -1,0 +1,235 @@
+{
+  "schema": "paper-method-repro-project-files-v1",
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "09453a2f815549b0e1c26f415cd4e1e5ae44f30d5430b7927a46ca61bd5228a7",
+      "bytes": 120
+    },
+    {
+      "path": "01_论文协议与来源/README.md",
+      "sha256": "e229e0f73dd405a6b618d2675fe70e8ac0b2cae023b0207e96caea98440e9efb",
+      "bytes": 1002
+    },
+    {
+      "path": "01_论文协议与来源/实施记录.md",
+      "sha256": "e59a24331dcc57b3c1eea84e001c0915c3ce6c4b7a7e949fb73f3eac0f9e1144",
+      "bytes": 513
+    },
+    {
+      "path": "01_论文协议与来源/论文协议.md",
+      "sha256": "8732337f8e91c7c383bcf512028432e8b21a0159e220660ebe4952ed62e54d0e",
+      "bytes": 1672
+    },
+    {
+      "path": "02_服务器与仿真器验收/algorithm_source/vericov",
+      "sha256": "dc6817df1bae9f04dc3acee34d925be4a3b964b9d61c8884672b73ae6111f6f3",
+      "bytes": 155
+    },
+    {
+      "path": "02_服务器与仿真器验收/algorithm_source/verisim",
+      "sha256": "0c102b87f8c3c8154c60c6bac7db9ef8077e59d8a62b7113070167dca4b97849",
+      "bytes": 144
+    },
+    {
+      "path": "02_服务器与仿真器验收/README.md",
+      "sha256": "84eb5c8979c0b34b40c6fbbf52f987e720a3575a3af397501ddbc665075d7c89",
+      "bytes": 956
+    },
+    {
+      "path": "02_服务器与仿真器验收/实施记录.md",
+      "sha256": "0f5b45613c56b3dc8afae48d2fbc3d94391bf335fba79f2a23c5ce93befe9efd",
+      "bytes": 519
+    },
+    {
+      "path": "03_DUT与源码锁定/README.md",
+      "sha256": "dbac4d5cfc944f8e19bfaf2b4f9d2836336431ad91274bade97dffc0cd8b2d20",
+      "bytes": 879
+    },
+    {
+      "path": "03_DUT与源码锁定/实施记录.md",
+      "sha256": "23fa4800107f7ddb8aae735575c2da9b80149136e0f28f7a9479ad1cf0818cec",
+      "bytes": 511
+    },
+    {
+      "path": "04_测试配置与执行入口/README.md",
+      "sha256": "cf1400c259e6b4d723ff927ab799b80ddfbbbf32a19922fae41a12fe0db4a4a4",
+      "bytes": 1043
+    },
+    {
+      "path": "04_测试配置与执行入口/实施记录.md",
+      "sha256": "d3f7df3e5c7c6f0c773b0deceafb84d54b608ea21be9d578411bd3c32343123e",
+      "bytes": 519
+    },
+    {
+      "path": "05_初始语料/algorithm_source/sequence_based_parallel_test.py",
+      "sha256": "f3e1d662728b7b31e0a2f6e094e6e9484fdbfc738802309b2dd98a315af1c0f2",
+      "bytes": 19710
+    },
+    {
+      "path": "05_初始语料/README.md",
+      "sha256": "9e0087884c33ab8c029c880bd0e6ae7def6bfcaa1a06ea5e60bf2de7c0d5c39d",
+      "bytes": 910
+    },
+    {
+      "path": "05_初始语料/实施记录.md",
+      "sha256": "d664dcab5e44c506851253b4a18d0f4a18074c33c9ad3a68d9016dfcae5ddac1",
+      "bytes": 504
+    },
+    {
+      "path": "06_覆盖数据转换/algorithm_source/process_csv.py",
+      "sha256": "b463b75554a5e3c29168d9f09e1688a3a1553ec1221f0c73e536ce9d3c23c165",
+      "bytes": 10162
+    },
+    {
+      "path": "06_覆盖数据转换/README.md",
+      "sha256": "fe87b5fe310938f08cc26192744ed5589cc458a67f9221fd874615ed4439cf89",
+      "bytes": 897
+    },
+    {
+      "path": "06_覆盖数据转换/实施记录.md",
+      "sha256": "5632a8e556ec831d86e73c1295cec22862ba72d077f1633b4bc0cd4458ba6eeb",
+      "bytes": 510
+    },
+    {
+      "path": "07_聚类与信息评分/algorithm_source/dbscan_clustering.py",
+      "sha256": "1c327243bf38827ed8311499327997527839a88fdb92ac4860a8563deb5ac053",
+      "bytes": 11573
+    },
+    {
+      "path": "07_聚类与信息评分/algorithm_source/dbscan_clustering_new.py",
+      "sha256": "95c9222d823ecc049c9e221c29c5a46bbcb2d37548a28758fc27ad9779bdced6",
+      "bytes": 11165
+    },
+    {
+      "path": "07_聚类与信息评分/algorithm_source/dbscan_clustering_new2.py",
+      "sha256": "58c8ebf3e258f2fe8906a2a43744ab2dcc3b0d92f811558bd9a5315d4d36a55c",
+      "bytes": 11892
+    },
+    {
+      "path": "07_聚类与信息评分/algorithm_source/dbscan_clustering_new3.py",
+      "sha256": "0e2e672ec011c6f97fb06ae45f79f460f1690b0ad537dd1c058d9efb32086535",
+      "bytes": 12254
+    },
+    {
+      "path": "07_聚类与信息评分/README.md",
+      "sha256": "98172039453a663db3aa80ca5ca02c4723d5be8ca013594060ef368b4849d24f",
+      "bytes": 961
+    },
+    {
+      "path": "07_聚类与信息评分/实施记录.md",
+      "sha256": "f59d2049f47492771c5808f83dc402fc1786ea476e10f26ac15d133ce35379ee",
+      "bytes": 513
+    },
+    {
+      "path": "08_两层UCB在线复现/algorithm_source/generic_adaptive_runner_ucb_continuous_refill_norepeat_poolmi.py",
+      "sha256": "3f5c0b7d03cf752f1233f65e6800e3bb899e440ae420fa8cc9d7c3aab97dc1b4",
+      "bytes": 126191
+    },
+    {
+      "path": "08_两层UCB在线复现/README.md",
+      "sha256": "adea98781eb05b0d435b2369d0f7587626a15438708acca5a4767530e3f6e730",
+      "bytes": 1120
+    },
+    {
+      "path": "08_两层UCB在线复现/实施记录.md",
+      "sha256": "8580004e0dfd4b48261557dab6dae8c39ec5ad830de118e977f722947c624812",
+      "bytes": 515
+    },
+    {
+      "path": "09_对照与消融/algorithm_source/coverage_plot_script.py",
+      "sha256": "d9f364f8b375f6afd87f0b53ad20c1ebda292420d99e08bd611ccca82024871e",
+      "bytes": 10287
+    },
+    {
+      "path": "09_对照与消融/algorithm_source/draw.py",
+      "sha256": "b9d723abc21abd6346b0018a213d1adaa8692c1bfefc65aae302bf52207b58f6",
+      "bytes": 9113
+    },
+    {
+      "path": "09_对照与消融/algorithm_source/draw_new.py",
+      "sha256": "55802e4cf8cbaa39d50295180ebef0c290d276228333d16f0a479372f37680dd",
+      "bytes": 5659
+    },
+    {
+      "path": "09_对照与消融/algorithm_source/generic_parallel_test.py",
+      "sha256": "587c6f01ffcd13ababe3bcab3e9d0db38c8ac0946f7322acb32acdece524f311",
+      "bytes": 16744
+    },
+    {
+      "path": "09_对照与消融/README.md",
+      "sha256": "7eadcbf4ed2763cb172ce54f5592a25b0e94e0f671bb27ac2f6cb98ba3783d2d",
+      "bytes": 1032
+    },
+    {
+      "path": "09_对照与消融/实施记录.md",
+      "sha256": "2d110f2ec95573ee8cc4e2d0739695572a8789441aa245d29f1d81806eff6aea",
+      "bytes": 507
+    },
+    {
+      "path": "10_结果复核与论文对比/README.md",
+      "sha256": "1c893f91f6e820fc5acc2bd427c86b57b5c11ce8d29a3823d697eb682d5f1d44",
+      "bytes": 949
+    },
+    {
+      "path": "10_结果复核与论文对比/实施记录.md",
+      "sha256": "c17dcdaaf0acd25b28857e5590ce5fd175db42d79b754a7c3e89aa7e78535538",
+      "bytes": 519
+    },
+    {
+      "path": "10_结果复核与论文对比/结果表模板.csv",
+      "sha256": "d1a87504676a6c8b9687c7a746d397f77d9bb0352da774e3cef9e030848f77ab",
+      "bytes": 246
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "abe4fbd58ad54d8a50b67dbefac82621812a2c887f6166307b7dac152767ca75",
+      "bytes": 802
+    },
+    {
+      "path": "configs/aon_timer_config.template.yaml",
+      "sha256": "e7a9beb68f819f77853c08d816f399901da6e6e3a1bdd8e05f68368755475654",
+      "bytes": 716
+    },
+    {
+      "path": "docs/实验设计.md",
+      "sha256": "5a2a2e0f96d3a2d56abfba0d159755864e56fb74c739881359e1b2aaff373c1b",
+      "bytes": 1185
+    },
+    {
+      "path": "README.md",
+      "sha256": "8ba2f27880befcd118478534a4676f54e424ca1c8e5a5feb29d7ef6d291698c6",
+      "bytes": 3680
+    },
+    {
+      "path": "references/excluded_bayesian_training.md",
+      "sha256": "aefeb2ca41f24830c9203a3635db10f881ce02eecfb0fb4a55332b33c2727ec8",
+      "bytes": 764
+    },
+    {
+      "path": "references/IM-1175.pdf",
+      "sha256": "ec0ad3b7b3f3c83d2355e96f820d56903ba352f3f6f8b79b30e132571108fe56",
+      "bytes": 292300
+    },
+    {
+      "path": "references/IM-1175_extract.txt",
+      "sha256": "85cb3a3caac17831ffe7eae3cda810d38b38b9a199104062507210a0e2755fb1",
+      "bytes": 31937
+    },
+    {
+      "path": "references/project_file_manifest.json",
+      "sha256": "31a901cf4de3e67af33d5a1484ed1b85cf34d84f44695da343a6c295701ee795",
+      "bytes": 5182
+    },
+    {
+      "path": "references/toolbox_source_manifest.json",
+      "sha256": "6111e2dc0007da0ed60585922e900939f669bcb10029568d8b72062a8673c6fd",
+      "bytes": 2797
+    },
+    {
+      "path": "tools/check_excluded_sources.py",
+      "sha256": "71c31426073a07049a19104ee79f99ab5aa716801480200d5a8590db8b20d7aa",
+      "bytes": 505
+    }
+  ]
+}

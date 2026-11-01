@@ -1,0 +1,24 @@
+# AON Timer execution template. Replace all <...> fields only after Stage 04 verifies them.
+test_name: "aon_timer_base_test"
+verisim_config:
+  verisim_home: "<SERVER_VERISIM_HOME>"
+  image_dir: "<SERVER_IMAGE_DIR>"
+  test_name: "aon_timer_base_test"
+base_run_cmd:
+  - "verisim"
+  - "+UVM_TESTNAME={test_name}"
+  - "+UVM_TEST_SEQ={test_seq}"
+  - "-sv_seed"
+  - "{seed}"
+  - "+en_cov=1"
+  - "-cov-db"
+  - "{run_dir}/coverage.zdb"
+  - "-func-data"
+  - "{run_dir}/funcdata.txt"
+  - "-func-filename"
+  - "{run_dir}/funcname.txt"
+  - "-func-output-enable"
+test_sequences:
+  # Populate from the verified AON Timer DV inventory in Stage 04.
+  - name: "<AON_TIMER_SEQUENCE>"
+    additional_params: []
