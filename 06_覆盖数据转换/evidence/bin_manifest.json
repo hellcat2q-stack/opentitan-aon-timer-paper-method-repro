@@ -1,0 +1,427 @@
+{
+  "schema": "aon-timer-stage06-bin-manifest-v1",
+  "status": "completed",
+  "input_rule": "include UVM_PASS with VCS and original URG return code 0; exclude all original UVM failures; include their timeout-fix replay only as separately identified runs",
+  "accepted_run_count": 39,
+  "accepted_original_count": 35,
+  "accepted_replay_count": 4,
+  "excluded_original_runs": [
+    {
+      "global_run_id": 32,
+      "test_name": "aon_timer_stress_all",
+      "sequence": "aon_timer_stress_all_vseq",
+      "sequence_run_index": 2,
+      "seed": 2003042196,
+      "vcs_return_code": 0,
+      "urg_return_code": 0,
+      "wall_seconds": 857.739,
+      "simulator_cpu_seconds": 608.85,
+      "uvm_pass": false,
+      "uvm_error": 0,
+      "uvm_fatal": 1,
+      "covered_groups": 72,
+      "expected_groups": 4525,
+      "group_score_percent": 1.59,
+      "relative_run_dir": "aon_timer_stress_all/2",
+      "source": "original"
+    },
+    {
+      "global_run_id": 34,
+      "test_name": "aon_timer_stress_all",
+      "sequence": "aon_timer_stress_all_vseq",
+      "sequence_run_index": 4,
+      "seed": 535272963,
+      "vcs_return_code": 0,
+      "urg_return_code": 0,
+      "wall_seconds": 444.193,
+      "simulator_cpu_seconds": 338.71,
+      "uvm_pass": false,
+      "uvm_error": 0,
+      "uvm_fatal": 1,
+      "covered_groups": 117,
+      "expected_groups": 4525,
+      "group_score_percent": 2.59,
+      "relative_run_dir": "aon_timer_stress_all/4",
+      "source": "original"
+    },
+    {
+      "global_run_id": 35,
+      "test_name": "aon_timer_stress_all",
+      "sequence": "aon_timer_stress_all_vseq",
+      "sequence_run_index": 5,
+      "seed": 260995287,
+      "vcs_return_code": 0,
+      "urg_return_code": 0,
+      "wall_seconds": 164.191,
+      "simulator_cpu_seconds": 140.84,
+      "uvm_pass": false,
+      "uvm_error": 0,
+      "uvm_fatal": 1,
+      "covered_groups": 211,
+      "expected_groups": 4525,
+      "group_score_percent": 4.66,
+      "relative_run_dir": "aon_timer_stress_all/5",
+      "source": "original"
+    },
+    {
+      "global_run_id": 38,
+      "test_name": "aon_timer_stress_all",
+      "sequence": "aon_timer_stress_all_vseq",
+      "sequence_run_index": 8,
+      "seed": 602172146,
+      "vcs_return_code": 0,
+      "urg_return_code": 0,
+      "wall_seconds": 220.749,
+      "simulator_cpu_seconds": 156.89,
+      "uvm_pass": false,
+      "uvm_error": 0,
+      "uvm_fatal": 1,
+      "covered_groups": 101,
+      "expected_groups": 4525,
+      "group_score_percent": 2.23,
+      "relative_run_dir": "aon_timer_stress_all/8",
+      "source": "original"
+    },
+    {
+      "global_run_id": 39,
+      "test_name": "aon_timer_stress_all",
+      "sequence": "aon_timer_stress_all_vseq",
+      "sequence_run_index": 9,
+      "seed": 308624087,
+      "vcs_return_code": 0,
+      "urg_return_code": 0,
+      "wall_seconds": 406.843,
+      "simulator_cpu_seconds": 307.35,
+      "uvm_pass": false,
+      "uvm_error": 0,
+      "uvm_fatal": 1,
+      "covered_groups": 133,
+      "expected_groups": 4525,
+      "group_score_percent": 2.94,
+      "relative_run_dir": "aon_timer_stress_all/9",
+      "source": "original"
+    }
+  ],
+  "excluded_replay_runs": [
+    {
+      "global_run_id": 38,
+      "test_name": "aon_timer_stress_all",
+      "sequence": "aon_timer_stress_all_vseq",
+      "test_run_options": [
+        "+test_timeout_ns=10000000000"
+      ],
+      "sequence_run_index": 8,
+      "seed": 602172146,
+      "vcs_return_code": 0,
+      "urg_return_code": 0,
+      "wall_seconds": 538.819,
+      "simulator_cpu_seconds": 448.93,
+      "uvm_pass": false,
+      "uvm_error": 1,
+      "uvm_fatal": 0,
+      "covered_groups": 146,
+      "expected_groups": 4525,
+      "group_score_percent": 3.23,
+      "relative_run_dir": "aon_timer_stress_all/8",
+      "source": "timeout_fix_replay"
+    }
+  ],
+  "bin_key_format": "group::variable_or_cross::item::bin_name",
+  "bin_count": 4507,
+  "bin_count_source": "ordered variable/cross rows from URG grp*.html; stable column labels are frozen from the first report and every generated groups.txt detailed row total is verified",
+  "dashboard_expected_groups": 4525,
+  "dashboard_vs_detailed_bin_count_difference": 18,
+  "dashboard_covered_groups_min": 44,
+  "dashboard_covered_groups_max": 216,
+  "detailed_groups_txt_covered_min": 45,
+  "detailed_groups_txt_covered_max": 217,
+  "dashboard_detailed_bin_discrepancy": "Dashboard score denominator and covered total are retained separately; they do not equal the sum of detailed bin tables. The canonical feature matrix uses individually parsed coverpoint/cross bins.",
+  "per_report_urg_totals": {
+    "original_g0": {
+      "groups_txt_covered": 51,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 50,
+      "dashboard_expected": 4525
+    },
+    "original_g1": {
+      "groups_txt_covered": 57,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 56,
+      "dashboard_expected": 4525
+    },
+    "original_g2": {
+      "groups_txt_covered": 53,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 52,
+      "dashboard_expected": 4525
+    },
+    "original_g3": {
+      "groups_txt_covered": 59,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 58,
+      "dashboard_expected": 4525
+    },
+    "original_g4": {
+      "groups_txt_covered": 52,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 51,
+      "dashboard_expected": 4525
+    },
+    "original_g5": {
+      "groups_txt_covered": 49,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 48,
+      "dashboard_expected": 4525
+    },
+    "original_g6": {
+      "groups_txt_covered": 45,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 44,
+      "dashboard_expected": 4525
+    },
+    "original_g7": {
+      "groups_txt_covered": 54,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 53,
+      "dashboard_expected": 4525
+    },
+    "original_g8": {
+      "groups_txt_covered": 51,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 50,
+      "dashboard_expected": 4525
+    },
+    "original_g9": {
+      "groups_txt_covered": 48,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 47,
+      "dashboard_expected": 4525
+    },
+    "original_g10": {
+      "groups_txt_covered": 58,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 57,
+      "dashboard_expected": 4525
+    },
+    "original_g11": {
+      "groups_txt_covered": 60,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 59,
+      "dashboard_expected": 4525
+    },
+    "original_g12": {
+      "groups_txt_covered": 54,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 53,
+      "dashboard_expected": 4525
+    },
+    "original_g13": {
+      "groups_txt_covered": 52,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 51,
+      "dashboard_expected": 4525
+    },
+    "original_g14": {
+      "groups_txt_covered": 50,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 49,
+      "dashboard_expected": 4525
+    },
+    "original_g15": {
+      "groups_txt_covered": 58,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 57,
+      "dashboard_expected": 4525
+    },
+    "original_g16": {
+      "groups_txt_covered": 48,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 47,
+      "dashboard_expected": 4525
+    },
+    "original_g17": {
+      "groups_txt_covered": 51,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 50,
+      "dashboard_expected": 4525
+    },
+    "original_g18": {
+      "groups_txt_covered": 48,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 47,
+      "dashboard_expected": 4525
+    },
+    "original_g19": {
+      "groups_txt_covered": 48,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 47,
+      "dashboard_expected": 4525
+    },
+    "original_g20": {
+      "groups_txt_covered": 62,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 61,
+      "dashboard_expected": 4525
+    },
+    "original_g21": {
+      "groups_txt_covered": 63,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 62,
+      "dashboard_expected": 4525
+    },
+    "original_g22": {
+      "groups_txt_covered": 60,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 59,
+      "dashboard_expected": 4525
+    },
+    "original_g23": {
+      "groups_txt_covered": 61,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 60,
+      "dashboard_expected": 4525
+    },
+    "original_g24": {
+      "groups_txt_covered": 51,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 50,
+      "dashboard_expected": 4525
+    },
+    "original_g25": {
+      "groups_txt_covered": 58,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 57,
+      "dashboard_expected": 4525
+    },
+    "original_g26": {
+      "groups_txt_covered": 48,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 47,
+      "dashboard_expected": 4525
+    },
+    "original_g27": {
+      "groups_txt_covered": 57,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 56,
+      "dashboard_expected": 4525
+    },
+    "original_g28": {
+      "groups_txt_covered": 48,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 47,
+      "dashboard_expected": 4525
+    },
+    "original_g29": {
+      "groups_txt_covered": 56,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 55,
+      "dashboard_expected": 4525
+    },
+    "original_g30": {
+      "groups_txt_covered": 177,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 176,
+      "dashboard_expected": 4525
+    },
+    "original_g31": {
+      "groups_txt_covered": 112,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 111,
+      "dashboard_expected": 4525
+    },
+    "original_g33": {
+      "groups_txt_covered": 104,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 103,
+      "dashboard_expected": 4525
+    },
+    "original_g36": {
+      "groups_txt_covered": 73,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 72,
+      "dashboard_expected": 4525
+    },
+    "original_g37": {
+      "groups_txt_covered": 186,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 185,
+      "dashboard_expected": 4525
+    },
+    "timeout_fix_replay_g32": {
+      "groups_txt_covered": 86,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 85,
+      "dashboard_expected": 4525
+    },
+    "timeout_fix_replay_g34": {
+      "groups_txt_covered": 165,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 164,
+      "dashboard_expected": 4525
+    },
+    "timeout_fix_replay_g35": {
+      "groups_txt_covered": 217,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 216,
+      "dashboard_expected": 4525
+    },
+    "timeout_fix_replay_g39": {
+      "groups_txt_covered": 196,
+      "groups_txt_expected": 4507,
+      "dashboard_covered": 195,
+      "dashboard_expected": 4525
+    }
+  },
+  "report_bin_counts": {
+    "original_g0": 4507,
+    "original_g1": 4507,
+    "original_g2": 4507,
+    "original_g3": 4507,
+    "original_g4": 4507,
+    "original_g5": 4507,
+    "original_g6": 4507,
+    "original_g7": 4507,
+    "original_g8": 4507,
+    "original_g9": 4507,
+    "original_g10": 4507,
+    "original_g11": 4507,
+    "original_g12": 4507,
+    "original_g13": 4507,
+    "original_g14": 4507,
+    "original_g15": 4507,
+    "original_g16": 4507,
+    "original_g17": 4507,
+    "original_g18": 4507,
+    "original_g19": 4507,
+    "original_g20": 4507,
+    "original_g21": 4507,
+    "original_g22": 4507,
+    "original_g23": 4507,
+    "original_g24": 4507,
+    "original_g25": 4507,
+    "original_g26": 4507,
+    "original_g27": 4507,
+    "original_g28": 4507,
+    "original_g29": 4507,
+    "original_g30": 4507,
+    "original_g31": 4507,
+    "original_g33": 4507,
+    "original_g36": 4507,
+    "original_g37": 4507,
+    "timeout_fix_replay_g32": 4507,
+    "timeout_fix_replay_g34": 4507,
+    "timeout_fix_replay_g35": 4507,
+    "timeout_fix_replay_g39": 4507
+  },
+  "report_bin_count_min": 4507,
+  "report_bin_count_max": 4507,
+  "coverage_count_semantics": "integer COUNT parsed from URG covered/uncovered tables; each report row is mapped to the corresponding frozen prefix/order position and missing bins are zero-filled",
+  "runtime_semantics": "simulator_cpu_seconds copied from Stage 05 result.json; wall_seconds retained separately",
+  "csv": "coverage_bin_by_run.csv",
+  "csv_sha256": "71c02be6b80cb63973eeb96b26340f7e1d1ae2246674d148774c39c616ff1e94",
+  "commands": "urg_commands.json (server-specific paths redacted)",
+  "source_manifests": [
+    "manifest.json",
+    "manifest.json"
+  ]
+}
