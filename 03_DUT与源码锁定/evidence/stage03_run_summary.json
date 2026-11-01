@@ -1,0 +1,41 @@
+{
+  "schema": "aon-timer-stage03-run-summary-v1",
+  "status": "completed",
+  "server": "SMW5",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "seed": 42,
+  "build": {
+    "run_id": "03_target_build_clean_20261101T083419Z",
+    "return_code": 0,
+    "target": "aon_timer_smoke",
+    "simv_sha256": "9872913422bba7f26a148bb7e3bfccbce766b64ee0e964da8a155aa4501864f8"
+  },
+  "coverage_smoke": {
+    "run_id": "03_coverage_smoke_20261101T083650Z",
+    "dvsim_return_code": 0,
+    "urg_return_code": 0,
+    "uvm_test": "aon_timer_smoke",
+    "passing": 1,
+    "total": 1,
+    "pass_rate_percent": 100.0,
+    "dvsim_dashboard": {
+      "total_percent": 55.31,
+      "functional_percent": 0.99
+    },
+    "direct_urg_without_external_exclusions": {
+      "covered": 45,
+      "expected": 4525,
+      "score_percent": 0.99
+    }
+  },
+  "interpretation": "Build, smoke, and URG prove the target DUT/reporting path. Smoke coverage is not a paper result and is not the formal stage-04 bin denominator.",
+  "compatibility": {
+    "fusesoc_target": "ot-0.5.dev0",
+    "edalize_target": "0.4.0",
+    "compatibility_layer": "server-only runtime/stage03_compat",
+    "source_modified": false,
+    "stage02_environment_modified": false,
+    "vcs_wrapper": "removed -xprop=mmsopt for VCS P-2019.06-SP1",
+    "git_wrapper": "provided git -C behavior for DVSIM revision reporting"
+  }
+}

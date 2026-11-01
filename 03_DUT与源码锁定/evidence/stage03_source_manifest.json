@@ -1,0 +1,21 @@
+{
+  "schema": "aon-timer-stage03-source-manifest-v1",
+  "status": "completed",
+  "source": {
+    "project": "lowrisc/opentitan",
+    "revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+    "commit_subject": "[bazel] patch rules_fuzzing to work in airgapped mode",
+    "archive_sha256": "9f96395245d9a73de7608a06c47a9b0212b08cf151475dbc5f50c79ea8aaf280"
+  },
+  "files": {
+    "hw/ip/aon_timer/dv/aon_timer_sim_cfg.hjson": "33c928935c70d0db3a38ba624e4f26df31c39e91c937bb854c6a19387869957a",
+    "hw/ip/aon_timer/dv/aon_timer_sim.core": "835b7ce557476a96f10c88632e9950bf324f9bc252506e8c9665dbbec7fe3d52",
+    "hw/ip/aon_timer/dv/tb.sv": "d966b464a0792264df0178833b7d8046eca4a0fb78d6c60608c0c9888fae731b",
+    "hw/ip/aon_timer/dv/env/aon_timer_env_cov.sv": "c0ec937d68c335e2d05760268ce161eca1a40e7f8e50546156c0589882ed9b45",
+    "hw/ip/aon_timer/dv/env/seq_lib/aon_timer_vseq_list.sv": "161cb2e129c6f5ed5cfc4c09d9f34288ff33a19901135cdd66b897d326ec11ca",
+    "hw/ip/aon_timer/rtl/aon_timer.sv": "46cd4ab123862c2c296a5ba7ea6216db1285a4fcdc5ce917b2c7fab2ac8c4fce",
+    "hw/ip/aon_timer/data/aon_timer_testplan.hjson": "f6e0734c1fc34e16e22cc084603b029dfe37a33b1fe213c028f5f6de0901c3a6"
+  },
+  "source_status": "clean",
+  "auxiliary_untracked_files": "Four local dv/cov/*.el files were kept only on the server as auxiliary configuration and were excluded from the final URG command."
+}
