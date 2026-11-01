@@ -1,0 +1,32 @@
+{
+  "stage": 4,
+  "status": "complete",
+  "server": "SMW5",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "sim_cfg": "<ROOT>/src/opentitan/hw/ip/aon_timer/dv/aon_timer_sim_cfg.hjson",
+  "dvsim_tests": [
+    "aon_timer_smoke", "aon_timer_prescaler", "aon_timer_jump",
+    "aon_timer_stress_all_with_rand_reset", "aon_timer_stress_all",
+    "aon_timer_sec_cm", "aon_timer_tl_errors", "aon_timer_tl_intg_err",
+    "aon_timer_intr_test", "aon_timer_mem_walk", "aon_timer_mem_partial_access",
+    "aon_timer_csr_hw_reset", "aon_timer_csr_rw", "aon_timer_csr_bit_bash",
+    "aon_timer_csr_aliasing", "aon_timer_same_csr_outstanding",
+    "aon_timer_csr_mem_rw_with_rand_reset"
+  ],
+  "dvsim_regressions": ["smoke", "sw_access", "all", "all_once", "nightly", "V1", "V2", "V2S", "V3"],
+  "core_sequences_verified": [
+    "aon_timer_smoke_vseq",
+    "aon_timer_prescaler_vseq",
+    "aon_timer_jump_vseq",
+    "aon_timer_stress_all_vseq"
+  ],
+  "default_parameters": {
+    "uvm_test": "aon_timer_base_test",
+    "reseed": 50,
+    "run_options": ["+cdc_instrumentation_enabled=1"],
+    "coverage": "+en_cov=1",
+    "metrics": "line+cond+fsm+tgl+branch+assert"
+  },
+  "source_of_inventory": "server runs/stage04_list_tests.log from dvsim --list tests regressions",
+  "interpretation": "The list is an entry inventory; it is not a claim that every listed test has been run in this stage."
+}

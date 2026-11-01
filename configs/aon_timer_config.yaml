@@ -1,0 +1,64 @@
+# AON Timer 阶段 04 执行配置（VCS/DVSIM）
+#
+# 这是脱敏的可执行入口模板。尖括号变量只在服务器 shell 中替换；不写入私有绝对路径、许可证值或商业仿真产物。
+stage: 4
+name: aon_timer_vcs_dvsim
+simulator: vcs
+source:
+  opentitan_revision: "9f20940d494a223cc950a5b98f748fb28109d458"
+  sim_cfg: "<OPENTITAN_ROOT>/hw/ip/aon_timer/dv/aon_timer_sim_cfg.hjson"
+  dv_root: "<OPENTITAN_ROOT>/hw/dv"
+
+runtime:
+  environment:
+    SIMULATOR: "vcs"
+    WAVES: "none"
+  path_note: "Use the stage03 compatibility PATH/PYTHONPATH on the school server."
+
+uvm:
+  test_name: "aon_timer_base_test"
+  run_options:
+    - "+cdc_instrumentation_enabled=1"
+    - "+en_cov=1"
+  coverage_metrics: "line+cond+fsm+tgl+branch+assert"
+  seed_option: "+ntb_random_seed={seed}"
+  sequence_option: "+UVM_TEST_SEQ={sequence}"
+
+sequences:
+  - test_name: "aon_timer_smoke"
+    sequence: "aon_timer_smoke_vseq"
+  - test_name: "aon_timer_prescaler"
+    sequence: "aon_timer_prescaler_vseq"
+  - test_name: "aon_timer_jump"
+    sequence: "aon_timer_jump_vseq"
+  - test_name: "aon_timer_stress_all"
+    sequence: "aon_timer_stress_all_vseq"
+
+commands:
+  list: >-
+    dvsim <OPENTITAN_ROOT>/hw/ip/aon_timer/dv/aon_timer_sim_cfg.hjson
+    --proj-root <OPENTITAN_ROOT> --list tests regressions
+  dvsim_smoke: >-
+    dvsim <OPENTITAN_ROOT>/hw/ip/aon_timer/dv/aon_timer_sim_cfg.hjson
+    --proj-root <OPENTITAN_ROOT> --scratch-root <SCRATCH_ROOT>
+    --branch stage04-entry-smoke --local --max-parallel 1
+    --run-timeout-mins 10 --cov --fixed-seed {seed} -i aon_timer_smoke
+  direct_simv: >-
+    env dv_root=<OPENTITAN_ROOT>/hw/dv SIMULATOR=vcs WAVES=none
+    <SIMV> +cdc_instrumentation_enabled=1 +UVM_NO_RELNOTES
+    +UVM_VERBOSITY=UVM_LOW -licqueue -ucli
+    -do <OPENTITAN_ROOT>/hw/dv/tools/sim.tcl
+    +ntb_random_seed={seed} -assert nopostproc
+    +UVM_TESTNAME=aon_timer_base_test +UVM_TEST_SEQ={sequence}
+    +en_cov=1 -cm line+cond+fsm+tgl+branch+assert
+    -cm_dir <RUN_ROOT>/coverage/default.vdb -cm_log /dev/null
+    -cm_name {test_name}.{seed}
+  urg: >-
+    urg -lca -full64 +urg+lic+wait -metric group -show tests
+    -group ratio -group lrm_bin_name -group instcov_for_score
+    -group maxmissing 100000 -dir <RUN_ROOT>/coverage/default.vdb
+    -format text -report <RUN_ROOT>/urg_report
+
+artifacts:
+  public: "command echo, selected parameters, return codes, coverage counters, SHA-256 index"
+  server_only: "simv, VDB, full simulation logs, URG report directory, license details"

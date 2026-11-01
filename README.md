@@ -15,7 +15,7 @@
 | 01 | 锁定论文协议、表 II 目标、不可知参数和来源哈希 | protocol manifest、参考结果表 | 已完成（2026-11-01） |
 | 02 | 验收学校服务器、Verisim/Vericov/VCS、许可证和 Python 依赖 | 环境与能力证据 | 已完成（2026-11-01） |
 | 03 | 锁定 OpenTitan revision、AON Timer DV 配置并完成 coverage build smoke | 源码/构建哈希、smoke 报告 | 已完成（2026-11-01） |
-| 04 | 建立 AON Timer 测试序列与命令配置，逐项验证 seed/coverage 参数传递 | AON Timer config、sequence inventory | 待开始 |
+| 04 | 建立 AON Timer 测试序列与命令配置，逐项验证 seed/coverage 参数传递 | AON Timer config、sequence inventory | 已完成（2026-11-01） |
 | 05 | 按师兄流程运行初始语料：每个可用序列 10 次，保存 runtime 和原始报告 | initial corpus、run manifest | 待开始 |
 | 06 | 将真实 coverage 报告转换为 bin-by-run CSV，冻结分母和命中解析 | coverage CSV、bin manifest | 待开始 |
 | 07 | 用师兄 DBSCAN/组件聚类和信息评分代码生成 cluster mapping 与静态优先级 | clusters、information scores | 待开始 |
@@ -33,8 +33,8 @@
 - 阶段 08：`generic_adaptive_runner_ucb_continuous_refill_norepeat_poolmi.py`；
 - 阶段 09：`generic_parallel_test.py` 和绘图脚本。
 
-排除清单见 `references/excluded_bayesian_training.md`。仓库中的 AON Timer 配置只有无私有路径的占位模板；不得把师兄 UART 配置或其 Bayes 路径直接用于 AON Timer。
+排除清单见 `references/excluded_bayesian_training.md`。仓库中的 AON Timer 配置使用无私有路径的脱敏模板；不得把师兄 UART 配置或其 Bayes 路径直接用于 AON Timer。
 
 ## 当前边界
 
-阶段 01–03 已完成。阶段 03 的 smoke coverage 只证明目标 DUT 的构建、仿真和报告链路可用，不是论文表 II 的结果；阶段 04 将在同一 revision 上冻结测试入口、序列清单和正式 coverage bin 分母。
+阶段 01–04 已完成。阶段 03 的 smoke coverage 和阶段 04 的单序列 group coverage 只证明目标 DUT 的构建、仿真、参数传递和报告链路可用，不是论文表 II 的结果；阶段 05 将在已盘点的入口上生成初始语料，阶段 06 再冻结正式 coverage bin 分母。

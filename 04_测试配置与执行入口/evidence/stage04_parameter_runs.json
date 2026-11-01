@@ -1,0 +1,45 @@
+{
+  "stage": 4,
+  "parameter_transfer_runs": [
+    {
+      "run_id": "04_param_smoke_20261101T094753Z",
+      "seed": 401,
+      "sequence": "aon_timer_smoke_vseq",
+      "uvm_test": "aon_timer_base_test",
+      "observed_arguments": ["+cdc_instrumentation_enabled=1", "+ntb_random_seed=401", "+UVM_TESTNAME=aon_timer_base_test", "+UVM_TEST_SEQ=aon_timer_smoke_vseq", "+en_cov=1"],
+      "uvm_result": "TEST PASSED CHECKS",
+      "dvsim_return_code": 1,
+      "classification": "parameter_transfer_only",
+      "reason": "The simulation passed, but the copied simv coverage post-step returned URG-CR because complete design metadata was unavailable."
+    },
+    {
+      "run_id": "04_param_prescaler_20261101T094814Z",
+      "seed": 402,
+      "sequence": "aon_timer_prescaler_vseq",
+      "uvm_test": "aon_timer_base_test",
+      "observed_arguments": ["+cdc_instrumentation_enabled=1", "+ntb_random_seed=402", "+UVM_TESTNAME=aon_timer_base_test", "+UVM_TEST_SEQ=aon_timer_prescaler_vseq", "+en_cov=1"],
+      "uvm_result": "TEST PASSED CHECKS",
+      "dvsim_return_code": 1,
+      "classification": "parameter_transfer_only",
+      "reason": "The simulation passed, but the copied simv coverage post-step returned URG-CR because complete design metadata was unavailable."
+    },
+    {
+      "run_id": "04_param_jump_20261101T094944Z",
+      "seed": 403,
+      "sequence": "aon_timer_jump_vseq",
+      "uvm_test": "aon_timer_base_test",
+      "observed_arguments": ["+cdc_instrumentation_enabled=1", "+ntb_random_seed=403", "+UVM_TESTNAME=aon_timer_base_test", "+UVM_TEST_SEQ=aon_timer_jump_vseq", "+en_cov=1"],
+      "uvm_result": "TEST PASSED CHECKS",
+      "dvsim_return_code": 1,
+      "classification": "parameter_transfer_only",
+      "reason": "The simulation passed, but the copied simv coverage post-step returned URG-CR because complete design metadata was unavailable."
+    }
+  ],
+  "direct_simv_runs": [
+    {"run_id": "04_valid_smoke_20261101T431Z", "seed": 431, "test_name": "aon_timer_smoke", "sequence": "aon_timer_smoke_vseq", "vcs_return_code": 0, "urg_return_code": 0, "uvm_result": "TEST PASSED CHECKS", "uvm_error": 0, "uvm_fatal": 0, "covered_groups": 45, "expected_groups": 4525, "group_score_percent": 0.99},
+    {"run_id": "04_valid_prescaler_20261101T432Z", "seed": 432, "test_name": "aon_timer_prescaler", "sequence": "aon_timer_prescaler_vseq", "vcs_return_code": 0, "urg_return_code": 0, "uvm_result": "TEST PASSED CHECKS", "uvm_error": 0, "uvm_fatal": 0, "covered_groups": 46, "expected_groups": 4525, "group_score_percent": 1.02},
+    {"run_id": "04_valid_jump_20261101T433Z", "seed": 433, "test_name": "aon_timer_jump", "sequence": "aon_timer_jump_vseq", "vcs_return_code": 0, "urg_return_code": 0, "uvm_result": "TEST PASSED CHECKS", "uvm_error": 0, "uvm_fatal": 0, "covered_groups": 56, "expected_groups": 4525, "group_score_percent": 1.24},
+    {"run_id": "04_valid_stress_all_20261101T434Z", "seed": 434, "test_name": "aon_timer_stress_all", "sequence": "aon_timer_stress_all_vseq", "vcs_return_code": 0, "urg_return_code": 0, "uvm_result": "TEST PASSED CHECKS", "uvm_error": 0, "uvm_fatal": 0, "covered_groups": 188, "expected_groups": 4525, "group_score_percent": 4.15}
+  ],
+  "coverage_note": "These independent single-run URG scores are execution-entry evidence only, not the paper's final coverage result or a frozen Stage 06 bin denominator."
+}
