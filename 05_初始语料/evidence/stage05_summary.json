@@ -1,0 +1,79 @@
+{
+  "stage": 5,
+  "status": "corpus_execution_complete_with_recorded_uvm_failures",
+  "protocol": "stage05_protocol.json",
+  "manifest": "stage05_run_manifest.json",
+  "expected_runs": 40,
+  "completed_runs": 40,
+  "counts": {
+    "total": 40,
+    "vcs_pass": 40,
+    "urg_pass": 40,
+    "uvm_pass": 35,
+    "timeouts": 0,
+    "uvm_failed": 5,
+    "uvm_phase_timeout_failures": 5,
+    "host_timeouts": 0
+  },
+  "failure_classification": "All five failed UVM runs are stress-all tests hitting PH_TIMEOUT; they are retained, not retried, and their partial coverage is excluded from accepted corpus observations.",
+  "sequences": [
+    {
+      "test_name": "aon_timer_smoke",
+      "sequence": "aon_timer_smoke_vseq",
+      "attempted": 10,
+      "uvm_pass": 10,
+      "uvm_failed": 0,
+      "host_timeouts": 0,
+      "vcs_return_code_zero": 10,
+      "urg_return_code_zero": 10,
+      "wall_seconds_sum": 38.053,
+      "wall_seconds_median": 3.798,
+      "simulator_cpu_seconds_sum": 16.04
+    },
+    {
+      "test_name": "aon_timer_prescaler",
+      "sequence": "aon_timer_prescaler_vseq",
+      "attempted": 10,
+      "uvm_pass": 10,
+      "uvm_failed": 0,
+      "host_timeouts": 0,
+      "vcs_return_code_zero": 10,
+      "urg_return_code_zero": 10,
+      "wall_seconds_sum": 912.116,
+      "wall_seconds_median": 102.544,
+      "simulator_cpu_seconds_sum": 690.69
+    },
+    {
+      "test_name": "aon_timer_jump",
+      "sequence": "aon_timer_jump_vseq",
+      "attempted": 10,
+      "uvm_pass": 10,
+      "uvm_failed": 0,
+      "host_timeouts": 0,
+      "vcs_return_code_zero": 10,
+      "urg_return_code_zero": 10,
+      "wall_seconds_sum": 43.022,
+      "wall_seconds_median": 3.682,
+      "simulator_cpu_seconds_sum": 16.38
+    },
+    {
+      "test_name": "aon_timer_stress_all",
+      "sequence": "aon_timer_stress_all_vseq",
+      "attempted": 10,
+      "uvm_pass": 5,
+      "uvm_failed": 5,
+      "host_timeouts": 0,
+      "vcs_return_code_zero": 10,
+      "urg_return_code_zero": 10,
+      "wall_seconds_sum": 3455.478,
+      "wall_seconds_median": 204.132,
+      "simulator_cpu_seconds_sum": 2577.97
+    }
+  ],
+  "total_wall_seconds_sum": 4448.669,
+  "total_simulator_cpu_seconds_sum": 3301.08,
+  "paper_result": false,
+  "coverage_denominator_status": "4525 URG group bins are provisional stage-entry report denominator only; Stage 06 must freeze the analysis denominator.",
+  "runner_return_code": 1,
+  "runner_return_reason": "The runner reports nonzero because UVM pass count is below 40; it preserves the five UVM timeout failures."
+}

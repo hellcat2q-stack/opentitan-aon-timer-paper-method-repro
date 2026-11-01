@@ -2,18 +2,73 @@
   "schema": "aon-timer-paper-unknown-parameters-v1",
   "status": "open_for_stage_03_to_stage_06_measurement",
   "items": [
-    {"name": "complete_aon_timer_sequence_pool", "value": null, "needed_for": "stage_04_test_configuration", "reason": "The paper does not publish the complete regression pool or sequence inventory."},
-    {"name": "initial_corpus_contents_and_run_count", "value": null, "needed_for": "stage_05_initial_corpus", "reason": "The paper does not publish the initial corpus files or per-sequence run count."},
-    {"name": "random_seed_value", "value": null, "needed_for": "stage_04_to_stage_09_reproducibility", "reason": "The paper requires a shared seed but does not disclose its numeric value."},
-    {"name": "canonical_bin_by_run_csv", "value": null, "needed_for": "stage_06_coverage_conversion", "reason": "The paper does not publish the per-run coverage CSV or complete bin dictionary."},
-    {"name": "eligible_bin_denominator", "value": null, "needed_for": "stage_06_coverage_conversion", "reason": "The denominator and inclusion rules must be measured from the verified AON Timer reports."},
-    {"name": "cluster_count_and_mapping", "value": null, "needed_for": "stage_07_clustering", "reason": "The paper describes the clustering method but does not publish the AON Timer cluster mapping."},
-    {"name": "author_submission_scripts_and_logs", "value": null, "needed_for": "stage_08_and_stage_09_execution", "reason": "The paper does not provide the exact author scripts, command lines, or per-run logs."},
-    {"name": "exact_paper_dut_revision", "value": null, "needed_for": "stage_03_dut_lock", "reason": "The paper does not state an OpenTitan revision identifier."}
+    {
+      "name": "complete_aon_timer_sequence_pool",
+      "value": null,
+      "needed_for": "stage_04_test_configuration",
+      "reason": "Stage 04 records the 17 DVSIM tests and four selected core sequences for this reproduction; the paper-specific complete sequence pool remains unpublished."
+    },
+    {
+      "name": "initial_corpus_contents_and_run_count",
+      "value": {
+        "local_initial_corpus": "4 selected core sequences x 10 attempts",
+        "local_base_seed": 505,
+        "completed_attempts": 40,
+        "uvm_pass": 35,
+        "uvm_phase_timeout_failures": 5,
+        "paper_parameter": "unknown"
+      },
+      "needed_for": "stage_05_initial_corpus",
+      "reason": "Stage 05 run manifest records the local attempt corpus and five PH_TIMEOUT failures; the paper does not disclose its own corpus or per-sequence count.",
+      "status": "measured_local_not_paper_parameter"
+    },
+    {
+      "name": "random_seed_value",
+      "value": null,
+      "needed_for": "stage_04_to_stage_09_reproducibility",
+      "reason": "The paper requires a shared seed but does not disclose its numeric value."
+    },
+    {
+      "name": "canonical_bin_by_run_csv",
+      "value": null,
+      "needed_for": "stage_06_coverage_conversion",
+      "reason": "The paper does not publish the per-run coverage CSV or complete bin dictionary."
+    },
+    {
+      "name": "eligible_bin_denominator",
+      "value": null,
+      "needed_for": "stage_06_coverage_conversion",
+      "reason": "The denominator and inclusion rules must be measured from the verified AON Timer reports."
+    },
+    {
+      "name": "cluster_count_and_mapping",
+      "value": null,
+      "needed_for": "stage_07_clustering",
+      "reason": "The paper describes the clustering method but does not publish the AON Timer cluster mapping."
+    },
+    {
+      "name": "author_submission_scripts_and_logs",
+      "value": null,
+      "needed_for": "stage_08_and_stage_09_execution",
+      "reason": "The paper does not provide the exact author scripts, command lines, or per-run logs."
+    },
+    {
+      "name": "exact_paper_dut_revision",
+      "value": null,
+      "needed_for": "stage_03_dut_lock",
+      "reason": "The paper does not state an OpenTitan revision identifier."
+    }
   ],
   "local_reproduction_decisions": {
     "target_opentitan_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
     "decision_status": "planned_for_stage_03",
-    "note": "This is a repository reproduction choice, not a parameter recovered from the paper."
+    "note": "This is a repository reproduction choice, not a parameter recovered from the paper.",
+    "local_initial_corpus": {
+      "runs_per_core_sequence": 10,
+      "base_seed": 505,
+      "parallel_workers": 4,
+      "decision_status": "executed_stage_05_with_5_uvm_phase_timeout_failures",
+      "note": "Local choice only; the author corpus and author seed remain unknown."
+    }
   }
 }

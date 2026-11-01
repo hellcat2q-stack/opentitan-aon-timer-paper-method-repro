@@ -16,7 +16,7 @@
 | 02 | 验收学校服务器、Verisim/Vericov/VCS、许可证和 Python 依赖 | 环境与能力证据 | 已完成（2026-11-01） |
 | 03 | 锁定 OpenTitan revision、AON Timer DV 配置并完成 coverage build smoke | 源码/构建哈希、smoke 报告 | 已完成（2026-11-01） |
 | 04 | 建立 AON Timer 测试序列与命令配置，逐项验证 seed/coverage 参数传递 | AON Timer config、sequence inventory | 已完成（2026-11-01） |
-| 05 | 按师兄流程运行初始语料：每个可用序列 10 次，保存 runtime 和原始报告 | initial corpus、run manifest | 待开始 |
+| 05 | 4 条核心序列各运行 10 次，保存 seed、runtime、覆盖报告和失败 | initial corpus、run manifest | 已完成（40 次尝试；35 UVM PASS，5 PH_TIMEOUT 已记录） |
 | 06 | 将真实 coverage 报告转换为 bin-by-run CSV，冻结分母和命中解析 | coverage CSV、bin manifest | 待开始 |
 | 07 | 用师兄 DBSCAN/组件聚类和信息评分代码生成 cluster mapping 与静态优先级 | clusters、information scores | 待开始 |
 | 08 | 用师兄两层 UCB continuous-refill runner 做真实在线实验：1000 submissions、10 workers、反馈后补位 | Full 在线事件、向量、覆盖曲线 | 待开始 |
@@ -27,7 +27,7 @@
 
 师兄 toolbox 中的非 Bayes 文件按步骤复制到 `algorithm_source/`：
 
-- 阶段 05：`sequence_based_parallel_test.py`；
+- 阶段 05：保留 `sequence_based_parallel_test.py` 作为来源参考；VCS 执行入口为 `05_初始语料/tools/run_aon_timer_initial_corpus.py`；
 - 阶段 06：`process_csv.py`；
 - 阶段 07：`dbscan_clustering*.py`；
 - 阶段 08：`generic_adaptive_runner_ucb_continuous_refill_norepeat_poolmi.py`；
@@ -37,4 +37,4 @@
 
 ## 当前边界
 
-阶段 01–04 已完成。阶段 03 的 smoke coverage 和阶段 04 的单序列 group coverage 只证明目标 DUT 的构建、仿真、参数传递和报告链路可用，不是论文表 II 的结果；阶段 05 将在已盘点的入口上生成初始语料，阶段 06 再冻结正式 coverage bin 分母。
+阶段 01–05 的执行已完成。阶段 05 共运行 40 次，其中 35 次 UVM PASS、5 次 stress-all 触发 PH_TIMEOUT；失败记录保留且未重跑，失败的部分 coverage 不纳入成功语料。阶段 03–05 的 smoke/单序列/初始语料 coverage 都不是论文表 II 结果；阶段 06 将在通过的 run 上转换 coverage 并冻结正式 bin 分母。

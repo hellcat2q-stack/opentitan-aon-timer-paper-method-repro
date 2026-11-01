@@ -1,0 +1,29 @@
+{
+  "stage": 5,
+  "runs_per_sequence": 10,
+  "sequence_count": 4,
+  "expected_runs": 40,
+  "base_seed": 505,
+  "seed_rule": "random.Random(base_seed).randint(1, 2**31-1), sequence-major job order",
+  "parallel_workers": 4,
+  "timeout_minutes_per_run": 20,
+  "adaptive_selection": false,
+  "sequences": [
+    {
+      "test_name": "aon_timer_smoke",
+      "sequence": "aon_timer_smoke_vseq"
+    },
+    {
+      "test_name": "aon_timer_prescaler",
+      "sequence": "aon_timer_prescaler_vseq"
+    },
+    {
+      "test_name": "aon_timer_jump",
+      "sequence": "aon_timer_jump_vseq"
+    },
+    {
+      "test_name": "aon_timer_stress_all",
+      "sequence": "aon_timer_stress_all_vseq"
+    }
+  ]
+}
