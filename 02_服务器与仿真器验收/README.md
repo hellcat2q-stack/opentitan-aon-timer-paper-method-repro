@@ -1,6 +1,6 @@
 # 阶段 02：服务器与仿真器验收
 
-**状态：待开始。** 本文件是新项目的执行边界，不代表该阶段已经运行。
+**状态：已完成（2026-11-01）。** VCS/URG、覆盖报告和项目 Python 依赖均已通过阶段验收；本阶段没有运行 AON Timer 正式实验。
 
 ## 目标
 
@@ -15,7 +15,11 @@
 
 ## 验收产物
 
-环境 manifest、能力探针、脱敏日志和哈希；没有许可证时记录阻碍，不进入大规模实验。
+- `evidence/stage02_summary.json`：服务器、工具、覆盖能力和 Python 依赖的脱敏摘要。
+- `evidence/coverage_return_codes.txt`：正例/负例覆盖探针返回码。
+- 服务器隔离目录中的原始 VCS/VDB/URG 日志和哈希索引：`/SM03/home/bs2022/bs202264680312/opentitan_aon_timer_paper_method_repro/evidence/02_env/`。
+
+VCS 最小编译/运行、覆盖正例/负例、URG 报告生成和项目 Python 模块导入均通过；算法源码尚未同步，`compileall` 留待后续仓库同步。项目专用 Python 3.11.7 环境的 `pip check` 输出 `No broken requirements found.`。
 
 ## 局限
 

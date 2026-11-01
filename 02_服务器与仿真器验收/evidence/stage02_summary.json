@@ -1,0 +1,47 @@
+{
+  "schema": "aon-timer-stage02-environment-v1",
+  "status": "completed",
+  "server": {
+    "host": "SMW5",
+    "os": "Red Hat Enterprise Linux Server release 7.9",
+    "kernel": "3.10.0-1160.el7.x86_64"
+  },
+  "tools": {
+    "vcs": "P-2019.06-SP1",
+    "urg": "P-2019.06-SP1",
+    "covdb": "13.1",
+    "vcs_smoke_build_rc": 0,
+    "vcs_smoke_run_rc": 0,
+    "vcs_smoke_marker": "VCS_SMOKE_OK"
+  },
+  "coverage_probe": {
+    "build_rc": 0,
+    "positive_run_rc": 0,
+    "negative_run_rc": 0,
+    "urg_positive_rc": 0,
+    "urg_negative_rc": 0,
+    "positive_dashboard": "present",
+    "negative_dashboard": "present",
+    "positive_group_score": 100.0,
+    "negative_group_score": 50.0,
+    "note": "Capability probe only; these are not AON Timer experiment results."
+  },
+  "python": {
+    "system_version": "3.6.8",
+    "isolated_version": "3.11.7",
+    "pip_check": "No broken requirements found.",
+    "project_venv": "/SM03/home/bs2022/bs202264680312/opentitan_aon_timer_paper_method_repro/.venv",
+    "project_version": "3.11.7",
+    "available": ["yaml", "pandas", "numpy", "tqdm", "bs4", "joblib", "sklearn", "matplotlib"],
+    "missing": [],
+    "pip_check": "No broken requirements found."
+  },
+  "license": {
+    "environment_variables_present": true,
+    "values_redacted": true
+  },
+  "evidence_root": "/SM03/home/bs2022/bs202264680312/opentitan_aon_timer_paper_method_repro/evidence/02_env",
+  "project_import_probe": "PASS",
+  "project_compileall": "deferred_until_source_sync",
+  "raw_artifacts_policy": "Raw VCS/VDB/URG outputs remain on the server; only this sanitized summary and hashes are intended for the repository."
+}
