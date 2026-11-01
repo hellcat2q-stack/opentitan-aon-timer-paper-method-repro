@@ -1,0 +1,97 @@
+{
+  "schema": "aon-timer-stage05-timeout-fix-replay-v1",
+  "status": "completed_with_one_recorded_uvm_error",
+  "original_manifest_unchanged": true,
+  "root_cause": {
+    "classification": "runner omitted the official stress-all simulation timeout plusarg",
+    "evidence": "OpenTitan aon_timer stress_all_test.hjson configures +test_timeout_ns=10000000000; the direct simv runner did not pass it, so dv_base_test.sv's 200 ms default fired",
+    "fix": "Pass +test_timeout_ns=10000000000 for aon_timer_stress_all and allow up to 180 minutes of host time per stress run"
+  },
+  "replay_protocol": {
+    "selected_original_global_run_ids": [32, 34, 35, 38, 39],
+    "seeds_reused": true,
+    "parallel_workers": 2,
+    "result_directory": "runs/stage05_timeout_fix_20261101T/",
+    "all_replay_attempts_preserved": true
+  },
+  "counts": {
+    "replayed": 5,
+    "vcs_return_code_zero": 5,
+    "urg_return_code_zero": 5,
+    "uvm_pass": 4,
+    "uvm_failed": 1,
+    "phase_timeout": 0,
+    "host_timeout": 0
+  },
+  "runs": [
+    {
+      "original_global_run_id": 32,
+      "seed": 2003042196,
+      "vcs_return_code": 0,
+      "urg_return_code": 0,
+      "uvm_pass": true,
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "wall_seconds": 1507.011,
+      "simulator_cpu_seconds": 1174.04,
+      "accepted_for_stage06": true
+    },
+    {
+      "original_global_run_id": 34,
+      "seed": 535272963,
+      "vcs_return_code": 0,
+      "urg_return_code": 0,
+      "uvm_pass": true,
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "wall_seconds": 1122.392,
+      "simulator_cpu_seconds": 897.91,
+      "accepted_for_stage06": true
+    },
+    {
+      "original_global_run_id": 35,
+      "seed": 260995287,
+      "vcs_return_code": 0,
+      "urg_return_code": 0,
+      "uvm_pass": true,
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "wall_seconds": 196.894,
+      "simulator_cpu_seconds": 157.57,
+      "accepted_for_stage06": true
+    },
+    {
+      "original_global_run_id": 38,
+      "seed": 602172146,
+      "vcs_return_code": 0,
+      "urg_return_code": 0,
+      "uvm_pass": false,
+      "uvm_error": 1,
+      "uvm_fatal": 0,
+      "failure_signature": "aon_timer_common_vseq intr_state check failed: expected 0, read 2",
+      "wall_seconds": 538.819,
+      "simulator_cpu_seconds": 448.93,
+      "accepted_for_stage06": false
+    },
+    {
+      "original_global_run_id": 39,
+      "seed": 308624087,
+      "vcs_return_code": 0,
+      "urg_return_code": 0,
+      "uvm_pass": true,
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "wall_seconds": 1184.154,
+      "simulator_cpu_seconds": 938.75,
+      "accepted_for_stage06": true
+    }
+  ],
+  "accepted_initial_coverage_input": {
+    "original_pass_runs": 35,
+    "timeout_fix_replay_pass_runs": 4,
+    "total_runs": 39,
+    "excluded_original_phase_timeout_runs": 5,
+    "excluded_replay_uvm_error_runs": 1
+  },
+  "note": "Four corrected attempts pass with the official simulation timeout. The remaining original seed exposes a separate UVM register-model/check failure, which is retained rather than retried."
+}

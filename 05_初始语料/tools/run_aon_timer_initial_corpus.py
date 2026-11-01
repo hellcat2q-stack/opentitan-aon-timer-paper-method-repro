@@ -25,6 +25,12 @@ SEQUENCES = (
     ("aon_timer_jump", "aon_timer_jump_vseq"),
     ("aon_timer_stress_all", "aon_timer_stress_all_vseq"),
 )
+TEST_RUN_OPTIONS = {
+    # Official stress_all_test.hjson default. The earlier direct-simv corpus
+    # runner omitted this DVSIM option and hit dv_base_test's 200 ms default.
+    "aon_timer_stress_all": ("+test_timeout_ns=10000000000",),
+}
+TEST_TIMEOUT_MINUTES = {"aon_timer_stress_all": 180}
 
 
 def sha256(path: Path) -> str:
@@ -88,6 +94,7 @@ def run_one(job: dict[str, Any]) -> dict[str, Any]:
         "+UVM_TESTNAME=aon_timer_base_test",
         f"+UVM_TEST_SEQ={sequence}",
         "+en_cov=1",
+        *TEST_RUN_OPTIONS.get(test_name, ()),
         "-cm",
         "line+cond+fsm+tgl+branch+assert",
         "-cm_dir",
@@ -179,6 +186,7 @@ def run_one(job: dict[str, Any]) -> dict[str, Any]:
         "global_run_id": job["global_run_id"],
         "test_name": test_name,
         "sequence": sequence,
+        "test_run_options": list(TEST_RUN_OPTIONS.get(test_name, ())),
         "sequence_run_index": job["index"],
         "seed": seed,
         "vcs_return_code": sim_rc,
@@ -209,20 +217,33 @@ def main() -> int:
     parser.add_argument("--base-seed", type=int, default=505)
     parser.add_argument("--parallel", type=int, default=4)
     parser.add_argument("--timeout-mins", type=int, default=20)
+    parser.add_argument("--stress-timeout-mins", type=int, default=180)
+    parser.add_argument(
+        "--select-global-ids",
+        default=None,
+        help="Comma-separated sequence-major global run IDs to execute; omitted means the full corpus.",
+    )
     args = parser.parse_args()
-    if args.runs_per_sequence <= 0 or args.parallel <= 0 or args.timeout_mins <= 0:
-        parser.error("runs-per-sequence, parallel, and timeout-mins must be positive")
+    if args.runs_per_sequence <= 0 or args.parallel <= 0 or args.timeout_mins <= 0 or args.stress_timeout_mins <= 0:
+        parser.error("runs-per-sequence, parallel, and timeout values must be positive")
     result_root = Path(args.result_dir).resolve()
     if result_root.exists() and any(result_root.iterdir()):
         parser.error("result-dir must be new or empty; existing results are never overwritten")
     result_root.mkdir(parents=True, exist_ok=True)
     rng = random.Random(args.base_seed)
+    selected_ids = None
+    if args.select_global_ids:
+        try:
+            selected_ids = {int(value) for value in args.select_global_ids.split(",") if value.strip()}
+        except ValueError as exc:
+            parser.error(f"invalid --select-global-ids: {exc}")
+        if not selected_ids or min(selected_ids) < 0:
+            parser.error("--select-global-ids must contain nonnegative integer IDs")
     jobs: list[dict[str, Any]] = []
     global_run_id = 0
     for test_name, sequence in SEQUENCES:
         for index in range(args.runs_per_sequence):
-            jobs.append(
-                {
+            job = {
                     "global_run_id": global_run_id,
                     "test_name": test_name,
                     "sequence": sequence,
@@ -231,10 +252,15 @@ def main() -> int:
                     "simv": str(Path(args.simv).resolve()),
                     "dv_root": str(Path(args.dv_root).resolve()),
                     "result_root": str(result_root),
-                    "timeout_seconds": args.timeout_mins * 60,
+                    "timeout_seconds": (
+                        args.stress_timeout_mins if test_name in TEST_TIMEOUT_MINUTES else args.timeout_mins
+                    ) * 60,
                 }
-            )
+            if selected_ids is None or global_run_id in selected_ids:
+                jobs.append(job)
             global_run_id += 1
+    if selected_ids is not None and selected_ids - {job["global_run_id"] for job in jobs}:
+        parser.error("--select-global-ids contains an ID outside the configured corpus")
     (result_root / "protocol.json").write_text(
         json.dumps(
             {
@@ -242,12 +268,15 @@ def main() -> int:
                 "runs_per_sequence": args.runs_per_sequence,
                 "sequence_count": len(SEQUENCES),
                 "expected_runs": len(jobs),
+                "selected_global_ids": sorted(selected_ids) if selected_ids is not None else None,
                 "base_seed": args.base_seed,
                 "seed_rule": "random.Random(base_seed).randint(1, 2**31-1), sequence-major job order",
                 "parallel_workers": args.parallel,
                 "timeout_minutes_per_run": args.timeout_mins,
+                "stress_timeout_minutes_per_run": args.stress_timeout_mins,
                 "adaptive_selection": False,
                 "sequences": [{"test_name": n, "sequence": s} for n, s in SEQUENCES],
+                "test_run_options": {name: list(options) for name, options in TEST_RUN_OPTIONS.items()},
             },
             indent=2,
         )
