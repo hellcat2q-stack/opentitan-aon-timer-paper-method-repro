@@ -1,0 +1,44 @@
+{
+  "schema": "aon-timer-paper-protocol-v1",
+  "stage": "01_paper_protocol_and_sources",
+  "status": "completed",
+  "completed_date": "2026-11-01",
+  "project_commit": "9143d59",
+  "design_under_test": "OpenTitan AON Timer",
+  "paper": {
+    "title": "Entropy-Aware and UCB-Driven Coverage Closure for Hardware Verification",
+    "source_pdf": "references/IM-1175.pdf",
+    "source_pdf_sha256": "ec0ad3b7b3f3c83d2355e96f820d56903ba352f3f6f8b79b30e132571108fe56",
+    "source_pdf_bytes": 292300,
+    "source_pdf_pages": 6,
+    "extracted_text": "references/IM-1175_extract.txt",
+    "extracted_text_sha256": "85cb3a3caac17831ffe7eae3cda810d38b38b9a199104062507210a0e2755fb1",
+    "extracted_text_bytes": 31937
+  },
+  "protocol": {
+    "logical_batch_size": 10,
+    "logical_batches": 100,
+    "submitted_simulations": 1000,
+    "parallel_workers": 10,
+    "same_initial_corpus": true,
+    "same_random_seed": true,
+    "paper_random_seed_value": null,
+    "paper_random_seed_note": "The paper states that all methods use the same random seed but does not disclose its value."
+  },
+  "metrics": ["final_coverage_percent", "accumulated_simulation_runtime_seconds", "walltime_seconds"],
+  "reference_level": {
+    "raw_coverage_fraction": 0.65,
+    "note": "The paper describes 65% as an empirical reference level for supplementary normalized coverage; it is not a reachability proof."
+  },
+  "methods": [
+    {"name": "Full", "components": ["information-aware cluster prior", "cluster-level UCB", "target-conditioned sequence-level UCB", "continuous refill", "runtime-aware penalty"]},
+    {"name": "NoIncrementalRefill", "components": ["information-aware cluster prior", "cluster-level UCB", "target-conditioned sequence-level UCB", "runtime-aware penalty"], "removed_component": "continuous refill"},
+    {"name": "NoRuntimePenalty", "components": ["information-aware cluster prior", "cluster-level UCB", "target-conditioned sequence-level UCB", "continuous refill"], "removed_component": "runtime-aware penalty"},
+    {"name": "RandomSelection", "components": ["random sequence selection"]},
+    {"name": "SequenceUCBOnly", "components": ["sequence-level UCB"], "removed_component": "cluster-level UCB"},
+    {"name": "ClusterUCBOnly", "components": ["cluster-level UCB"], "removed_component": "sequence-level UCB"}
+  ],
+  "reference_results_file": "01_论文协议与来源/reference_results.csv",
+  "unknown_parameters_file": "01_论文协议与来源/unknown_parameters.json",
+  "result_boundary": "Values in reference_results.csv are copied from the paper for comparison only. They are not measurements produced by this repository."
+}

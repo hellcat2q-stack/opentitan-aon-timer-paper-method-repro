@@ -12,7 +12,7 @@
 
 | 步骤 | 目标 | 关键真实产物 | 状态 |
 | --- | --- | --- | --- |
-| 01 | 锁定论文协议、表 II 目标、不可知参数和来源哈希 | protocol manifest、参考结果表 | 待开始 |
+| 01 | 锁定论文协议、表 II 目标、不可知参数和来源哈希 | protocol manifest、参考结果表 | 已完成（2026-11-01） |
 | 02 | 验收学校服务器、Verisim/Vericov/VCS、许可证和 Python 依赖 | 环境与能力证据 | 待开始 |
 | 03 | 锁定 OpenTitan revision、AON Timer DV 配置并完成 coverage build smoke | 源码/构建哈希、smoke 报告 | 待开始 |
 | 04 | 建立 AON Timer 测试序列与命令配置，逐项验证 seed/coverage 参数传递 | AON Timer config、sequence inventory | 待开始 |
