@@ -1,0 +1,38 @@
+{
+  "schema": "aon-timer-stage07-validation-v1",
+  "input_sha256": "71c02be6b80cb63973eeb96b26340f7e1d1ae2246674d148774c39c616ff1e94",
+  "run_count": 39,
+  "metadata_column_count": 14,
+  "bin_count": 4507,
+  "mapped_bin_count": 4507,
+  "unique_cluster_id_count": 78,
+  "assignment_complete": true,
+  "assignment_unique": true,
+  "matrix_shape": [
+    39,
+    4507
+  ],
+  "finite_score_count": 4507,
+  "all_scores_finite": true,
+  "initial_union_covered_bins": 233,
+  "initial_union_coverage_ratio": 0.051697359662746835,
+  "selected_variant": "dbscan_clustering_new2",
+  "selected_stats": {
+    "cluster_count": 78,
+    "item_count": 4507,
+    "min_size": 2,
+    "max_size": 218,
+    "mean_size": 57.782051282051285,
+    "median_size": 33.0,
+    "singleton_count": 0,
+    "clusters_over_max_cluster_size": 0
+  },
+  "source_files": {
+    "dbscan_clustering": "1c327243bf38827ed8311499327997527839a88fdb92ac4860a8563deb5ac053",
+    "dbscan_clustering_new": "95c9222d823ecc049c9e221c29c5a46bbcb2d37548a28758fc27ad9779bdced6",
+    "dbscan_clustering_new2": "58c8ebf3e258f2fe8906a2a43744ab2dcc3b0d92f811558bd9a5315d4d36a55c",
+    "dbscan_clustering_new3": "0e2e672ec011c6f97fb06ae45f79f460f1690b0ad537dd1c058d9efb32086535"
+  },
+  "host": "SMW5",
+  "python": "3.11.7"
+}

@@ -1,0 +1,68 @@
+{
+  "schema": "aon-timer-stage07-variant-summary-v1",
+  "input_sha256": "71c02be6b80cb63973eeb96b26340f7e1d1ae2246674d148774c39c616ff1e94",
+  "bin_count": 4507,
+  "run_count": 39,
+  "max_cluster_size": 256,
+  "pythonhashseed": 0,
+  "variants": {
+    "dbscan_clustering": {
+      "source": "dbscan_clustering.py",
+      "source_sha256": "1c327243bf38827ed8311499327997527839a88fdb92ac4860a8563deb5ac053",
+      "stats": {
+        "cluster_count": 69,
+        "item_count": 4507,
+        "min_size": 1,
+        "max_size": 1040,
+        "mean_size": 65.31884057971014,
+        "median_size": 2.0,
+        "singleton_count": 1,
+        "clusters_over_max_cluster_size": 4
+      }
+    },
+    "dbscan_clustering_new": {
+      "source": "dbscan_clustering_new.py",
+      "source_sha256": "95c9222d823ecc049c9e221c29c5a46bbcb2d37548a28758fc27ad9779bdced6",
+      "stats": {
+        "cluster_count": 69,
+        "item_count": 4507,
+        "min_size": 1,
+        "max_size": 1040,
+        "mean_size": 65.31884057971014,
+        "median_size": 2.0,
+        "singleton_count": 1,
+        "clusters_over_max_cluster_size": 4
+      }
+    },
+    "dbscan_clustering_new2": {
+      "source": "dbscan_clustering_new2.py",
+      "source_sha256": "58c8ebf3e258f2fe8906a2a43744ab2dcc3b0d92f811558bd9a5315d4d36a55c",
+      "stats": {
+        "cluster_count": 78,
+        "item_count": 4507,
+        "min_size": 2,
+        "max_size": 218,
+        "mean_size": 57.782051282051285,
+        "median_size": 33.0,
+        "singleton_count": 0,
+        "clusters_over_max_cluster_size": 0
+      }
+    },
+    "dbscan_clustering_new3": {
+      "source": "dbscan_clustering_new3.py",
+      "source_sha256": "0e2e672ec011c6f97fb06ae45f79f460f1690b0ad537dd1c058d9efb32086535",
+      "stats": {
+        "cluster_count": 802,
+        "item_count": 4507,
+        "min_size": 2,
+        "max_size": 158,
+        "mean_size": 5.6197007481296755,
+        "median_size": 3.0,
+        "singleton_count": 0,
+        "clusters_over_max_cluster_size": 0
+      }
+    }
+  },
+  "selection_rule": "min clusters_over_max_cluster_size, then min singleton_count, then min cluster_count, then lexical variant name",
+  "selected_variant": "dbscan_clustering_new2"
+}
