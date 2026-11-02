@@ -1,23 +1,23 @@
 # 阶段 08：两层 UCB 在线复现
 
-**状态：待开始。** 本文件是新项目的执行边界，不代表该阶段已经运行。
+**状态：已完成并通过审计（2026-11-02）。** 在学校服务器上以 VCS/URG 真实执行 10 次 smoke 和 1000 次 Full 在线补位实验。结果为本项目的现场复现数据，不是论文原始结果。
 
-## 目标
+## 方法与执行
 
-使用师兄的真实 continuous-refill runner 执行 Full 方法，不做 replay-only 代替真实仿真。
+使用师兄提供的 `generic_adaptive_runner_ucb_continuous_refill_norepeat_poolmi.py`，保留其两层 target-cluster/sequence UCB、MI、dynamic residual、runtime penalty、防重复和 continuous-refill 策略。`tools/run_vcs_ucb.py` 只适配 VCS/URG worker、阶段 06 coverage 解析、初始 CSV 字段及哈希审计，不修改原算法源码。
 
-## 执行内容
+Full 使用同一阶段 06 初始语料（39 个接受的历史向量、4507-bin 分母、初始并集 233）、预注册本地 seed 42、1000 次提交、10 workers、logical batch size 10。每次 worker 完成后立即反馈并补位；每个提交最多尝试一次，失败尝试计入总预算且不获得覆盖奖励。22 次提交出现 UVM_ERROR，被保留并计入预算；其余 978 次通过严格 VCS/UVM/URG 检查。完整数据库、可执行文件、许可证信息及原始日志保留在学校服务器。
 
-- 使用 `generic_adaptive_runner_ucb_continuous_refill_norepeat_poolmi.py`。
-- 先做 10-submit/10-worker smoke，再做论文协议 H=1000、logical batch=10、100 batches、P=10。
-- 第一层选择 target cluster；第二层在 target-conditioned sequence domain 中选择 sequence。
-- 每个 worker 完成后立即解析 coverage，按新 bin、target gain、opportunity gain 更新状态并补位。
-- 记录 submitted/completed/failed、runtime、walltime、policy/event hash chain。
+## 现场结果
 
-## 验收产物
+Full 最终覆盖并集为 **296/4507（6.5676%）**，相对初始并集增加 63 bins。完成 1000/1000 次提交，22 次失败、978 次接受，无重试；最大并发 10。累计仿真 CPU 时间为 114,186.95 秒（包含失败尝试），在线 wall time 为 16,454.29 秒。seed 42 是项目本地预注册值，不是论文公开的 seed。
 
-Full 的真实事件日志、逐次向量、coverage-vs-runtime 曲线和预算审计；没有真实反馈的回放只能作为开发测试。
+独立审计通过：1000 个 seed 与预注册列表一致；覆盖向量与逐次 URG 计数一致；每次奖励等于累计并集的增量；事件哈希链完整；990 次补位发生在反馈之后；被接受运行均有 UVM PASS 且无 UVM_ERROR/UVM_FATAL。审计沿用阶段 06 冻结的 URG prefix/行序 bin 身份口径，因此不构成对物理 bin 身份的额外证明。
 
-## 局限
+## 证据
 
-如果工具、许可证、作者输入或 AON Timer sequence 不可用，必须记录为阻碍并停止推进，不用旧项目或 UART 结果填补。
+- Full 脱敏结果：`evidence/stage08_full_20261102_v1/`，包括 `summary.json`、`audit.json`、逐次事件、逐次覆盖向量、覆盖曲线和 SHA-256 清单。
+- Smoke 脱敏结果：`evidence/stage08_smoke_20261102_v1/`，独立于 Full。
+- `evidence/checkpoint_20261102_v1/` 是 03:16 UTC 的历史现场快照，记录当时 smoke 仍在运行的状态；Full 最终结果以以上脱敏证据为准。
+
+`coverage_curve.png` 展示本地实测的 Full 覆盖变化，不含论文结果。论文表 II 的参考结果和本次现场结果分开保存；阶段 09 的对照/消融实验尚未开始。

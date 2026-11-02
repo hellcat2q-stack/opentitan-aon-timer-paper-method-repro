@@ -1,0 +1,21 @@
+{
+  "status": "pass",
+  "budget": 10,
+  "completed": 10,
+  "failed": 1,
+  "retried": 0,
+  "bin_count": 4507,
+  "initial_covered_bins": 233,
+  "final_covered_bins": 237,
+  "hash_chain_verified": true,
+  "all_seeds_match_preregistered_list": true,
+  "all_vectors_match_run_counts": true,
+  "all_rewards_match_union_deltas": true,
+  "all_accepted_runs_have_uvm_pass": true,
+  "max_active_workers": 10,
+  "refills_after_feedback": 0,
+  "missing_cpu_time_count": 0,
+  "protocol_sha256": "facb3fbc3e21a3089217a93b1df212325825d13f681a88a6ec468672b76f46b1",
+  "event_chain_head": "4e80f792afa81f7357a1934257e0bcd92fd7f8dc485d1fdc02b01539ecd1cf6b",
+  "limitation": "Uses the Stage06 frozen URG prefix/row identity convention; does not independently prove physical bin identity."
+}

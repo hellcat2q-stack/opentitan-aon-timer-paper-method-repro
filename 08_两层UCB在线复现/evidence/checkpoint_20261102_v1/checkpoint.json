@@ -1,0 +1,63 @@
+{
+  "schema": "aon-timer-stage08-live-checkpoint-v1",
+  "captured_utc": "2026-11-02T03:16:41.834625+00:00",
+  "status": "in_progress",
+  "full_plan": {
+    "submissions": 1000,
+    "workers": 10,
+    "logical_batch": 10,
+    "seed": 42
+  },
+  "full_launch_gate": "smoke has 10 audited completions; UVM failures count without rewards, infrastructure errors block full",
+  "phases": {
+    "preflight": {
+      "created": true,
+      "preflight": {
+        "status": "pass",
+        "initial_vectors": 39,
+        "bin_count": 4507,
+        "covered_bins": 233,
+        "sequence_history_counts": {
+          "aon_timer_smoke_vseq": 10,
+          "aon_timer_prescaler_vseq": 10,
+          "aon_timer_jump_vseq": 10,
+          "aon_timer_stress_all_vseq": 9
+        }
+      }
+    },
+    "smoke": {
+      "created": true,
+      "progress": {
+        "submitted": 10,
+        "completed": 9,
+        "failed": 1,
+        "active": 1,
+        "coverage_bins": 237,
+        "denominator": 4507,
+        "event_head": "bb082c9b9590d7f7df8c822f96fd271129041b15233fa5889969b36661a5c01a"
+      }
+    },
+    "full": {
+      "created": false
+    }
+  },
+  "smoke_failure_evidence": [
+    {
+      "run_id": 2,
+      "seed": 53710185,
+      "sequence": "aon_timer_stress_all_vseq",
+      "status": "failed",
+      "vcs_return_code": 0,
+      "urg_return_code": 0,
+      "uvm_error": 1,
+      "uvm_fatal": 0,
+      "uvm_pass": false,
+      "wall_seconds": 265.001,
+      "simulator_cpu_seconds": 198.17,
+      "signatures": [
+        "UVM_ERROR @ 136939830784 ps: (cip_base_vseq.sv:467) [uvm_test_top.env.virtual_sequencer.aon_timer_common_vseq] Check failed exp_val == act_val (2 [0x2] vs 3 [0x3]) when reading the intr CSRaon_timer_reg_block.intr_state"
+      ],
+      "accepted_for_coverage": false
+    }
+  ]
+}

@@ -19,7 +19,7 @@
 | 05 | 4 条核心序列各运行 10 次，保存 seed、runtime、覆盖报告和失败 | initial corpus、run manifest | 已完成（40 次原始尝试；修复 timeout 参数后重放 5 个失败 seed，4 PASS、1 UVM_ERROR） |
 | 06 | 将真实 coverage 报告转换为 bin-by-run CSV，冻结分母和命中解析 | coverage CSV、bin manifest | 已完成（39 个接受 run、4507 个 bin；2026-11-01） |
 | 07 | 用师兄 DBSCAN/组件聚类和信息评分代码生成 cluster mapping 与静态优先级 | clusters、information scores | 已完成（2026-11-02） |
-| 08 | 用师兄两层 UCB continuous-refill runner 做真实在线实验：1000 submissions、10 workers、反馈后补位 | Full 在线事件、向量、覆盖曲线 | 待开始 |
+| 08 | 用师兄两层 UCB continuous-refill runner 做真实在线实验：1000 submissions、10 workers、反馈后补位 | Full 在线事件、向量、覆盖曲线 | 已完成（2026-11-02；1000/1000 提交，独立审计通过） |
 | 09 | 在同一初始语料和预算下运行 Random、NoIncrementalRefill、NoRuntimePenalty、SequenceUCBOnly、ClusterUCBOnly | 对照/消融曲线和表格 | 待开始 |
 | 10 | 独立复核哈希、覆盖分母、预算、runtime/walltime，生成与论文表 II 的差异报告 | final report、reproducibility index | 待开始 |
 
@@ -37,4 +37,4 @@
 
 ## 当前边界
 
-阶段 01–07 的执行已完成。阶段 05 原始 40 次结果保持不变；查明 stress-all runner 漏传官方仿真 timeout 参数后，独立重放原 5 个失败 seed，4 次通过、1 次出现单独记录的 UVM_ERROR。阶段 06 输入为原始 35 个 PASS 加重放 4 个 PASS，排除 6 个失败尝试，冻结 4507 个 bin 并生成 39 行 CSV。阶段 07 在同一输入上比较四个聚类变体，选定 `dbscan_clustering_new2`，生成 78 个 cluster、bin 映射和自信息/静态权重。阶段 03–07 的 smoke/单序列/初始语料/离线聚类结果都不是论文表 II 结果；下一步是阶段 08 的真实在线连续补位。
+阶段 01–07 的执行已完成。阶段 05 原始 40 次结果保持不变；查明 stress-all runner 漏传官方仿真 timeout 参数后，独立重放原 5 个失败 seed，4 次通过、1 次出现单独记录的 UVM_ERROR。阶段 06 输入为原始 35 个 PASS 加重放 4 个 PASS，排除 6 个失败尝试，冻结 4507 个 bin 并生成 39 行 CSV。阶段 07 在同一输入上比较四个聚类变体，选定 `dbscan_clustering_new2`，生成 78 个 cluster、bin 映射和自信息/静态权重。阶段 08 已完成真实 smoke 和 1000 次 Full 在线实验：Full 1000 次提交、22 次 UVM_ERROR、最终覆盖 296/4507（6.5676%），独立审计通过。该现场结果不是论文表 II 结果，阶段 09 尚未开始。
