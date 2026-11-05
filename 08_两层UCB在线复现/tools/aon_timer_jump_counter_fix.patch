@@ -1,0 +1,38 @@
+--- a/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_jump_vseq.sv
++++ b/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_jump_vseq.sv
+@@ -9,12 +9,26 @@
+   // Overrides constraint in parent vseq:
+   constraint thold_count_c {
+-    solve wkup_thold before wkup_count;
+-    solve aim_bite, wdog_bark_thold, wdog_bite_thold before wdog_count;
+-    wkup_thold      <= (2**64-1);
+-    wdog_bark_thold <= (2**32-1);
+-    wdog_bite_thold <= (2**32-1);
+-
+-    wkup_count inside {[wkup_thold-10:wkup_thold+10]};
+-    !aim_bite -> wdog_count inside {[wdog_bark_thold-10:wdog_bark_thold+10]};
+-    aim_bite  -> wdog_count inside {[wdog_bite_thold-10:wdog_bite_thold+10]};
++    solve wkup_count_gap, wkup_thold before wkup_count;
++    solve aim_bite, wdog_count_gap, wdog_bark_thold, wdog_bite_thold before wdog_count;
++    wkup_count_gap inside {[1:10]};
++    wdog_count_gap inside {[1:10]};
++
++    if (wkup_thold == 0) wkup_count == 0;
++    else {
++      wkup_count_gap <= wkup_thold;
++      wkup_count inside {[wkup_thold-wkup_count_gap:wkup_thold]};
++    }
++    if (!aim_bite) {
++      if (wdog_bark_thold == 0) wdog_count == 0;
++      else {
++        wdog_count_gap <= wdog_bark_thold;
++        wdog_count inside {[wdog_bark_thold-wdog_count_gap:wdog_bark_thold]};
++      }
++    } else {
++      if (wdog_bite_thold == 0) wdog_count == 0;
++      else {
++        wdog_count_gap <= wdog_bite_thold;
++        wdog_count inside {[wdog_bite_thold-wdog_count_gap:wdog_bite_thold]};
++      }
++    }
+   }

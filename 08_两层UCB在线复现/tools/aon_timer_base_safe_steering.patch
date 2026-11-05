@@ -1,0 +1,27 @@
+--- a/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_base_vseq.sv
++++ b/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_base_vseq.sv
+@@ -63,9 +63,15 @@
+-    wkup_thold dist {0                     :/ 20,
+-                     [1:64'hffff_ffff_ffff_fffe] :/ 60,
+-                     64'hffff_ffff_ffff_ffff     :/ 20};
+-    wdog_bark_thold dist {0                     :/ 20,
+-                          [1:32'hffff_fffe] :/ 60,
+-                          32'hffff_ffff     :/ 20};
+-    wdog_bite_thold dist {0                     :/ 20,
+-                          [1:32'hffff_fffe] :/ 60,
+-                          32'hffff_ffff     :/ 20};
++    if (steer_field == 0) {
++      wkup_thold inside {[1:10]};
++      wdog_bark_thold inside {[1:10]};
++      wdog_bite_thold inside {[1:10]};
++    } else {
++      wkup_thold dist {0                     :/ 20,
++                       [1:64'hffff_ffff_ffff_fffe] :/ 60,
++                       64'hffff_ffff_ffff_ffff     :/ 20};
++      wdog_bark_thold dist {0                     :/ 20,
++                            [1:32'hffff_fffe] :/ 60,
++                            32'hffff_ffff     :/ 20};
++      wdog_bite_thold dist {0                     :/ 20,
++                            [1:32'hffff_fffe] :/ 60,
++                            32'hffff_ffff     :/ 20};
++    }

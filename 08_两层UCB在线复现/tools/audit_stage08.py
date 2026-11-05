@@ -75,6 +75,8 @@ def main():
         vectors = list(rows)
     assert len(vectors) == n
     cpu, failed, missing_cpu = 0.0, 0, 0
+    steering_enabled = protocol.get("steering", {}).get("enabled", False)
+    steering_targets = steering_applied = steering_hits = 0
     curve = []
     for position, (row, result) in enumerate(zip(vectors, results), start=1):
         run_id, accepted = int(row[0]), row[1] == "True"
@@ -98,6 +100,35 @@ def main():
         else:
             assert not any(vector)
             failed += 1
+        if steering_enabled:
+            submitted_target = submits[run_id].get("steering", {})
+            reported_target = result.get("steering", {})
+            assert submitted_target.get("status") == reported_target.get("status")
+            assert feedback[run_id]["steering_status"] == reported_target.get("status")
+            if reported_target.get("status") == "targeted":
+                steering_targets += 1
+                target_bin = reported_target["target_bin"]
+                assert target_bin in names
+                assert feedback[run_id]["steering_bin"] == target_bin
+                plusargs = result.get("steering_plusargs", [])
+                command_path = (run_dir / "raw" /
+                                result["test_description"].removesuffix("_vseq") /
+                                "0" / "command.txt")
+                command_text = command_path.read_text(encoding="utf-8")
+                assert plusargs and all(arg in command_text for arg in plusargs)
+                assert execution.get("steering_plusargs") == plusargs
+                applied = bool(result.get("steering_applied"))
+                assert execution.get("steering_applied") == applied
+                steering_applied += int(applied)
+                if accepted:
+                    target_hit = bool(vector[names.index(target_bin)])
+                    assert reported_target.get("target_bin_hit") == target_hit
+                    assert feedback[run_id]["steering_bin_hit"] == target_hit
+                    steering_hits += int(target_hit)
+                else:
+                    assert reported_target.get("target_bin_hit") is None
+        else:
+            assert result.get("steering", {}).get("status") == "disabled"
         before = sum(union)
         union = [old or hit > 0 for old, hit in zip(union, vector)]
         assert event["new_bins"] == result["new_bins"] == sum(union) - before
@@ -125,6 +156,8 @@ def main():
         "all_accepted_runs_have_uvm_pass": True, "max_active_workers": max_active,
         "refills_after_feedback": refill_count, "missing_cpu_time_count": missing_cpu,
         "protocol_sha256": policy_hash, "event_chain_head": previous,
+        "steering_enabled": steering_enabled, "steering_targets": steering_targets,
+        "steering_applied_confirmed": steering_applied, "steering_target_bin_hits": steering_hits,
         "limitation": "Uses the Stage06 frozen URG prefix/row identity convention; does not independently prove physical bin identity."}
     (root / "audit.json").write_text(json.dumps(audit, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(audit), flush=True)

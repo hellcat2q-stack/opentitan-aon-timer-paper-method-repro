@@ -1,0 +1,150 @@
+--- a/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_base_vseq.sv
++++ b/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_base_vseq.sv
+@@ -49,28 +49,107 @@ class aon_timer_base_vseq extends cip_base_vseq #(
+   // Used to randomly configure wdog_ctrl.pause_in_sleep
+   rand bit          wdog_ctrl_pause_in_sleep;
+ 
++  int unsigned steer_field;
++  longint unsigned steer_value;
++  int unsigned steer_aux_field;
++  longint unsigned steer_aux_value;
++
+   constraint thold_count_c {
+     solve wkup_count_gap, wkup_thold before wkup_count;
+     solve aim_bite, wdog_count_gap, wdog_bark_thold, wdog_bite_thold before wdog_count;
+-    wkup_count_gap inside {[1:500]};
+-    wdog_count_gap inside {[1:500]};
+-
+-    wkup_thold      inside {[1:10]};
+-    wdog_bark_thold inside {[1:10]};
+-    wdog_bite_thold inside {[1:10]};
+-
+-    wkup_thold      <= (2**64-1);
+-    wdog_bark_thold <= (2**32-1);
+-    wdog_bite_thold <= (2**32-1);
++    wkup_count_gap inside {[1:10]};
++    wdog_count_gap inside {[1:10]};
++
++    wkup_thold dist {0                     :/ 20,
++                     [1:64'hffff_ffff_ffff_fffe] :/ 60,
++                     64'hffff_ffff_ffff_ffff     :/ 20};
++    wdog_bark_thold dist {0                     :/ 20,
++                          [1:32'hffff_fffe] :/ 60,
++                          32'hffff_ffff     :/ 20};
++    wdog_bite_thold dist {0                     :/ 20,
++                          [1:32'hffff_fffe] :/ 60,
++                          32'hffff_ffff     :/ 20};
++
++    if (wkup_thold == 0) wkup_count == 0;
++    else {
++      wkup_count_gap <= wkup_thold;
++      wkup_count inside {[wkup_thold-wkup_count_gap:wkup_thold]};
++    }
++    if (!aim_bite) {
++      if (wdog_bark_thold == 0) wdog_count == 0;
++      else {
++        wdog_count_gap <= wdog_bark_thold;
++        wdog_count inside {[wdog_bark_thold-wdog_count_gap:wdog_bark_thold]};
++      }
++    } else {
++      if (wdog_bite_thold == 0) wdog_count == 0;
++      else {
++        wdog_count_gap <= wdog_bite_thold;
++        wdog_count inside {[wdog_bite_thold-wdog_count_gap:wdog_bite_thold]};
++      }
++    }
+ 
+-    wkup_count inside {[wkup_thold-wkup_count_gap:wkup_thold]};
+-    !aim_bite -> wdog_count inside {[wdog_bark_thold-wdog_count_gap:wdog_bark_thold]};
+-    aim_bite  -> wdog_count inside {[wdog_bite_thold-wdog_count_gap:wdog_bite_thold]};
++  }
+ 
++  constraint directed_steering_c {
++    if (steer_field == 1) wkup_thold == steer_value;
++    if (steer_field == 2) wdog_bark_thold == steer_value;
++    if (steer_field == 3) wdog_bite_thold == steer_value;
++    if (steer_field == 4) aim_bite == steer_value[0];
++    if (steer_aux_field == 1) wkup_thold == steer_aux_value;
++    if (steer_aux_field == 2) wdog_bark_thold == steer_aux_value;
++    if (steer_aux_field == 3) wdog_bite_thold == steer_aux_value;
++    if (steer_aux_field == 4) aim_bite == steer_aux_value[0];
+   }
+ 
+   `uvm_object_new
+ 
++  function void pre_randomize();
++    int unsigned parsed_field;
++    longint unsigned parsed_value;
++
++    super.pre_randomize();
++    steer_field = 0;
++    steer_value = 0;
++    steer_aux_field = 0;
++    steer_aux_value = 0;
++    if ($value$plusargs("aon_steer_field=%d", parsed_field) &&
++        $value$plusargs("aon_steer_value=%h", parsed_value)) begin
++      steer_field = parsed_field;
++      steer_value = parsed_value;
++    end
++    if ($value$plusargs("aon_steer_aux_field=%d", parsed_field) &&
++        $value$plusargs("aon_steer_aux_value=%h", parsed_value)) begin
++      steer_aux_field = parsed_field;
++      steer_aux_value = parsed_value;
++    end
++    if (get_type_name() == "aon_timer_prescaler_vseq" && steer_field != 7) begin
++      steer_field = 0;
++      steer_aux_field = 0;
++    end
++  endfunction
++
++  function longint unsigned steering_actual(int unsigned field_id);
++    case (field_id)
++      1: return wkup_thold;
++      2: return wdog_bark_thold;
++      3: return wdog_bite_thold;
++      4: return aim_bite;
++      default: return 0;
++    endcase
++  endfunction
++
++  function void post_randomize();
++    super.post_randomize();
++    if (steer_field != 0 && steer_field != 7) begin
++      `uvm_info(`gfn,
++                $sformatf("AON_TIMER_STEERING_APPLIED field=%0d requested=0x%0h actual=0x%0h aux_field=%0d aux_requested=0x%0h aux_actual=0x%0h",
++                          steer_field, steer_value, steering_actual(steer_field),
++                          steer_aux_field, steer_aux_value, steering_actual(steer_aux_field)),
++                UVM_LOW)
++    end
++  endfunction
++
+   virtual task dut_init(string reset_kind = "HARD");
+     super.dut_init();
+ 
+diff --git tmp/stage08_steering_20261105/aon_timer_prescaler_vseq.orig.sv tmp/stage08_steering_20261105/aon_timer_prescaler_vseq.sv
+index c8134b5..4c5e1d3 100644
+--- a/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_prescaler_vseq.sv
++++ b/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_prescaler_vseq.sv
+@@ -18,8 +18,22 @@ class aon_timer_prescaler_vseq extends aon_timer_base_vseq;
+     wdog_count == 0;
+   }
+ 
++  constraint directed_prescaler_steering_c {
++    if (steer_field == 7) prescaler == steer_value[11:0];
++  }
++
+   `uvm_object_new
+ 
++  function void post_randomize();
++    super.post_randomize();
++    if (steer_field == 7) begin
++      `uvm_info(`gfn,
++                $sformatf("AON_TIMER_STEERING_APPLIED field=7 requested=0x%0h actual=0x%0h",
++                          steer_value, prescaler),
++                UVM_LOW)
++    end
++  endfunction
++
+ 
+   task body();
+ 

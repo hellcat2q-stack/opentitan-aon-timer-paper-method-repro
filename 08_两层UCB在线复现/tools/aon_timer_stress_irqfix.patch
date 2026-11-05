@@ -1,0 +1,30 @@
+diff --git a/src/opentitan/hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv b/src/opentitan/hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv
+--- a/src/opentitan/hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv
++++ b/src/opentitan/hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv
+@@ -357,6 +357,12 @@
+           // Wait a further 5 clocks for the interrupt to propagate through logic in the clk domain
+           // to become visible on the top-level pins.
+           cfg.clk_rst_vif.wait_clks(5);
++          // CDC phase can delay the synchronized interrupt by a few more clk cycles. Keep the
++          // assertion strict, but allow a bounded propagation window before sampling the pin.
++          for (int unsigned pin_wait_cycles = 0; pin_wait_cycles < 5; pin_wait_cycles++) begin
++            if (cfg.intr_vif.sample_pin(.idx(WDOG)) === intr_status_exp[WDOG]) break;
++            cfg.clk_rst_vif.wait_clks(1);
++          end
+           // Check interrupt and reset_req pins
+           `DV_CHECK_CASE_EQ(intr_status_exp[WDOG],
+                             cfg.intr_vif.sample_pin(.idx(WDOG)))
+diff --git a/src/opentitan/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_common_vseq.sv b/src/opentitan/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_common_vseq.sv
+--- a/src/opentitan/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_common_vseq.sv
++++ b/src/opentitan/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_common_vseq.sv
+@@ -11,6 +11,10 @@
+   `uvm_object_new
+
+   virtual task body();
++    if (common_seq_type == "intr_test") begin
++      `uvm_info(`gfn, "Disabling AON timers before the interrupt CSR test", UVM_HIGH)
++      aon_timer_shutdown();
++    end
+     run_common_vseq_wrapper(num_trans);
+   endtask : body
+

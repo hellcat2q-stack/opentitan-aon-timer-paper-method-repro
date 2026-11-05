@@ -79,6 +79,9 @@ def run_one(job: dict[str, Any]) -> dict[str, Any]:
     seed = job["seed"]
     sequence = job["sequence"]
     test_name = job["test_name"]
+    extra_plusargs = job.get("extra_plusargs", [])
+    if any(not arg.startswith("+aon_steer_") for arg in extra_plusargs):
+        raise ValueError("extra_plusargs may only contain AON Timer steering plusargs")
     command = [
         simv,
         "+cdc_instrumentation_enabled=1",
@@ -95,6 +98,7 @@ def run_one(job: dict[str, Any]) -> dict[str, Any]:
         f"+UVM_TEST_SEQ={sequence}",
         "+en_cov=1",
         *TEST_RUN_OPTIONS.get(test_name, ()),
+        *extra_plusargs,
         "-cm",
         "line+cond+fsm+tgl+branch+assert",
         "-cm_dir",
@@ -187,6 +191,7 @@ def run_one(job: dict[str, Any]) -> dict[str, Any]:
         "test_name": test_name,
         "sequence": sequence,
         "test_run_options": list(TEST_RUN_OPTIONS.get(test_name, ())),
+        "extra_plusargs": list(extra_plusargs),
         "sequence_run_index": job["index"],
         "seed": seed,
         "vcs_return_code": sim_rc,

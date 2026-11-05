@@ -1,0 +1,71 @@
+# VCS/URG adapter for the paper's AON Timer Full experiment.
+#
+# This is the VCS equivalent of the original Verisim runner configuration.
+# Paths in this file are placeholders; the server launcher supplies the
+# verified simv, OpenTitan dv_root, frozen Stage 06 CSV, and Stage 07 mapping.
+# The policy source remains the author's two-level UCB implementation.
+
+method: Full
+simulator: vcs
+reporter: urg
+
+protocol:
+  submissions: 1000
+  logical_batch_size: 10
+  logical_batches: 100
+  workers: 10
+  seed: 42
+  initial_runs: 39
+  coverage_bins: 4507
+  refill: continuous
+  retry: false
+  failure_reward: 0
+
+uvm:
+  test_name: aon_timer_base_test
+  sequences:
+    - aon_timer_smoke_vseq
+    - aon_timer_prescaler_vseq
+    - aon_timer_jump_vseq
+    - aon_timer_stress_all_vseq
+  common_args:
+    - +cdc_instrumentation_enabled=1
+    - +UVM_NO_RELNOTES
+    - +UVM_VERBOSITY=UVM_LOW
+    - -licqueue
+    - -ucli
+    - +en_cov=1
+  coverage_metrics: line+cond+fsm+tgl+branch+assert
+  seed_arg: +ntb_random_seed={seed}
+  sequence_arg: +UVM_TEST_SEQ={sequence}
+  stress_timeout_arg: +test_timeout_ns=10000000000
+
+vcs_command:
+  executable: <VERIFIED_SIMV>
+  dv_root: <OPENTITAN_ROOT>/hw/dv
+  tcl: <OPENTITAN_ROOT>/hw/dv/tools/sim.tcl
+  coverage_dir: <RUN_ROOT>/coverage/default.vdb
+  coverage_name: <test_name>.<seed>
+
+urg_command:
+  executable: urg
+  metrics: group
+  groups: [ratio, lrm_bin_name, instcov_for_score]
+  maxmissing: 100000
+  report_format: text
+  report_dir: <RUN_ROOT>/reports
+
+inputs:
+  initial_csv: <SERVER_ROOT>/runs/stage06_conversion_20261101T_v10/coverage_bin_by_run.csv
+  cluster_mapping: <SERVER_ROOT>/scratch/stage08_vcs_20261104/bin_to_cluster.csv
+
+outputs:
+  raw_runs: <SERVER_ROOT>/runs/stage08_vcs_full_20261104
+  public_export: <SERVER_ROOT>/evidence/stage08_vcs_full_20261104
+
+compatibility:
+  verisim_solver_probability_files: disabled
+  reason: >-
+    VCS/URG does not consume the Verisim -solver-filename interface used by
+    the original Bayesian trainer. The VCS port preserves the paper's
+    coverage-feedback/UCB scheduling loop and uses VCS random seeds instead.

@@ -1,0 +1,100 @@
+diff --git a/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_jump_vseq.sv b/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_jump_vseq.sv
+index 2f33765..e2384f4 100644
+--- a/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_jump_vseq.sv
++++ b/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_jump_vseq.sv
+@@ -6,17 +6,40 @@
+ class aon_timer_jump_vseq extends aon_timer_base_vseq;
+   `uvm_object_utils(aon_timer_jump_vseq)
+ 
+-  // Overrides constraint in parent vseq:
+-  constraint thold_count_c {
+-    solve wkup_thold before wkup_count;
+-    solve aim_bite, wdog_bark_thold, wdog_bite_thold before wdog_count;
+-    wkup_thold      <= (2**64-1);
+-    wdog_bark_thold <= (2**32-1);
+-    wdog_bite_thold <= (2**32-1);
+-
+-    wkup_count inside {[wkup_thold-10:wkup_thold+10]};
+-    !aim_bite -> wdog_count inside {[wdog_bark_thold-10:wdog_bark_thold+10]};
+-    aim_bite  -> wdog_count inside {[wdog_bite_thold-10:wdog_bite_thold+10]};
++  // Keep initialized counts close to their thresholds without range wraparound:
++  constraint jump_count_c {
++    solve wkup_count_gap, wkup_thold before wkup_count;
++    solve aim_bite, wdog_count_gap, wdog_bark_thold, wdog_bite_thold before wdog_count;
++    wkup_count_gap inside {[1:10]};
++    wdog_count_gap inside {[1:10]};
++
++    if (steer_field inside {2, 3}) wkup_count == 0;
++    else if (wkup_thold == 0) wkup_count == 0;
++    else {
++      wkup_count_gap <= wkup_thold;
++      wkup_count inside {[wkup_thold-wkup_count_gap:wkup_thold]};
++    }
++
++    if (steer_field == 1) wdog_count == 0;
++    else if (steer_field == 2) {
++      wdog_count_gap <= wdog_bark_thold;
++      wdog_count inside {[wdog_bark_thold-wdog_count_gap:wdog_bark_thold]};
++    } else if (steer_field == 3) {
++      wdog_count_gap <= wdog_bite_thold;
++      wdog_count inside {[wdog_bite_thold-wdog_count_gap:wdog_bite_thold]};
++    } else if (!aim_bite) {
++      if (wdog_bark_thold == 0) wdog_count == 0;
++      else {
++        wdog_count_gap <= wdog_bark_thold;
++        wdog_count inside {[wdog_bark_thold-wdog_count_gap:wdog_bark_thold]};
++      }
++    } else {
++      if (wdog_bite_thold == 0) wdog_count == 0;
++      else {
++        wdog_count_gap <= wdog_bite_thold;
++        wdog_count inside {[wdog_bite_thold-wdog_count_gap:wdog_bite_thold]};
++      }
++    }
+   }
+ 
+   `uvm_object_new
+@@ -26,7 +49,20 @@ class aon_timer_jump_vseq extends aon_timer_base_vseq;
+ 
+     aon_timer_init();
+     jump_configure();
+-    wait_for_interrupt();
++    if (steer_field == 2 || steer_field == 3 ||
++        steer_aux_field == 2 || steer_aux_field == 3) begin
++      // A directed watchdog run only enables the watchdog. Wait for bark or bite
++      // directly; the generic helper waits only on AON-domain pins (WKUP/reset).
++      while (cfg.intr_vif.pins[1] !== 1'b1 &&
++             cfg.aon_intr_vif.pins[0] !== 1'b1 &&
++             cfg.aon_clk_rst_vif.rst_n) begin
++        @(cfg.intr_vif.pins or cfg.aon_intr_vif.pins or negedge cfg.aon_clk_rst_vif.rst_n);
++      end
++      // Let the scoreboard sample and validate the interrupt before shutdown clears it.
++      cfg.clk_rst_vif.wait_clks(10);
++    end else begin
++      wait_for_interrupt();
++    end
+     aon_timer_shutdown();
+ 
+   endtask : body
+@@ -48,8 +84,19 @@ class aon_timer_jump_vseq extends aon_timer_base_vseq;
+     cfg.aon_clk_rst_vif.wait_clks(1);
+ 
+     `uvm_info(`gfn, "Enabling AON Timer. Writing 1 to WKUP_CTRL and WDOG_CTRL", UVM_HIGH)
+-    csr_utils_pkg::csr_wr(ral.wdog_ctrl.enable, 1'b1);
+-    csr_utils_pkg::csr_wr(ral.wkup_ctrl.enable, 1'b1);
++    if (steer_field == 1 || steer_aux_field == 1) begin
++      // Isolate wakeup coverage from unrelated watchdog expirations.
++      csr_utils_pkg::csr_wr(ral.wdog_ctrl.enable, 1'b0);
++      csr_utils_pkg::csr_wr(ral.wkup_ctrl.enable, 1'b1);
++    end else if (steer_field == 2 || steer_field == 3 ||
++                 steer_aux_field == 2 || steer_aux_field == 3) begin
++      // Isolate watchdog coverage so WKUP cannot terminate the sequence first.
++      csr_utils_pkg::csr_wr(ral.wkup_ctrl.enable, 1'b0);
++      csr_utils_pkg::csr_wr(ral.wdog_ctrl.enable, 1'b1);
++    end else begin
++      csr_utils_pkg::csr_wr(ral.wdog_ctrl.enable, 1'b1);
++      csr_utils_pkg::csr_wr(ral.wkup_ctrl.enable, 1'b1);
++    end
+ 
+     `uvm_info(`gfn, "\n\t Waiting for AON Timer to finish (interrupt)", UVM_HIGH)
+   endtask : jump_configure
