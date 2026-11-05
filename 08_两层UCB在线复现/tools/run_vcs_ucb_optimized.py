@@ -14,6 +14,7 @@ import importlib.util
 import json
 import os
 import random
+import re
 import signal
 import subprocess
 import sys
@@ -47,6 +48,71 @@ def load_module(path, name):
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+
+
+def canonicalize_urg_bins(converter, bins, canonical_keys):
+    """Map URG's compressed automatic-bin rows by value range, not row order.
+
+    URG emits covered automatic bins separately and collapses uncovered bins
+    into value ranges. Their row order therefore changes when a different bin
+    is covered. Mapping these rows positionally shifts hit counts to the wrong
+    frozen feature columns.
+    """
+    value_range = re.compile(r"^values:\s*\{\s*\[\s*(\d+)\s*:\s*(\d+)\s*\]\s*\}$", re.I)
+    grouped = {}
+    for key, count in bins.items():
+        grouped.setdefault(converter.report_prefix(key), []).append((key, count))
+    if set(grouped) != set(canonical_keys):
+        raise ValueError("report prefix set differs from canonical report")
+
+    result = {}
+    for prefix, canonical in canonical_keys.items():
+        canonical_parts = [key.split("||") for key in canonical]
+        canonical_ranges = [value_range.fullmatch(parts[3]) for parts in canonical_parts]
+        ordinals = [int(parts[4]) for parts in canonical_parts]
+        entry_parts = [key.split("||") for key, _ in grouped[prefix]]
+        entry_ranges = [value_range.fullmatch(parts[3]) for parts in entry_parts]
+        uniform = (len(canonical) > 1 and all(canonical_ranges) and
+                   len({match.groups() for match in canonical_ranges}) == 1 and
+                   set(ordinals) == set(range(len(canonical))) and all(entry_ranges))
+        if uniform:
+            low, high = map(int, canonical_ranges[0].groups())
+            span = high - low + 1
+            if span <= 0 or span % len(canonical):
+                raise ValueError(f"non-uniform frozen auto-bin range for {prefix}")
+            width = span // len(canonical)
+            by_ordinal = {ordinal: key for ordinal, key in zip(ordinals, canonical)}
+            mapped = {}
+            row_groups = {}
+            for key, count in grouped[prefix]:
+                parts = key.split("||")
+                match = value_range.fullmatch(parts[3])
+                if not match:
+                    raise ValueError(f"URG auto-bin row lacks a numeric range for {prefix}: {key}")
+                row_low, row_high = map(int, match.groups())
+                offset = int(parts[4])
+                if row_low < low or row_high > high or (row_low - low) % width:
+                    raise ValueError(f"URG auto-bin range is misaligned for {prefix}: {key}")
+                ordinal = (row_low - low) // width + offset
+                if not 0 <= ordinal < len(canonical) or ordinal in mapped:
+                    raise ValueError(f"duplicate or out-of-range URG auto-bin ordinal for {prefix}: {key}")
+                mapped[ordinal] = count
+                row_groups.setdefault((row_low, row_high), []).append(offset)
+            for (row_low, row_high), offsets in row_groups.items():
+                offsets.sort()
+                row_count = len(offsets)
+                if offsets != list(range(row_count)) or row_high - row_low + 1 != row_count * width:
+                    raise ValueError(f"URG compressed auto-bin range cardinality mismatch for {prefix}")
+            if len(mapped) != len(canonical):
+                raise ValueError(f"URG auto-bin count mismatch for {prefix}: {len(mapped)} != {len(canonical)}")
+            for ordinal, count in mapped.items():
+                result[by_ordinal[ordinal]] = count
+        else:
+            # Preserve the established path for explicitly named bins and
+            # crosses, whose labels are not compressed numeric auto ranges.
+            for canonical_key, (_, count) in zip(canonical, grouped[prefix]):
+                result[canonical_key] = count
+    return result
 
 
 def main():
@@ -140,7 +206,7 @@ def main():
             "target_hit": "per-run URG coverage count for the exact selected feature label",
         },
         "compatibility_changes": ["CSV sequence/runtime field names", "VCS/URG worker and strict UVM checks", "Stage06 canonical parser", "preserve raw logs and reject existing output", "cache fixed category indices", "append hash-chained events and audit"],
-        "algorithm_changes": ["allow consecutive and concurrent selection of the current top-ranked sequence", "inner sequence UCB reward is 80% global new-bin gain and 20% target-cluster new-bin gain; initial vectors remain candidate priors only", "sequence exploration counts use successful online observations across targets", "cluster and sequence UCB observation counts advance only after successful, parsed coverage feedback; every attempt still counts toward the budget"],
+        "algorithm_changes": ["allow consecutive and concurrent selection of the current top-ranked sequence", "inner sequence UCB reward is 80% global new-bin gain and 20% target-cluster new-bin gain; initial vectors remain candidate priors only", "sequence exploration counts use successful online observations across targets", "cluster and sequence UCB observation counts advance only after successful, parsed coverage feedback; every attempt still counts toward the budget", "VCS jobs use one compatible directed jump_vseq per threshold target and prescaler_vseq only for prescaler targets; stress_all is not used as a long composite wrapper"],
     }
     dump(args.result_dir / "protocol.json", policy_manifest)
 
@@ -211,9 +277,18 @@ def main():
             assert seed == seed_list[run_id]
             target_bins = target_category.get("bin_names", []) if target_category else []
             if self.steering_enabled:
+                # Run one compatible directed sequence per simulator job. This avoids
+                # hiding 15-20 nested sequences inside stress_all and guarantees that
+                # threshold targets exercise jump_vseq as the experiment intends.
                 steering = select_target(target_bins, self.steering_covered,
-                                         self.steering_reserved, test_identifier,
+                                         self.steering_reserved, "aon_timer_jump_vseq",
                                          self.steering_rng)
+                # Keep the experiment's sequence fixed across all submissions.
+                # Prescaler-only targets remain unsteered instead of switching
+                # the test sequence away from aon_timer_jump_vseq.
+                test_identifier = "aon_timer_jump_vseq"
+                test_config = dict(test_config)
+                test_config["seq"] = test_identifier
             else:
                 steering = {"status": "disabled"}
             if steering.get("status") == "targeted":
@@ -266,7 +341,7 @@ def main():
                         {"source_root": str(run_dir / "raw"), "relative_run_dir": str(raw_dir.relative_to(run_dir / "raw")), "source": "online", "global_run_id": run_id},
                         run_dir / "reports", args.urg, 300)
                     covered, expected = converter.parse_group_list_counts(report_dir)
-                    counts = converter.canonicalize_report_bins(converter.parse_report(report_dir), canonical)
+                    counts = canonicalize_urg_bins(converter, converter.parse_report(report_dir), canonical)
                     if len(counts) != 4507 or expected != 4507 or sum(v > 0 for v in counts.values()) != covered:
                         raise ValueError("URG counts differ from frozen 4507-bin universe or detailed totals")
                     if not list((raw_dir / "coverage/default.vdb").glob("snps/coverage/db/testdata/*/testbench.cumulative.xml")):
