@@ -1,0 +1,4 @@
+method,source,submitted,completed,failed,coverage_percent,accumulated_runtime_seconds,walltime_seconds,sequence_pool,steering,notes
+RandomSelection,local VCS audited,1000,1000,0,5.746616374528511,65079.61,8153.194789,"four frozen local sequences","disabled","Uniform with replacement; paper pool not disclosed; +26 bins over initial corpus"
+Full,local VCS V16,1000,1000,0,25.16086088307078,1368.72,2675.64057,"forced aon_timer_jump_vseq","enabled","Directed threshold steering; not strict paper Full"
+RandomSelection,paper reference,1000,,,,15355.71,4450.20,"author pool undisclosed","unknown","Table II reference only"

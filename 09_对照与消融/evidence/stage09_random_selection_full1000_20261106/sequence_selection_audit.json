@@ -1,0 +1,23 @@
+{
+  "status": "pass",
+  "method": "RandomSelection",
+  "budget": 1000,
+  "selection_seed": 42,
+  "sequence_pool": [
+    "aon_timer_smoke_vseq",
+    "aon_timer_prescaler_vseq",
+    "aon_timer_jump_vseq",
+    "aon_timer_stress_all_vseq"
+  ],
+  "uniform_with_replacement_schedule_matches_seed": true,
+  "all_run_seeds_match_protocol": true,
+  "observed_sequence_usage": {
+    "aon_timer_smoke_vseq": 243,
+    "aon_timer_jump_vseq": 250,
+    "aon_timer_prescaler_vseq": 243,
+    "aon_timer_stress_all_vseq": 264
+  },
+  "steering_disabled": true,
+  "results_sha256": "7fb4408a41ed91e2a7abfbf743e3a29e310144de71ac6d1c4cf237b0fa25dcc4",
+  "protocol_sha256": "2efe50275923d79195629c24b91d8da0af083cfabfa886b3f480f9cb4e4b821a"
+}

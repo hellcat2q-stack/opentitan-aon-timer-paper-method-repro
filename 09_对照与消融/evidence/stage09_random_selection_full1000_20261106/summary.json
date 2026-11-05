@@ -1,0 +1,28 @@
+{
+  "schema": "aon-timer-random-selection-summary-v1",
+  "method": "RandomSelection",
+  "status": "completed",
+  "submitted": 1000,
+  "completed": 1000,
+  "failed": 0,
+  "retried": 0,
+  "accepted": 1000,
+  "max_active_workers": 10,
+  "bin_count": 4507,
+  "initial_union_bins": 233,
+  "final_covered_bins": 259,
+  "final_coverage_percent": 5.746616374528511,
+  "new_bins_beyond_initial": 26,
+  "accumulated_simulator_cpu_seconds_all_attempts": 65079.610000000044,
+  "accepted_simulator_cpu_seconds": 65079.610000000044,
+  "wall_seconds": 8153.194789171219,
+  "sequence_usage": {
+    "aon_timer_smoke_vseq": 243,
+    "aon_timer_prescaler_vseq": 243,
+    "aon_timer_jump_vseq": 250,
+    "aon_timer_stress_all_vseq": 264
+  },
+  "steering_enabled": false,
+  "policy_sha256": "2efe50275923d79195629c24b91d8da0af083cfabfa886b3f480f9cb4e4b821a",
+  "event_chain_head": "035cbb6b1f9d687a8c3471d5f1292d24a9cc8c711633a4479f6151e15642c6c4"
+}
