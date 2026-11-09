@@ -1,0 +1,53 @@
+{
+  "method": "URG directly merges original VDBs; detailed group table totals are independent of Python bin-identity mapping",
+  "urg_version": "P-2019.06-SP1",
+  "new_simulations": 0,
+  "source_artifacts_modified": false,
+  "sources": {
+    "online_only": {
+      "command_sha256": "2ca82c7dcdd79d5f3f3d150af199b08e9d659b8b447726f87bc9c84db8506c8f",
+      "groups_txt_sha256": "d493233c34cc13c5907285051d9487fe91ce61964b13876b38dfa618b37381b1",
+      "tests_txt_sha256": "fe503f04c0e9cd1147e35b90b8cb2fb0da2307d6efe5ca782ec5e45fe699f52d"
+    },
+    "initial_only": {
+      "command_sha256": "89fb8f40ef39ca6c517555f9345fbf5f3e4b0a454a49de0eae5f9367b9dfb5b5",
+      "groups_txt_sha256": "41eb0121ffd6f3c39a112c4b732b31a367fbc90aa5c50092000d79040c6ce341",
+      "tests_txt_sha256": "e0ba785b278b5d8ab37cb8828894c32bf982038b86b9b6922df0c2db3a28f098"
+    },
+    "initial_plus_online": {
+      "command_sha256": "48e2c210ff6b06b9f93c72824692d76913fc2acb819a65a66c7e876560a3cfd0",
+      "groups_txt_sha256": "94147cefe76f0bdc6622842e66a5ca851fdce58d6e4aaae70aa7f512673b87d4",
+      "tests_txt_sha256": "49525785b7571b8f88f9949d3e47158c5bcf5eb6e3ce9491aa461a1f90e4e6eb"
+    }
+  },
+  "target_hit_counts_under_current_parser": {
+    "bark_thold_cp": {
+      "attempts": 9,
+      "target_hits": 9
+    },
+    "prescale_cp": {
+      "attempts": 6,
+      "target_hits": 6
+    },
+    "bite_thold_cp": {
+      "attempts": 11,
+      "target_hits": 11
+    },
+    "wkup_thold_cp": {
+      "attempts": 51,
+      "target_hits": 51
+    },
+    "wkup_count_cp": {
+      "attempts": 47,
+      "target_hits": 0
+    },
+    "wdog_count_cp": {
+      "attempts": 47,
+      "target_hits": 47
+    },
+    "wdog_thold_cp": {
+      "attempts": 56,
+      "target_hits": 56
+    }
+  }
+}

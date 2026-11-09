@@ -1,0 +1,45 @@
+{
+  "aon_timer_scoreboard.sv": {
+    "sha256": "35dc0c8954367f486fa42d707a19740e432c1fe61e9b65899f37e3a85eb8b4cf",
+    "lines": {
+      "264": "            @(sample_coverage.triggered);",
+      "265": "            if (cfg.en_cov) begin",
+      "266": "              bit [63:0] rtl_count;",
+      "267": "              //reading RTL value since TB doesn't keep track of count",
+      "268": "              csr_rd(.ptr(ral.wkup_count_lo), .value(rtl_count[31:0]), .backdoor(1));",
+      "269": "              csr_rd(.ptr(ral.wkup_count_lo), .value(rtl_count[63:32]), .backdoor(1));",
+      "270": "              cov.wake_up_timer_thold_hit_cg.sample(intr_status_exp[WKUP],",
+      "271": "                                                    wkup_thold,",
+      "272": "                                                    rtl_count);",
+      "273": "            end",
+      "274": "          end"
+    }
+  },
+  "seq_lib/aon_timer_base_vseq.sv": {
+    "sha256": "93115af69bf078dc2873cac7293e742717adb1dad1c320d9009a7b22270cd975",
+    "lines": {
+      "58": "    solve wkup_count_gap, wkup_thold before wkup_count;",
+      "59": "    solve aim_bite, wdog_count_gap, wdog_bark_thold, wdog_bite_thold before wdog_count;",
+      "60": "    wkup_count_gap inside {[1:10]};",
+      "61": "    wdog_count_gap inside {[1:10]};",
+      "62": "",
+      "63": "    if (steer_field == 0) {",
+      "64": "      wkup_thold inside {[1:10]};",
+      "65": "      wdog_bark_thold inside {[1:10]};",
+      "66": "      wdog_bite_thold inside {[1:10]};",
+      "67": "    } else {",
+      "68": "      wkup_thold dist {0                     :/ 20,",
+      "69": "                       [1:64'hffff_ffff_ffff_fffe] :/ 60,",
+      "70": "                       64'hffff_ffff_ffff_ffff     :/ 20};",
+      "71": "      wdog_bark_thold dist {0                     :/ 20,",
+      "72": "                            [1:32'hffff_fffe] :/ 60,",
+      "73": "                            32'hffff_ffff     :/ 20};",
+      "74": "      wdog_bite_thold dist {0                     :/ 20,",
+      "75": "                            [1:32'hffff_fffe] :/ 60,",
+      "76": "                            32'hffff_ffff     :/ 20};",
+      "77": "    }",
+      "78": "",
+      "79": "    if (steer_field inside {2, 3}) {"
+    }
+  }
+}

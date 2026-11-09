@@ -1,0 +1,55 @@
+{
+  "online_only": {
+    "vdb_count": 1000,
+    "detailed_totals": [
+      1009,
+      4507
+    ],
+    "dashboard_totals": [
+      1008,
+      4525
+    ],
+    "test_count": 1000,
+    "detailed_percent": 22.387397381850455,
+    "dashboard_percent": 22.276243093922652,
+    "return_code": 0
+  },
+  "initial_only": {
+    "return_code": 0,
+    "vdb_count": 39,
+    "detailed_totals": [
+      508,
+      4507
+    ],
+    "dashboard_totals": [
+      507,
+      4525
+    ],
+    "test_count": 39,
+    "detailed_percent": 11.271355668959396,
+    "dashboard_percent": 11.204419889502763
+  },
+  "initial_plus_online": {
+    "return_code": 0,
+    "vdb_count": 1039,
+    "detailed_totals": [
+      1191,
+      4507
+    ],
+    "dashboard_totals": [
+      1190,
+      4525
+    ],
+    "test_count": 1039,
+    "detailed_percent": 26.425560239627245,
+    "dashboard_percent": 26.298342541436465,
+    "new_bins_beyond_initial": 683
+  },
+  "python_recorded": {
+    "initial_covered": 233,
+    "online_union": 790,
+    "initial_plus_online_covered": 832,
+    "initial_plus_online_percent": 18.460173064122475,
+    "new_bins_beyond_initial": 599
+  }
+}
