@@ -1,0 +1,2 @@
+# Preserve exported evidence bytes so SHA-256 manifests verify on every host.
+08_*/evidence/stage08_vcs_paper_ucb_*_20261109_v19/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
