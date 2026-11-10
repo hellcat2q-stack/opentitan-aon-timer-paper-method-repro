@@ -1,0 +1,249 @@
+{
+  "schema": "aon-timer-stage08-stable-xml-input-v1",
+  "source_csv_sha256": "71c02be6b80cb63973eeb96b26340f7e1d1ae2246674d148774c39c616ff1e94",
+  "converter_sha256": "2f750cf5c4a7dbb78953dad9a2605753dbe5ca6ed4ab807e938efa39ba99db15",
+  "canonical_report": "Stage06 original_g0 prefix cardinalities; row order is not used for bin identities",
+  "canonical_report_groups_sha256": "a20efe254a7160e46397b722f9bb08ada4ce249730e25432742d5f8c122cd94a",
+  "initial_runs": 39,
+  "bin_count": 4507,
+  "prefix_count": 60,
+  "initial_union_bins": 508,
+  "identity_source": "VCS testbench.cumulative.xml coverpoint/bin indices and crosspoint member tuples; URG HTML contributes only numeric auto-bin fallback counts and independent covered totals",
+  "runs": [
+    {
+      "report_id": "original_g0",
+      "cumulative_xml_sha256": "daa82dba0c6ca9161c5e30a1f1a045c9978f38a21adc8c08827d6df5611373bb",
+      "covered_bins": 51,
+      "urg_detailed_covered": 51
+    },
+    {
+      "report_id": "original_g1",
+      "cumulative_xml_sha256": "403e7c78daaadb9a65900acf1e05979f62c3a325a776d98af950f7dca1773da6",
+      "covered_bins": 57,
+      "urg_detailed_covered": 57
+    },
+    {
+      "report_id": "original_g2",
+      "cumulative_xml_sha256": "da09160aff1857a8e653b146fc885c37165069145a8be876b6e77b899a574617",
+      "covered_bins": 53,
+      "urg_detailed_covered": 53
+    },
+    {
+      "report_id": "original_g3",
+      "cumulative_xml_sha256": "0bca05486115834463971645fc540b90cc78675e4d4fb729f110ca24951ead18",
+      "covered_bins": 59,
+      "urg_detailed_covered": 59
+    },
+    {
+      "report_id": "original_g4",
+      "cumulative_xml_sha256": "fb890ba2456516c44d0065ce634694bfe7015c34c2b7cafcb9cdbb5099a5ab42",
+      "covered_bins": 52,
+      "urg_detailed_covered": 52
+    },
+    {
+      "report_id": "original_g5",
+      "cumulative_xml_sha256": "a730ee602bf7e8c9373afb7441d00f860cbe3dbc32f79a5cecd7dc6914afd3c8",
+      "covered_bins": 49,
+      "urg_detailed_covered": 49
+    },
+    {
+      "report_id": "original_g6",
+      "cumulative_xml_sha256": "ef85b41809cf7113054ecef7a7a098f54ebdc9697abe6e275dbd1b89a523b1d9",
+      "covered_bins": 45,
+      "urg_detailed_covered": 45
+    },
+    {
+      "report_id": "original_g7",
+      "cumulative_xml_sha256": "c55906f5d74b0f67d43dc5e51b1c07a49a0a0188ec3f2702edd2957a2b985e3c",
+      "covered_bins": 54,
+      "urg_detailed_covered": 54
+    },
+    {
+      "report_id": "original_g8",
+      "cumulative_xml_sha256": "b4b491a23ea159dfca88aee78e3ed1d4dc8ce2155fe71aaa691a04b7ba2ff157",
+      "covered_bins": 51,
+      "urg_detailed_covered": 51
+    },
+    {
+      "report_id": "original_g9",
+      "cumulative_xml_sha256": "7a6a681fd1019cb8955b1455bb8fe5d918520ba3c70d4f6a124e56544fcd83a3",
+      "covered_bins": 48,
+      "urg_detailed_covered": 48
+    },
+    {
+      "report_id": "original_g10",
+      "cumulative_xml_sha256": "5988bdacd9d5d1d3a230722a19d5a68a192adc9e58d9e6b32e86fedce246e43d",
+      "covered_bins": 58,
+      "urg_detailed_covered": 58
+    },
+    {
+      "report_id": "original_g11",
+      "cumulative_xml_sha256": "4ab5f435e409606b06a4a38fb26b26598ba090df566bf3758dcf0b05b31cbcfb",
+      "covered_bins": 60,
+      "urg_detailed_covered": 60
+    },
+    {
+      "report_id": "original_g12",
+      "cumulative_xml_sha256": "536c9848417a257867988aa09509bf00c18486d4f1b43af93f523e9e870bfdcd",
+      "covered_bins": 54,
+      "urg_detailed_covered": 54
+    },
+    {
+      "report_id": "original_g13",
+      "cumulative_xml_sha256": "c71501632e964e78d928a304dabe8b97a9b063b16abb74063eea07605575d32a",
+      "covered_bins": 52,
+      "urg_detailed_covered": 52
+    },
+    {
+      "report_id": "original_g14",
+      "cumulative_xml_sha256": "f914c3abbe98db0b864ef1902690b6168f1a8aa603f1bdeb25de47640a51fd0b",
+      "covered_bins": 50,
+      "urg_detailed_covered": 50
+    },
+    {
+      "report_id": "original_g15",
+      "cumulative_xml_sha256": "191fa6cf00e0283eda58d9c4aa2558ec5603ad50338c8f32f647a62f3de8cb49",
+      "covered_bins": 58,
+      "urg_detailed_covered": 58
+    },
+    {
+      "report_id": "original_g16",
+      "cumulative_xml_sha256": "0d3e37870c67b3b6b456912d1841b9133d23a9534aa798ce1a376c316cc1c911",
+      "covered_bins": 48,
+      "urg_detailed_covered": 48
+    },
+    {
+      "report_id": "original_g17",
+      "cumulative_xml_sha256": "9c61970de2586b3b321765c86b5b8a8a97e4912ce40db24f2037a681312b1f69",
+      "covered_bins": 51,
+      "urg_detailed_covered": 51
+    },
+    {
+      "report_id": "original_g18",
+      "cumulative_xml_sha256": "104005fb09ba50abc8bef5d5603b5c2835c774e787fa2ae1a09eee24fe7920b2",
+      "covered_bins": 48,
+      "urg_detailed_covered": 48
+    },
+    {
+      "report_id": "original_g19",
+      "cumulative_xml_sha256": "ec1fcfb193ad17d7cc353d3451c2ae022c647ce1fd2c667606029d453991df66",
+      "covered_bins": 48,
+      "urg_detailed_covered": 48
+    },
+    {
+      "report_id": "original_g20",
+      "cumulative_xml_sha256": "c7ca5db0da5c571269035c3053baaa9810ec8f056b12db4159d6426f6014474c",
+      "covered_bins": 62,
+      "urg_detailed_covered": 62
+    },
+    {
+      "report_id": "original_g21",
+      "cumulative_xml_sha256": "2c197efb5c3f1b39a9340944c7ee8e03d15bb43f26f435cb9d78d4872542c9a8",
+      "covered_bins": 63,
+      "urg_detailed_covered": 63
+    },
+    {
+      "report_id": "original_g22",
+      "cumulative_xml_sha256": "7d77376c65447fad819799f26a5923aeb99049c7bb52f6c226c008242c46e451",
+      "covered_bins": 60,
+      "urg_detailed_covered": 60
+    },
+    {
+      "report_id": "original_g23",
+      "cumulative_xml_sha256": "30173757c6476a1effabbe04a7f7b6bf8c2817fb89b9b241dd99ac9b7e81ae17",
+      "covered_bins": 61,
+      "urg_detailed_covered": 61
+    },
+    {
+      "report_id": "original_g24",
+      "cumulative_xml_sha256": "59bb085630a6b673f09e911fefe4c287ad0523c2059ccf87724e66aa7a281344",
+      "covered_bins": 51,
+      "urg_detailed_covered": 51
+    },
+    {
+      "report_id": "original_g25",
+      "cumulative_xml_sha256": "70deecbad040ce8f0cdc05459155ab39c02e57b6cee18aa2e8e2123169195ff6",
+      "covered_bins": 58,
+      "urg_detailed_covered": 58
+    },
+    {
+      "report_id": "original_g26",
+      "cumulative_xml_sha256": "c40e4ff95901d1cbd7ae1ff3af1e3358a0a892e35d5761760eac2c675d53e69f",
+      "covered_bins": 48,
+      "urg_detailed_covered": 48
+    },
+    {
+      "report_id": "original_g27",
+      "cumulative_xml_sha256": "f549d4a78f693ac7d50a236a1e3d1e1a08a5e87ad225f292b7a8787d12511b5a",
+      "covered_bins": 57,
+      "urg_detailed_covered": 57
+    },
+    {
+      "report_id": "original_g28",
+      "cumulative_xml_sha256": "cbddb3772b26982ef9ee59f7a9f9f4599130744b31e210a6effeece0d9ee429f",
+      "covered_bins": 48,
+      "urg_detailed_covered": 48
+    },
+    {
+      "report_id": "original_g29",
+      "cumulative_xml_sha256": "000d9d25cc3e3706e59d6cfc0b40de50c5b3b21dc5cdb54ee110787601fa5c41",
+      "covered_bins": 56,
+      "urg_detailed_covered": 56
+    },
+    {
+      "report_id": "original_g30",
+      "cumulative_xml_sha256": "e31f4c3bef1d7aa17654b5c9f73821b258a7e3d7d098d6cff58e9c550d4b64b0",
+      "covered_bins": 177,
+      "urg_detailed_covered": 177
+    },
+    {
+      "report_id": "original_g31",
+      "cumulative_xml_sha256": "d96cbc7d70107e71399ab5664965e6dd255293f9231ed688caf2b5c3b1afa840",
+      "covered_bins": 112,
+      "urg_detailed_covered": 112
+    },
+    {
+      "report_id": "original_g33",
+      "cumulative_xml_sha256": "f499f404ab998d9a730cdf688f4ca3bd2b0869665a53e2689e2b02cec47908b1",
+      "covered_bins": 104,
+      "urg_detailed_covered": 104
+    },
+    {
+      "report_id": "original_g36",
+      "cumulative_xml_sha256": "00e1ea51d46b3c87cd9ebc7e775662743a387dd5d036742b0f80b6f25a4adc36",
+      "covered_bins": 73,
+      "urg_detailed_covered": 73
+    },
+    {
+      "report_id": "original_g37",
+      "cumulative_xml_sha256": "7ee65df6871aecd9c9434c54100825d07f3c5a5f84a9a25fb55009eab4a14f13",
+      "covered_bins": 186,
+      "urg_detailed_covered": 186
+    },
+    {
+      "report_id": "timeout_fix_replay_g32",
+      "cumulative_xml_sha256": "521a873f5a1843f26fd655224f94d3bf8aa85221f5a98249c83339804590554c",
+      "covered_bins": 86,
+      "urg_detailed_covered": 86
+    },
+    {
+      "report_id": "timeout_fix_replay_g34",
+      "cumulative_xml_sha256": "85398a5ea94c4796bc2a69d0922eaa364e024d9cd083ea75574675cb50227119",
+      "covered_bins": 165,
+      "urg_detailed_covered": 165
+    },
+    {
+      "report_id": "timeout_fix_replay_g35",
+      "cumulative_xml_sha256": "eb950ea2263b500ccddd8d09e9629ff731e1dac7595f004425f2aca0d7455da5",
+      "covered_bins": 217,
+      "urg_detailed_covered": 217
+    },
+    {
+      "report_id": "timeout_fix_replay_g39",
+      "cumulative_xml_sha256": "fcab956066db020c74af354659849b4fd4821adfbf54255349b559d554bcd679",
+      "covered_bins": 196,
+      "urg_detailed_covered": 196
+    }
+  ],
+  "csv_sha256": "a73d5cd6bd413d63894a8798ca3f6c20e31d1ebc4e3ddc3459d8b88696536f7d"
+}

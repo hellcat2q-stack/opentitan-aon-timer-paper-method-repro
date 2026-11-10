@@ -1,0 +1,5 @@
+--- a/hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv
++++ b/hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv
+@@ -269 +269 @@
+-              csr_rd(.ptr(ral.wkup_count_lo), .value(rtl_count[63:32]), .backdoor(1));
++              csr_rd(.ptr(ral.wkup_count_hi), .value(rtl_count[63:32]), .backdoor(1));

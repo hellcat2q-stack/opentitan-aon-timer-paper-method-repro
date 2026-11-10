@@ -1,0 +1,23 @@
+{
+  "status": "pass",
+  "budget": 30,
+  "completed": 30,
+  "failed": 0,
+  "retried": 0,
+  "bin_count": 4507,
+  "initial_covered_bins": 508,
+  "final_covered_bins": 561,
+  "hash_chain_verified": true,
+  "all_seeds_match_preregistered_list": true,
+  "all_vectors_match_run_counts": true,
+  "all_rewards_match_union_deltas": true,
+  "all_accepted_runs_have_uvm_pass": true,
+  "max_active_workers": 10,
+  "refills_after_feedback": 20,
+  "steering_targets": 11,
+  "steering_applied_confirmed": 11,
+  "steering_target_bin_hits": 11,
+  "identity_check": "VCS cumulative XML ordinal/cross tuple identities; all per-run covered totals cross-checked against detailed URG groups.txt",
+  "event_chain_head": "29119979d560130d47a5c414903a67c789c9493fde561bab1ef1e5fce12f50c0",
+  "protocol_sha256": "caba3ac5308a55f3c8085d3fee5e469e38e06557597acea1013f054923a10ce5"
+}
