@@ -1,0 +1,15 @@
+--- a/hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv
++++ b/hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv
+@@ -300,6 +300,12 @@
+           // Wait a further 5 clocks for the interrupt to propagate through logic in the clk domain
+           // to become visible on the top-level pins.
+           cfg.clk_rst_vif.wait_clks(5);
++          // CDC phase can delay the synchronized interrupt by a few more clk cycles. Keep the
++          // assertion strict, but allow a bounded propagation window before sampling the pin.
++          for (int unsigned pin_wait_cycles = 0; pin_wait_cycles < 5; pin_wait_cycles++) begin
++            if (cfg.intr_vif.sample_pin(.idx(WKUP)) === intr_status_exp[WKUP]) break;
++            cfg.clk_rst_vif.wait_clks(1);
++          end
+           // Check interrupt pin
+           `DV_CHECK_CASE_EQ(intr_status_exp[WKUP],
+                             cfg.intr_vif.sample_pin(.idx(WKUP)))

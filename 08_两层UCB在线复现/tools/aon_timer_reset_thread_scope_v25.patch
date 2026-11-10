@@ -1,0 +1,34 @@
+--- a/hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv
++++ b/hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv
+@@ -197,17 +197,20 @@
+       wait (!under_reset);
+ 
+       fork : isolation_fork
+-        fork
+-          wait (under_reset);
+-          run_wkup_timer();
+-          run_wdog_bark_timer();
+-          run_wdog_bite_timer();
+-        join_any
+-
+-        // run_wkup_timer and run_wdog_timer never return so if we've got here then we've gone into
+-        // reset. Kill the two timer processes then go around and wait until we come out of reset
+-        // again.
+-        disable fork;
++        begin
++          fork
++            wait (under_reset);
++            run_wkup_timer();
++            run_wdog_bark_timer();
++            run_wdog_bite_timer();
++          join_any
++
++          // This begin/end is essential: the fork and disable must run in the
++          // same parent process. Sibling fork branches cannot kill each other's
++          // children, which otherwise survive reset and duplicate timer checks.
++          // Reset ends this generation before the next generation is started.
++          disable fork;
++        end
+       join
+     end
+   endtask : check_interrupt

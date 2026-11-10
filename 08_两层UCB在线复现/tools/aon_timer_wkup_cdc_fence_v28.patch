@@ -1,0 +1,48 @@
+--- a/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_base_vseq.sv
++++ b/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_base_vseq.sv
+@@ -233,6 +233,13 @@
+ 
+   // setup basic aon_timer features
+   task aon_timer_init();
++    bit [31:0] wkup_ctrl_readback;
++
++    // A TL write can finish before its AON-domain register has updated. Fence
++    // disable before changing the split counter/threshold registers.
++    csr_utils_pkg::csr_wr(ral.wkup_ctrl.enable, 1'b0);
++    csr_rd(.ptr(ral.wkup_ctrl), .value(wkup_ctrl_readback));
++    `DV_CHECK_CASE_EQ(wkup_ctrl_readback[0], 1'b0)
+ 
+     // Clear the interrupts
+     csr_utils_pkg::csr_wr(ral.intr_state, 2'b11);
+@@ -265,6 +272,19 @@
+     `uvm_info(`gfn, $sformatf("Writing 0x%0h to WDOG_REGWEN", wdog_regwen), UVM_HIGH)
+     csr_utils_pkg::csr_wr(ral.wdog_regwen, wdog_regwen);
+ 
++    aon_timer_sync_wkup_configuration(64'b0);
++  endtask
++
++  // Frontdoor reads wait for each CSR's CDC transaction to complete. Compare
++  // with the requested stimulus before enable: never use DUT values as an oracle.
++  task aon_timer_sync_wkup_configuration(bit [63:0] expected_count);
++    bit [63:0] count_readback, thold_readback;
++    csr_rd(.ptr(ral.wkup_count_lo), .value(count_readback[31:0]));
++    csr_rd(.ptr(ral.wkup_count_hi), .value(count_readback[63:32]));
++    csr_rd(.ptr(ral.wkup_thold_lo), .value(thold_readback[31:0]));
++    csr_rd(.ptr(ral.wkup_thold_hi), .value(thold_readback[63:32]));
++    `DV_CHECK_CASE_EQ(count_readback, expected_count)
++    `DV_CHECK_CASE_EQ(thold_readback, wkup_thold)
+   endtask
+ 
+   virtual task apply_reset(string kind = "HARD");
+--- a/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_jump_vseq.sv
++++ b/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_jump_vseq.sv
+@@ -87,7 +87,8 @@
+               $sformatf("\n\t Writing random COUNT value of %d to WDOG", wdog_count),
+               UVM_HIGH)
+ 
+-    cfg.aon_clk_rst_vif.wait_clks(1);
++    // Both halves must reach AON before the counter can start incrementing.
++    aon_timer_sync_wkup_configuration(wkup_count);
+ 
+     `uvm_info(`gfn, "Enabling AON Timer. Writing 1 to WKUP_CTRL and WDOG_CTRL", UVM_HIGH)
+     if (steer_field == 1 || steer_aux_field == 1) begin

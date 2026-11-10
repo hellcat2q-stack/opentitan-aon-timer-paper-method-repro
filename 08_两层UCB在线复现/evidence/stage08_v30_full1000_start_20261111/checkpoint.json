@@ -1,0 +1,47 @@
+{
+  "status": "running",
+  "not_final_result": true,
+  "observed_at_server": "2026-11-11T05:39:25+08:00",
+  "full_run": "stage08_vcs_ucb_full1000_20261111_v30",
+  "planned_budget": 1000,
+  "workers": 10,
+  "seed": 42,
+  "initial_union_bins": 508,
+  "denominator": 4507,
+  "latest_progress": {
+    "submitted": 15,
+    "completed": 6,
+    "failed": 0,
+    "active": 9,
+    "coverage_bins": 697,
+    "denominator": 4507,
+    "event_head": "1ce8fc261a375991379ec7fb216ade889b4cbf14fac39d47542a51e4ac6858d6"
+  },
+  "all_v22_comparison_inputs_match": true,
+  "matching_fields": {
+    "initial_csv_sha256": true,
+    "mapping_sha256": true,
+    "author_source_sha256": true,
+    "baseline_source_sha256": true,
+    "adapter_sha256": true,
+    "conversion_source_sha256": true,
+    "corpus_source_sha256": true,
+    "seeds": true,
+    "workers": true,
+    "logical_batch_size": true,
+    "budget": true,
+    "initial_union": true,
+    "bin_count": true,
+    "steering_source_sha256": true
+  },
+  "gates": {
+    "failed_seed_replay": "5/5 pass",
+    "strict_assertion_fault_check": "pass",
+    "smoke": "30/30 pass, zero failures",
+    "raw_uvm_log_check": "30/30 pass",
+    "smoke_urg_union": "69 VDBs, 937/4507, identity match"
+  },
+  "full_runner_active": true,
+  "finalizer_status": "waiting_for_full",
+  "raw_logs_exported": false
+}

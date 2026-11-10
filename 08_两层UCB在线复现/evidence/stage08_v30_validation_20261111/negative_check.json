@@ -1,0 +1,20 @@
+{
+  "status": "pass",
+  "purpose": "Intentional pin fault must fail the existing strict WKUP assertion",
+  "faulted_simulation_accepted_as_coverage": false,
+  "strict_wkup_assertion_fired": true,
+  "observed": {
+    "status": "fail",
+    "return_code": 0,
+    "uvm_error": 1,
+    "uvm_fatal": 0,
+    "simulation_time_ps": 20941801937,
+    "errors": [
+      "missing_test_pass_marker",
+      "missing_or_nonzero_uvm_error_counts",
+      "uvm_error_or_fatal_report"
+    ]
+  },
+  "log_sha256": "fcfdf88555aa479375b0a8ec28ffdcdfb108d8f7802e15a3866b58bea297801b",
+  "raw_logs_exported": false
+}

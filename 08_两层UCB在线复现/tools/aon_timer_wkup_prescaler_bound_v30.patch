@@ -1,0 +1,31 @@
+--- a/hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv
++++ b/hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv
+@@ -304,14 +304,19 @@
+           // to become visible on the top-level pins.
+           cfg.clk_rst_vif.wait_clks(5);
+-          // Enable/configuration CDC and the AON interrupt flop can leave the
+-          // countdown prediction ahead of the output by AON cycles. A main-clk
+-          // poll cannot cover that delay (one AON period is about 480 clk cycles).
+-          // Bound the settling window in the slow domain, then allow the fast
+-          // synchronizer to settle. A stuck-low interrupt must still fail below.
+-          for (int unsigned aon_wait_cycles = 0; aon_wait_cycles < 4; aon_wait_cycles++) begin
+-            if (cfg.intr_vif.sample_pin(.idx(WKUP)) === intr_status_exp[WKUP]) break;
+-            cfg.aon_clk_rst_vif.wait_clks(1);
+-            cfg.clk_rst_vif.wait_clks(5);
++          // The 12-bit RTL prescale counter retains its phase while disabled.
++          // After lowering the divisor it may have to wrap before the next
++          // increment. Any legal initial phase reaches the compare value in at
++          // most 2**12 AON clocks. Add four AON clocks for CDC uncertainty.
++          // Wait for the actual event as well as the bounded deadline so a
++          // normal interrupt is checked before the sequence shuts the timer down.
++          if (cfg.intr_vif.sample_pin(.idx(WKUP)) !== intr_status_exp[WKUP]) begin
++            fork
++              wait (cfg.intr_vif.pins[WKUP] === intr_status_exp[WKUP]);
++              cfg.aon_clk_rst_vif.wait_clks((1 << 12) + 4);
++            join_any
++            // These two branches are children of this counter/check process.
++            disable fork;
++            cfg.clk_rst_vif.wait_clks(2);
+           end
+           // Check interrupt pin
+           `DV_CHECK_CASE_EQ(intr_status_exp[WKUP],

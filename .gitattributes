@@ -6,3 +6,11 @@
 08_*/tools/*v22* text eol=lf
 08_*/tests/*v22* text eol=lf
 08_*/tools/*v22.patch whitespace=-blank-at-eol
+08_*/evidence/stage08_v30_*_20261111/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+08_*/tools/*v2[3-9]* text eol=lf
+08_*/tools/*v30* text eol=lf
+08_*/tools/*v2[3-9].patch whitespace=-blank-at-eol
+08_*/tools/*v30.patch whitespace=-blank-at-eol
+08_*/tools/verify_stage08_uvm_replay.py text eol=lf
+08_*/tests/test_stage08_uvm_replay.py text eol=lf
+08_*/tests/test_stage08_v30_finalizer.py text eol=lf
