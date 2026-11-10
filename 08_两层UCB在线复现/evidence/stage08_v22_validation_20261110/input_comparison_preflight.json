@@ -1,0 +1,27 @@
+{
+  "status": "matched_inputs_preflight",
+  "matched_fields": [
+    "budget",
+    "logical_batch_size",
+    "workers",
+    "seed",
+    "seeds",
+    "initial_csv_sha256",
+    "mapping_sha256",
+    "author_source_sha256",
+    "baseline_source_sha256",
+    "conversion_source_sha256",
+    "corpus_source_sha256",
+    "canonical_report_sha256",
+    "bin_identity",
+    "initial_union",
+    "bin_count",
+    "cluster_count",
+    "reward",
+    "failure_rule"
+  ],
+  "seed": 42,
+  "initial_union": 508,
+  "denominator": 4507,
+  "full_result_available": false
+}

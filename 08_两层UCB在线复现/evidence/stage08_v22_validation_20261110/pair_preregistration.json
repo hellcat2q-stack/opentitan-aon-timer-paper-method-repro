@@ -1,0 +1,19 @@
+{
+  "schema": "v20-v22-ucb-pair-preregistration-v1",
+  "budget_per_arm": 1000,
+  "workers_per_arm": 10,
+  "logical_batch_size": 10,
+  "seed": 42,
+  "seeds_sha256": "6b206bd5e1e0363ccbe448399d433c9637caef6b2da3f642740298fbd8b89cca",
+  "order": [
+    "v22_treatment",
+    "v20_control"
+  ],
+  "inputs": {
+    "initial_csv": "a73d5cd6bd413d63894a8798ca3f6c20e31d1ebc4e3ddc3459d8b88696536f7d",
+    "mapping": "b75779c622cc03df467e0a9a13f24b6492ebbff86dd8253899e9ce88c621712f",
+    "v20_adapter": "5ff28235a0297964b355a22ab96a19775f84a382080b9169430fdf87c4d9dac5",
+    "v22_adapter": "87f707b879f7a7c2033f3a8234fd0a9979db3c18a26af74d9527cb76fd0621d4",
+    "v22_mapper": "fdad0aa57aa99954293871569df5727b35d27f27b4fcf5662b67e90a2a0a96db"
+  }
+}

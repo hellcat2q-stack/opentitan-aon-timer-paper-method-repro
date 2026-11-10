@@ -1,3 +1,8 @@
 # Preserve exported evidence bytes so SHA-256 manifests verify on every host.
 08_*/evidence/stage08_vcs_paper_ucb_*_20261109_v19/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 08_*/evidence/stage08_v19_diagnosis_20261109/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+08_*/evidence/stage08_v22_*_20261110/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+08_*/evidence/stage08_v20_control_full1000_20261110/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+08_*/tools/*v22* text eol=lf
+08_*/tests/*v22* text eol=lf
+08_*/tools/*v22.patch whitespace=-blank-at-eol

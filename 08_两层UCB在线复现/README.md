@@ -1,5 +1,7 @@
 # 阶段 08：两层 UCB 在线复现
 
+> 2026-11-10 v22：修正配置 bin 十进制/十六进制区间标签的目标映射（新增识别 160 个 bin），让未定向 jump 探索完整阈值范围，修复零阈值 count 约束与目标池更新。独立 VCS 编译、preflight、8 个真实参数探针通过；正在执行 30 次 smoke 门禁，随后顺序运行 v22/v20 各 1000 次 UCB Full 并审计。Full 尚无最终结果。详见 [v22 改进与对照记录](v22参数范围与目标映射_UCB对照_20261110.md)。
+
 > 2026-11-09 独立复核更正：URG 直接合并 V19 的初始 39 条语料与 1000 次在线运行，详细 bin 覆盖为 **1191/4507（26.4256%）**；此前 Python 记录的 832/4507（18.4602%）存在映射漏计。还查出实际编译 scoreboard 读取 wakeup count 高位时使用了低位寄存器。详见 [低覆盖原因与改进优先级](低覆盖原因与独立URG复核_20261109.md)。现有历史摘要和审计原样保留，算法收益比较需在统一解析后重做。
 
 > 2026-11-10 v20 修复验证：改用 VCS cumulative XML bin ordinal/cross tuple 重建 39 条初始矩阵，修正 illegal cross tuple 展开，并在独立源码/build 副本修复 scoreboard 的 wakeup 高 32 位读取。30 次 VCS smoke 全部通过，审计通过，最终 561/4507（12.4473%），目标 steering 11/11 命中；这是新 bin identity 下的 smoke 数据，不是 1000 次 Full。由于 smoke 中 10 次选中 stress-all、实际耗时约 40 分钟且服务器负载较高，本轮未启动 Full。详见 [v20 修复与 smoke 报告](v20解析与scoreboard修复_20261110.md) 和 [v20 摘要](evidence/stage08_v20_smoke30_20261110/summary.json)。

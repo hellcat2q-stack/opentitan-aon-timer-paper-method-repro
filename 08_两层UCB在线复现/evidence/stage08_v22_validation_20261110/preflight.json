@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "initial_vectors": 39,
+  "bin_count": 4507,
+  "covered_bins": 508,
+  "sequence_history_counts": {
+    "aon_timer_smoke_vseq": 10,
+    "aon_timer_prescaler_vseq": 10,
+    "aon_timer_jump_vseq": 10,
+    "aon_timer_stress_all_vseq": 9
+  }
+}
