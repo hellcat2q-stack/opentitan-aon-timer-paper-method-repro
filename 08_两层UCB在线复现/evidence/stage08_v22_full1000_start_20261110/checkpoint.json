@@ -1,0 +1,33 @@
+{
+  "observed_at_server": "2026-11-10T16:31:47+08:00",
+  "source": "Read-only server status command; provisional progress, not final audit",
+  "controller_pid": 270794,
+  "controller_alive": true,
+  "v22_full": {
+    "status": "running",
+    "budget": 1000,
+    "submitted": 49,
+    "completed": 40,
+    "failed": 0,
+    "active": 9,
+    "initial_coverage_bins": 508,
+    "coverage_bins": 1019,
+    "denominator": 4507,
+    "event_head": "0a885126a1bcecee12d5bf6d8afc032a4e56aca844509066ff6e01952ee0f81c",
+    "selected_sequences": {
+      "aon_timer_stress_all_vseq": 38,
+      "aon_timer_smoke_vseq": 4,
+      "aon_timer_jump_vseq": 4,
+      "aon_timer_prescaler_vseq": 3
+    },
+    "steering_targets_submitted": 4,
+    "target_hits_completed": 4
+  },
+  "v20_control_full": {
+    "status": "not_started",
+    "budget": 1000,
+    "launch_condition": "v22 Full finishes and passes event/vector audit and export"
+  },
+  "full_result_available": false,
+  "raw_logs_exported": false
+}

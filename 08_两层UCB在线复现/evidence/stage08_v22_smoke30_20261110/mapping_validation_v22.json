@@ -1,0 +1,79 @@
+{
+  "status": "pass",
+  "bin_count": 4507,
+  "mapping_sha256": "b75779c622cc03df467e0a9a13f24b6492ebbff86dd8253899e9ce88c621712f",
+  "groups": {
+    "SHAPE{(2 << ((valid_source_width - 1) - 1))=128}": {
+      "total": 137,
+      "mapped_v20": 0,
+      "mapped_v22": 0
+    },
+    "SHAPE{(num_interrupts - 1)=1}": {
+      "total": 48,
+      "mapped_v20": 0,
+      "mapped_v22": 0
+    },
+    "SHAPE{max_outstanding=1}": {
+      "total": 1,
+      "mapped_v20": 0,
+      "mapped_v22": 0
+    },
+    "alert_handshake_complete_cg": {
+      "total": 3,
+      "mapped_v20": 0,
+      "mapped_v22": 0
+    },
+    "bit_toggle_cg": {
+      "total": 4,
+      "mapped_v20": 0,
+      "mapped_v22": 0
+    },
+    "onehot_without_addr_fault_cg": {
+      "total": 2,
+      "mapped_v20": 0,
+      "mapped_v22": 0
+    },
+    "pending_req_on_rst_cg": {
+      "total": 2,
+      "mapped_v20": 0,
+      "mapped_v22": 0
+    },
+    "regwen_val_when_new_value_written_cg": {
+      "total": 2,
+      "mapped_v20": 0,
+      "mapped_v22": 0
+    },
+    "timer_cfg_cg": {
+      "total": 173,
+      "mapped_v20": 8,
+      "mapped_v22": 168
+    },
+    "tl_errors_cg": {
+      "total": 15,
+      "mapped_v20": 0,
+      "mapped_v22": 0
+    },
+    "tl_intg_err_cg": {
+      "total": 14,
+      "mapped_v20": 0,
+      "mapped_v22": 0
+    },
+    "wake_up_timer_thold_hit_cg": {
+      "total": 2050,
+      "mapped_v20": 1024,
+      "mapped_v22": 1024
+    },
+    "watchdog_timer_bark_thold_hit_cg": {
+      "total": 1028,
+      "mapped_v20": 512,
+      "mapped_v22": 512
+    },
+    "watchdog_timer_bite_thold_hit_cg": {
+      "total": 1028,
+      "mapped_v20": 512,
+      "mapped_v22": 512
+    }
+  },
+  "mapped_v20": 2056,
+  "mapped_v22": 2216
+}
