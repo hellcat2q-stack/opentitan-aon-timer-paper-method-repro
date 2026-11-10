@@ -1,0 +1,43 @@
+{
+  "observed_at_server": "2026-11-10T17:39:37+08:00",
+  "source": "One read of each run's complete event prefix; hash chain checked, not a final coverage/physical-identity audit",
+  "capture_source_sha256": "e22c3b3a9d5a95d6f14809f55dd0fc08f819891f589d5c353de186dd20959dc7",
+  "controller_pid": 270794,
+  "controller_alive": true,
+  "runs": {
+    "v22_full": {
+      "status": "running",
+      "budget": 1000,
+      "submitted": 218,
+      "completed": 208,
+      "failed": 0,
+      "active": 10,
+      "initial_coverage_bins": 508,
+      "coverage_bins": 2389,
+      "denominator": 4507,
+      "coverage_percent": 53.00643443532283,
+      "selected_sequences": {
+        "aon_timer_stress_all_vseq": 179,
+        "aon_timer_smoke_vseq": 9,
+        "aon_timer_jump_vseq": 23,
+        "aon_timer_prescaler_vseq": 7
+      },
+      "target_statuses": {
+        "no_sequence_compatible_bin": 97,
+        "no_mappable_bin": 103,
+        "targeted": 17,
+        "no_uncovered_mappable_bin": 1
+      },
+      "target_hits": 17,
+      "event_head": "ef812f07a9c85a25b81e2dd05b28cde17f61b03a54b8eb3c540f2dbdaf940863",
+      "event_prefix_sha256": "b2547687aae8c0a18c0e61347f4e31dbfcf8e046a409c2a0fdb5681ee2e05419",
+      "protocol_sha256": "469cb52efce1cfb0b4f65845aded0b29b5ebae6e9151702e4dbf2233ec0949ff",
+      "event_prefix_chain_verified": true,
+      "final_audit_available": false
+    },
+    "v20_control": {
+      "status": "not_started"
+    }
+  },
+  "raw_logs_exported": false
+}
