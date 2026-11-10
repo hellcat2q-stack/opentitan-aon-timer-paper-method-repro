@@ -7,6 +7,7 @@ This does not change a running experiment or its frozen parser/adapter.
 """
 import argparse
 import csv
+import gzip
 import hashlib
 import importlib.util
 import json
@@ -14,6 +15,7 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+import xml.etree.ElementTree as ET
 
 
 def read(path):
@@ -40,6 +42,33 @@ def merged_report_group_name(soup):
     return match.group(1).strip()
 
 
+def merged_cross_counts_urg_compat(converter, xml_path, expected_map, normalized_path):
+    """Normalize URG's merged-only n_cn_d tag for the frozen cross parser.
+
+    URG uses n_cn_d in cumulative XML after database merge and n_cn in single-run
+    XML. Both carry the same exclusion attributes and pattern tree; only the
+    merged tag includes its sampled data count. URG can also omit ``high`` on
+    singleton range nodes. Normalize those equivalent encodings in a parsed
+    XML copy for this audit-only path.
+    """
+    from stage08_stable_coverage_v20 import _cross_counts_from_xml
+
+    with gzip.open(xml_path, "rb") as source:
+        root = ET.fromstring(source.read())
+    renamed = 0
+    singleton_ranges = 0
+    for node in root.iter("n_cn_d"):
+        node.tag = "n_cn"
+        renamed += 1
+    for node in root.iter():
+        if node.tag in {"cn_nt_r", "cn_t_r"} and "low" in node.attrib and "high" not in node.attrib:
+            node.set("high", node.get("low"))
+            singleton_ranges += 1
+    with gzip.open(normalized_path, "wb") as output:
+        output.write(ET.tostring(root, encoding="utf-8", xml_declaration=True))
+    return _cross_counts_from_xml(converter, normalized_path, expected_map), renamed, singleton_ranges
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, required=True)
@@ -47,6 +76,8 @@ def main():
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--reuse-existing-merge", action="store_true",
                         help="Read an existing identical command's merge; never rerun or overwrite it")
+    parser.add_argument("--existing-merge-dir", type=Path,
+                        help="Existing server-only URG output directory, when re-auditing it")
     args = parser.parse_args()
     root, run, output = args.root.resolve(), args.run_dir.resolve(), args.output_dir.resolve()
     protocol, summary, audit = (read(run / name) for name in
@@ -97,14 +128,15 @@ def main():
     if len(set(vdbs)) != len(vdbs) or not all(path.is_dir() for path in vdbs):
         raise ValueError("Missing or duplicate source VDB")
     output.mkdir(parents=True, exist_ok=args.reuse_existing_merge)
-    merged, report = output / "merged.vdb", output / "report"
+    merge_root = args.existing_merge_dir.resolve() if args.existing_merge_dir else output
+    merged, report = merge_root / "merged.vdb", merge_root / "report"
     command = ["urg", "-lca", "-full64", "+urg+lic+wait", "-metric", "group",
                "-show", "tests", "-group", "ratio", "-group", "lrm_bin_name",
                "-group", "instcov_for_score", "-group", "maxmissing", "100000",
                "-group", "show_bin_values", "-dir", *map(str, vdbs),
                "-dbname", str(merged), "-format", "both", "-report", str(report)]
     if args.reuse_existing_merge:
-        if read(output / "command.json") != command:
+        if read(merge_root / "command.json") != command:
             raise ValueError("Existing merge command does not match requested VDB union")
     else:
         (output / "command.json").write_text(json.dumps(command, indent=2) + "\n")
@@ -130,7 +162,11 @@ def main():
     auto_counts = converter.parse_auto_variable_counts(report, schema.expected_map, xml_paths[0])
     merged_counts = converter.parse_cumulative_xml(xml_paths[0], schema.expected_map, auto_counts)
     merged_counts = {key: value for key, value in merged_counts.items() if key.split("||")[1] != "cross"}
-    merged_counts.update(_cross_counts_from_xml(converter, xml_paths[0], schema.expected_map))
+    normalized_xml = output / "merged_urg_cross_normalized.xml.gz"
+    merged_crosses, normalized_cross_tags, normalized_singleton_ranges = merged_cross_counts_urg_compat(
+        converter, xml_paths[0], schema.expected_map, normalized_xml
+    )
+    merged_counts.update(merged_crosses)
     merged_union = {name for name, value in merged_counts.items() if value > 0}
     missing_definitions = names - set(merged_counts)
     extra_definitions = set(merged_counts) - names
@@ -141,7 +177,7 @@ def main():
               and not (missing_definitions or extra_definitions))
     result = {
         "status": "pass" if passed else "partial" if total_passed else "fail", "run_name": run.name,
-        "scope": "Independent detailed total plus separate merged XML identity comparison; partial is not a full identity-audit pass",
+        "scope": "Independent detailed total plus separate merged XML identity comparison; status is partial if any definition or covered identity differs",
         "independent_urg_total_check": "pass" if total_passed else "fail",
         "initial_vdb_count": len(initial_rows), "accepted_online_vdb_count": summary["accepted"],
         "urg_test_count": test_count, "denominator": denominator,
@@ -158,6 +194,9 @@ def main():
         "merged_xml_sha256": sha(xml_paths[0]),
         "auditor_sha256": sha(Path(__file__)),
         "merged_report_compatibility": "Audit-only HTML group title support for both one and two colons; running experiment's converter unchanged",
+        "merged_cross_compatibility": "Audit-only n_cn_d to n_cn normalization on a parsed XML copy; exclusion tuples retained; frozen runner parser unchanged",
+        "normalized_merged_cross_tags": normalized_cross_tags,
+        "normalized_singleton_ranges": normalized_singleton_ranges,
         "limits": "Independent URG merge verifies the total. Exact identity comparison uses the frozen XML parser with audit-only HTML title compatibility and does not independently prove every bin's physical meaning.",
         "raw_logs_exported": False,
     }

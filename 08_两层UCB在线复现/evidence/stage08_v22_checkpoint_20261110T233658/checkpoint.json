@@ -1,0 +1,70 @@
+{
+  "observed_at_server": "2026-11-10T23:36:58+08:00",
+  "source": "One read of each run's complete event prefix; hash chain checked, not a final coverage/physical-identity audit",
+  "capture_source_sha256": "e22c3b3a9d5a95d6f14809f55dd0fc08f819891f589d5c353de186dd20959dc7",
+  "controller_pid": 270794,
+  "controller_alive": true,
+  "runs": {
+    "v22_full": {
+      "status": "completed",
+      "budget": 1000,
+      "submitted": 1000,
+      "completed": 1000,
+      "failed": 4,
+      "active": 0,
+      "initial_coverage_bins": 508,
+      "coverage_bins": 4105,
+      "denominator": 4507,
+      "coverage_percent": 91.08054138007545,
+      "selected_sequences": {
+        "aon_timer_stress_all_vseq": 831,
+        "aon_timer_smoke_vseq": 22,
+        "aon_timer_jump_vseq": 129,
+        "aon_timer_prescaler_vseq": 18
+      },
+      "target_statuses": {
+        "no_sequence_compatible_bin": 331,
+        "no_mappable_bin": 605,
+        "targeted": 31,
+        "no_uncovered_mappable_bin": 33
+      },
+      "target_hits": 31,
+      "event_head": "905e61ab1ad862966ef7cec942522d58a5a26281c380c667aaed52693cb2f0b6",
+      "event_prefix_sha256": "55b8bf833541b8d2c7dd3a72d790a043071a46aa17603dc19158c259d67eeb03",
+      "protocol_sha256": "469cb52efce1cfb0b4f65845aded0b29b5ebae6e9151702e4dbf2233ec0949ff",
+      "event_prefix_chain_verified": true,
+      "final_audit_available": true
+    },
+    "v20_control": {
+      "status": "running",
+      "budget": 1000,
+      "submitted": 814,
+      "completed": 805,
+      "failed": 0,
+      "active": 9,
+      "initial_coverage_bins": 508,
+      "coverage_bins": 1650,
+      "denominator": 4507,
+      "coverage_percent": 36.60971821610828,
+      "selected_sequences": {
+        "aon_timer_stress_all_vseq": 64,
+        "aon_timer_jump_vseq": 571,
+        "aon_timer_smoke_vseq": 87,
+        "aon_timer_prescaler_vseq": 92
+      },
+      "target_statuses": {
+        "no_sequence_compatible_bin": 121,
+        "targeted": 334,
+        "no_mappable_bin": 292,
+        "no_uncovered_mappable_bin": 67
+      },
+      "target_hits": 331,
+      "event_head": "2570c3d0bb7be481b4a4e1d881d60bf9d3e816dcfdef2f4807ad0b47bc2c069f",
+      "event_prefix_sha256": "a71787d5e1b506a3981f2d8412f08b834684354fbea3d8b65d1c88da6144fa7c",
+      "protocol_sha256": "2ba13103336b4145826dbd7193fe0b1f8122686dc594d94f42b6478f928d5640",
+      "event_prefix_chain_verified": true,
+      "final_audit_available": false
+    }
+  },
+  "raw_logs_exported": false
+}
