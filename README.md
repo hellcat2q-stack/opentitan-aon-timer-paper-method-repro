@@ -22,7 +22,7 @@
 | 06 | 将真实 coverage 报告转换为 bin-by-run CSV，冻结分母和命中解析 | coverage CSV、bin manifest | 已完成（39 个接受 run、4507 个 bin；2026-11-01） |
 | 07 | 用师兄 DBSCAN/组件聚类和信息评分代码生成 cluster mapping 与静态优先级 | clusters、information scores | 已完成（2026-11-02） |
 | 08 | 用师兄两层 UCB continuous-refill runner 做真实在线实验：1000 submissions、10 workers、反馈后补位 | Full 在线事件、向量、覆盖曲线 | 已完成（2026-11-02；1000/1000 提交，独立审计通过） |
-| 09 | 在同一初始语料和预算下运行 Random、NoIncrementalRefill、NoRuntimePenalty、SequenceUCBOnly、ClusterUCBOnly | 对照/消融曲线和表格 | RandomSelection 已完成；其余四个消融待运行 |
+| 09 | 在同一初始语料和预算下运行 Random、NoIncrementalRefill、NoRuntimePenalty、SequenceUCBOnly、ClusterUCBOnly | 对照/消融曲线和表格 | V30 统一 build/解析/不定向的六方法矩阵已启动；旧随机结果另存，尚未整体完成 |
 | 10 | 独立复核哈希、覆盖分母、预算、runtime/walltime，生成与论文表 II 的差异报告 | final report、reproducibility index | 待开始 |
 | 11 | 独立记录随机序列基线及其与论文随机结果、本地 Full 的比较 | 比较表、曲线和脱敏证据 | RandomSelection 1000 次已完成，Full 对照受定向约束 |
 

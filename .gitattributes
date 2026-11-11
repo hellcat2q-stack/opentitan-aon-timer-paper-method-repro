@@ -14,3 +14,7 @@
 08_*/tools/verify_stage08_uvm_replay.py text eol=lf
 08_*/tests/test_stage08_uvm_replay.py text eol=lf
 08_*/tests/test_stage08_v30_finalizer.py text eol=lf
+09_*/tools/*v30.py text eol=lf
+09_*/tools/stage09_policy.py text eol=lf
+09_*/tests/test_stage09_policy.py text eol=lf
+09_*/evidence/stage09_v30_*_20261111/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
