@@ -1,0 +1,108 @@
+{
+  "status": "pass",
+  "scope": "preflight only; six 1000-attempt comparisons not yet complete",
+  "methods": [
+    {
+      "method": "Full",
+      "status": "pass",
+      "initial_vectors": 39,
+      "bin_count": 4507,
+      "covered_bins": 508,
+      "sequence_history_counts": {
+        "aon_timer_smoke_vseq": 10,
+        "aon_timer_prescaler_vseq": 10,
+        "aon_timer_jump_vseq": 10,
+        "aon_timer_stress_all_vseq": 9
+      },
+      "protocol_sha256": "f26a773a38ef508069db1f85a82e4dfda3e40cec63a49b17e86a749426fead95",
+      "method_definition": "Frozen V30 Full policy with steering disabled",
+      "policy_extension_sha256": "4d8d3a868ca497dd2d1538f2a6ef2e2761bd47ef7501705e95287a9620d7fbc9",
+      "adapter_sha256": "f7fe501312caa0afa92a22ba77ab260ec068ddc22f378b2480f9474b89c589db"
+    },
+    {
+      "method": "NoIncrementalRefill",
+      "status": "pass",
+      "initial_vectors": 39,
+      "bin_count": 4507,
+      "covered_bins": 508,
+      "sequence_history_counts": {
+        "aon_timer_smoke_vseq": 10,
+        "aon_timer_prescaler_vseq": 10,
+        "aon_timer_jump_vseq": 10,
+        "aon_timer_stress_all_vseq": 9
+      },
+      "protocol_sha256": "06e969ba4e0fe1fd8a67d6202a95026ae4435d11f37d3b9fedb17371b2f92609",
+      "method_definition": "Full with a barrier after every 10 submitted jobs",
+      "policy_extension_sha256": "4d8d3a868ca497dd2d1538f2a6ef2e2761bd47ef7501705e95287a9620d7fbc9",
+      "adapter_sha256": "f7fe501312caa0afa92a22ba77ab260ec068ddc22f378b2480f9474b89c589db"
+    },
+    {
+      "method": "NoRuntimePenalty",
+      "status": "pass",
+      "initial_vectors": 39,
+      "bin_count": 4507,
+      "covered_bins": 508,
+      "sequence_history_counts": {
+        "aon_timer_smoke_vseq": 10,
+        "aon_timer_prescaler_vseq": 10,
+        "aon_timer_jump_vseq": 10,
+        "aon_timer_stress_all_vseq": 9
+      },
+      "protocol_sha256": "c4f3bd112478743588dee531452a331d22a85912839c665e669dda2e39d73072",
+      "method_definition": "Full with adaptive sequence and fixed pool runtime penalties disabled; actual CPU accounting retained",
+      "policy_extension_sha256": "4d8d3a868ca497dd2d1538f2a6ef2e2761bd47ef7501705e95287a9620d7fbc9",
+      "adapter_sha256": "f7fe501312caa0afa92a22ba77ab260ec068ddc22f378b2480f9474b89c589db"
+    },
+    {
+      "method": "RandomSelection",
+      "status": "pass",
+      "initial_vectors": 39,
+      "bin_count": 4507,
+      "covered_bins": 508,
+      "sequence_history_counts": {
+        "aon_timer_smoke_vseq": 10,
+        "aon_timer_prescaler_vseq": 10,
+        "aon_timer_jump_vseq": 10,
+        "aon_timer_stress_all_vseq": 9
+      },
+      "protocol_sha256": "0acd352992169ac656e0062adbf15d8d69cbe822be76a61defddd88ff45d2f3a",
+      "method_definition": "Uniform with replacement from the four frozen sequences; no cluster or sequence UCB",
+      "policy_extension_sha256": "4d8d3a868ca497dd2d1538f2a6ef2e2761bd47ef7501705e95287a9620d7fbc9",
+      "adapter_sha256": "f7fe501312caa0afa92a22ba77ab260ec068ddc22f378b2480f9474b89c589db"
+    },
+    {
+      "method": "SequenceUCBOnly",
+      "status": "pass",
+      "initial_vectors": 39,
+      "bin_count": 4507,
+      "covered_bins": 508,
+      "sequence_history_counts": {
+        "aon_timer_smoke_vseq": 10,
+        "aon_timer_prescaler_vseq": 10,
+        "aon_timer_jump_vseq": 10,
+        "aon_timer_stress_all_vseq": 9
+      },
+      "protocol_sha256": "bee5785e03e742e70fea386f2731f2cdabc22c5a9edae3c60da8d090af142135",
+      "method_definition": "Global online new-bin sequence UCB, no cluster target, with Full exploration/runtime schedules",
+      "policy_extension_sha256": "4d8d3a868ca497dd2d1538f2a6ef2e2761bd47ef7501705e95287a9620d7fbc9",
+      "adapter_sha256": "f7fe501312caa0afa92a22ba77ab260ec068ddc22f378b2480f9474b89c589db"
+    },
+    {
+      "method": "ClusterUCBOnly",
+      "status": "pass",
+      "initial_vectors": 39,
+      "bin_count": 4507,
+      "covered_bins": 508,
+      "sequence_history_counts": {
+        "aon_timer_smoke_vseq": 10,
+        "aon_timer_prescaler_vseq": 10,
+        "aon_timer_jump_vseq": 10,
+        "aon_timer_stress_all_vseq": 9
+      },
+      "protocol_sha256": "cc12a3063b2f3de01ab92ef870c1af192acb7579642d57fa512582077aac8e0f",
+      "method_definition": "Full cluster priority, uniform historical target-relevant sequences, no sequence UCB scores",
+      "policy_extension_sha256": "4d8d3a868ca497dd2d1538f2a6ef2e2761bd47ef7501705e95287a9620d7fbc9",
+      "adapter_sha256": "f7fe501312caa0afa92a22ba77ab260ec068ddc22f378b2480f9474b89c589db"
+    }
+  ]
+}

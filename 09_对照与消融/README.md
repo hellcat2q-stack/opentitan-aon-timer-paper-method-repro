@@ -1,6 +1,6 @@
 # 阶段 09：对照与消融
 
-**最新状态（2026-11-11）：正在 V30 统一环境下重做六种方法的对照与消融。** 六种方法均完成 preflight，第一轮 Full 的 30 次 smoke 已启动；第九步尚未整体完成。旧 RandomSelection 的 1000 次原始结果保留为历史实验，使用旧解析器与旧 build，不能作为 V30 的同协议对照。见 [运行前协议与方法定义](V30统一环境对照与消融_20261111.md) 和 [冻结预注册](preregistration_v30_20261111.json)。
+**最新状态（2026-11-11 15:43）：正在 V30 统一环境下重做六种方法的对照与消融。** 六种方法均完成 preflight，第一轮 Full 的 30 次 smoke 已完成：30/30 成功、0 失败，941/4507（20.8786%）；原始 UVM 日志、事件/向量/奖励及 69-VDB URG 合并审计通过。正式 Full 1000 次已启动，第九步尚未整体完成。旧 RandomSelection 的 1000 次原始结果保留为历史实验，使用旧解析器与旧 build，不能作为 V30 的同协议对照。见 [运行前协议与方法定义](V30统一环境对照与消融_20261111.md)、[冻结预注册](preregistration_v30_20261111.json)、[六方法 preflight 证据](evidence/stage09_v30_preflight_20261111/preflight_audit.json) 和 [Full smoke 证据](evidence/stage09_v30_Full_smoke30_20261111/README.md)。
 
 ## 目标
 
@@ -19,7 +19,7 @@ V30 新矩阵统一使用已验收的同一个 simv、39 条初始向量、508/4
 
 实施入口：`tools/run_stage09_matrix_v30.py`；逐方法执行器：`tools/run_stage09_v30.py`；消融实现：`tools/stage09_policy.py`。运行前 8 项行为测试与六方法 preflight 已通过，完整源码依赖与输入哈希已在服务器冻结。所有方法顺序执行，每轮最多 10 个 worker。最终结果必须等待六轮 Full 及独立合并审计完成后填写。
 
-## 已完成结果
+## 历史结果（旧解析器与旧 build）
 
 RandomSelection 的 VCS 1000-submit 结果保存在服务器结果目录 `runs/stage09_random_selection_full1000_20261106`，公开脱敏证据导出到本目录 `evidence/stage09_random_selection_full1000_20261106/`。它使用 39 条初始语料、4507 个冻结 bin、seed 42、10 workers、10×100 logical batches。论文未公开完整 AON Timer sequence pool，因此四条本地冻结序列是可复核的本地设定，不宣称等同作者隐藏 pool。coverage、runtime、walltime 和独立审计详见 `summary.json`、`audit.json` 与 `sequence_selection_audit.json`。
 
