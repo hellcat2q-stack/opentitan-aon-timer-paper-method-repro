@@ -1,0 +1,20 @@
+{
+  "status": "pass",
+  "matching_fields": {
+    "initial_csv_sha256": true,
+    "mapping_sha256": true,
+    "author_source_sha256": true,
+    "baseline_source_sha256": true,
+    "adapter_sha256": true,
+    "conversion_source_sha256": true,
+    "corpus_source_sha256": true,
+    "seeds": true,
+    "workers": true,
+    "logical_batch_size": true,
+    "budget": true,
+    "initial_union": true,
+    "bin_count": true,
+    "steering_source_sha256": true
+  },
+  "scope": "Same UCB adapter/policy sources and experiment inputs; testbench/build intentionally differ"
+}

@@ -1,0 +1,57 @@
+{
+  "status": "pass",
+  "cases": [
+    {
+      "seed": 1135891496,
+      "status": "pass",
+      "return_code": 0,
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "simulation_time_ps": 87873733117,
+      "errors": [],
+      "log_sha256": "391d28a1bd3aec43bf096cb166831cf93740a6c761fde3f05158513988161d11"
+    },
+    {
+      "seed": 1202340700,
+      "status": "pass",
+      "return_code": 0,
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "simulation_time_ps": 19690199263,
+      "errors": [],
+      "log_sha256": "8d1ca46730da17c293ce32e7008af45ae092776b84c46c632c12752e609336ec"
+    },
+    {
+      "seed": 1246806959,
+      "status": "pass",
+      "return_code": 0,
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "simulation_time_ps": 153091827958,
+      "errors": [],
+      "log_sha256": "85c6a949a70347c72505cf9cfbc187403f34bc02febdf5add279f9b11e79f532"
+    },
+    {
+      "seed": 709099176,
+      "status": "pass",
+      "return_code": 0,
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "simulation_time_ps": 325601220798,
+      "errors": [],
+      "log_sha256": "a7ec6829929eafcb3e5c60d842cc587aa619dcb63cc073bb45c78ae08b712668"
+    },
+    {
+      "seed": 1015701649,
+      "status": "pass",
+      "return_code": 0,
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "simulation_time_ps": 32567886427,
+      "errors": [],
+      "log_sha256": "c31356260354962a4881e85c2f82c39cc22ea96a1921b8e8fe662482799989af"
+    }
+  ],
+  "invalid_earlier_replay": "Earlier directories without 'verified' exited at 0 ps; not accepted as regression evidence",
+  "raw_logs_exported": false
+}

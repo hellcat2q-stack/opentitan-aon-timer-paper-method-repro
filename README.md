@@ -2,6 +2,8 @@
 
 这是一个全新的复现项目，目标是最大限度复现论文 **Entropy-Aware and UCB-Driven Coverage Closure for Hardware Verification** 在 OpenTitan AON Timer 上的真实方法链和对照数据。它不沿用旧项目的阶段划分、旧调度器或旧结果。
 
+最新实测（2026-11-11）：阶段 08 的 V30 失败修复 Full 已完成，1000/1000 成功、0 失败、0 重试，覆盖 4127/4507（91.5687%），全量原始 UVM 日志及 1039-VDB 独立 URG 合并审计通过。原 V22 保留为 4105/4507、4 次失败；本轮保留其 UCB 算法及冻结输入，修复测试平台与执行流程。详细分析见 [V30 修复与最终报告](08_两层UCB在线复现/v30_WKUP复位与CDC写入修复_20261111.md)，实测证据见 [Full 结果](08_两层UCB在线复现/evidence/stage08_v30_full1000_20261111/README.md)。本项目详细功能 bin 指标尚未与论文分母完全对齐，下文历史结果按各版本保留。
+
 ## 论文中要复现的协议
 
 论文 AON Timer 表 II 给出的比较方法为：Full、NoIncrementalRefill、NoRuntimePenalty、RandomSelection、SequenceUCBOnly、ClusterUCBOnly。统一实验设置是逻辑 batch size 10、100 个 logical batches、总计 1000 次提交、10 个并行 worker、相同初始覆盖语料和相同随机种子。论文报告值只作为待核对的公开参考，不预先写入现场结果：Full 75.33%，Random Selection 16.67%，其余方法见 `01_论文协议与来源/论文协议.md`。
