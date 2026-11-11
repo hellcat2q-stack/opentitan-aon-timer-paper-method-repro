@@ -4,7 +4,7 @@
 
 最新实测（2026-11-11）：阶段 08 的 V30 失败修复 Full 已完成，1000/1000 成功、0 失败、0 重试，覆盖 4127/4507（91.5687%），全量原始 UVM 日志及 1039-VDB 独立 URG 合并审计通过。原 V22 保留为 4105/4507、4 次失败；本轮保留其 UCB 算法及冻结输入，修复测试平台与执行流程。详细分析见 [V30 修复与最终报告](08_两层UCB在线复现/v30_WKUP复位与CDC写入修复_20261111.md)，实测证据见 [Full 结果](08_两层UCB在线复现/evidence/stage08_v30_full1000_20261111/README.md)。本项目详细功能 bin 指标尚未与论文分母完全对齐，下文历史结果按各版本保留。
 
-阶段 09 最新进度（2026-11-11 15:43）：统一 V30 build 与输入、六方法全部关闭额外参数定向。8 项行为测试、六方法 preflight 和第一轮 Full smoke 已通过；smoke 30/30 成功、0 失败，941/4507（20.8786%），事件/奖励、原始 UVM 日志与 69-VDB 独立合并审计通过。新的 Full 1000 次已启动，其余方法按同一协议顺序执行。六轮正式比较尚未完成，见 [第九步协议与进度](09_对照与消融/V30统一环境对照与消融_20261111.md)。
+阶段 09 最新进度（2026-11-12 00:24）：统一 V30 build 与输入、六方法全部关闭额外参数定向。非定向 Full 已完成 1000/1000，0 失败、0 重试，覆盖 4125/4507（91.5243%）；事件/奖励、1000 份原始 UVM 日志与 1039-VDB 独立合并审计通过。第二种方法 NoIncrementalRefill smoke 运行中（6/30、0 失败），其余四种方法等待顺序执行。六轮正式比较完成 1/6，第十步尚未开始。见 [Full 正式结果](09_对照与消融/evidence/stage09_v30_Full_full1000_20261111/README.md) 与 [第九步协议与进度](09_对照与消融/V30统一环境对照与消融_20261111.md)。
 
 ## 论文中要复现的协议
 
@@ -24,7 +24,7 @@
 | 06 | 将真实 coverage 报告转换为 bin-by-run CSV，冻结分母和命中解析 | coverage CSV、bin manifest | 已完成（39 个接受 run、4507 个 bin；2026-11-01） |
 | 07 | 用师兄 DBSCAN/组件聚类和信息评分代码生成 cluster mapping 与静态优先级 | clusters、information scores | 已完成（2026-11-02） |
 | 08 | 用师兄两层 UCB continuous-refill runner 做真实在线实验：1000 submissions、10 workers、反馈后补位 | Full 在线事件、向量、覆盖曲线 | 已完成（2026-11-02；1000/1000 提交，独立审计通过） |
-| 09 | 在同一初始语料和预算下运行 Random、NoIncrementalRefill、NoRuntimePenalty、SequenceUCBOnly、ClusterUCBOnly | 对照/消融曲线和表格 | V30 统一 build/解析/不定向的六方法矩阵已启动；旧随机结果另存，尚未整体完成 |
+| 09 | 在同一初始语料和预算下运行 Random、NoIncrementalRefill、NoRuntimePenalty、SequenceUCBOnly、ClusterUCBOnly | 对照/消融曲线和表格 | V30 六方法矩阵完成 1/6：Full 1000 次验收通过、4125/4507；NoIncrementalRefill smoke 运行中，尚未整体完成 |
 | 10 | 独立复核哈希、覆盖分母、预算、runtime/walltime，生成与论文表 II 的差异报告 | final report、reproducibility index | 待开始 |
 | 11 | 独立记录随机序列基线及其与论文随机结果、本地 Full 的比较 | 比较表、曲线和脱敏证据 | RandomSelection 1000 次已完成，Full 对照受定向约束 |
 

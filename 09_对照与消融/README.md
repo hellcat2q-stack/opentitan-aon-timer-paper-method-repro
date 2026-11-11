@@ -1,6 +1,6 @@
 # 阶段 09：对照与消融
 
-**最新状态（2026-11-11 15:43）：正在 V30 统一环境下重做六种方法的对照与消融。** 六种方法均完成 preflight，第一轮 Full 的 30 次 smoke 已完成：30/30 成功、0 失败，941/4507（20.8786%）；原始 UVM 日志、事件/向量/奖励及 69-VDB URG 合并审计通过。正式 Full 1000 次已启动，第九步尚未整体完成。旧 RandomSelection 的 1000 次原始结果保留为历史实验，使用旧解析器与旧 build，不能作为 V30 的同协议对照。见 [运行前协议与方法定义](V30统一环境对照与消融_20261111.md)、[冻结预注册](preregistration_v30_20261111.json)、[六方法 preflight 证据](evidence/stage09_v30_preflight_20261111/preflight_audit.json) 和 [Full smoke 证据](evidence/stage09_v30_Full_smoke30_20261111/README.md)。
+**最新状态（2026-11-12 00:24）：六方法矩阵已完成并验收其中 1 种，尚未整体完成。** 新的非定向 Full 已完成 1000/1000，0 失败、0 重试，覆盖 4125/4507（91.5243%）；事件/向量/奖励、1000 份原始 UVM 日志及 1039-VDB 独立 URG 合并审计通过。00:06 总控已自动进入 NoIncrementalRefill smoke；00:24 完成 6/30、0 失败，首批尚有 4 项在运行。其余四种方法等待顺序执行，第十步尚未开始。旧 RandomSelection 的 1000 次原始结果保留为历史实验，使用旧解析器与旧 build，不能作为 V30 的同协议对照。见 [Full 正式结果](evidence/stage09_v30_Full_full1000_20261111/README.md)、[运行前协议与方法定义](V30统一环境对照与消融_20261111.md)、[冻结预注册](preregistration_v30_20261111.json)、[六方法 preflight 证据](evidence/stage09_v30_preflight_20261111/preflight_audit.json) 和 [Full smoke 证据](evidence/stage09_v30_Full_smoke30_20261111/README.md)。
 
 ## 目标
 

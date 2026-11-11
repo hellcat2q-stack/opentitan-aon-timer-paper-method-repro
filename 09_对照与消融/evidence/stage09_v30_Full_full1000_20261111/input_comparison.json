@@ -1,0 +1,21 @@
+{
+  "status": "pass",
+  "matching_fields": {
+    "initial_csv_sha256": true,
+    "mapping_sha256": true,
+    "author_source_sha256": true,
+    "baseline_source_sha256": true,
+    "conversion_source_sha256": true,
+    "corpus_source_sha256": true,
+    "simv_sha256": true,
+    "canonical_report_sha256": true,
+    "workers": true,
+    "logical_batch_size": true,
+    "initial_runs": true,
+    "bin_count": true,
+    "cluster_count": true,
+    "initial_union": true,
+    "seeds": true
+  },
+  "scope": "Same V30 build and all frozen inputs; method policy/adapter and uniformly disabled steering intentionally differ"
+}
