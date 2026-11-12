@@ -1,0 +1,7 @@
+method,paper_coverage_percent,paper_accumulated_runtime_seconds,paper_walltime_seconds,source,status
+Full,75.33,2928.25,4764.13,references/IM-1175.pdf,paper_reference_only
+NoIncrementalRefill,75.33,3009.35,6160.74,references/IM-1175.pdf,paper_reference_only
+NoRuntimePenalty,75.33,2949.53,4943.13,references/IM-1175.pdf,paper_reference_only
+RandomSelection,16.67,15355.71,4450.20,references/IM-1175.pdf,paper_reference_only
+SequenceUCBOnly,52.15,9594.78,4698.70,references/IM-1175.pdf,paper_reference_only
+ClusterUCBOnly,27.17,47728.17,6629.73,references/IM-1175.pdf,paper_reference_only

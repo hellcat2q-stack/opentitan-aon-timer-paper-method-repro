@@ -18,3 +18,7 @@
 09_*/tools/stage09_policy.py text eol=lf
 09_*/tests/test_stage09_policy.py text eol=lf
 09_*/evidence/stage09_v30_*_20261111/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+10_*/tools/*v30.py text eol=lf
+10_*/tests/*v30.py text eol=lf
+10_*/inputs/v30_20261112/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+10_*/evidence/stage10_v30_*/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

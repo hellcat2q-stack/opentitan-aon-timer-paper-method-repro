@@ -1,0 +1,64 @@
+{
+  "schema": "stage10-v30-independent-review-v1",
+  "status": "partial",
+  "complete": false,
+  "observed_at_china": "2026-11-12T21:05:17+08:00",
+  "scope": "Independent event/vector/reward/CPU/wall recalculation; raw log and coverage-count reread when supplied. URG database merge result is cross-checked from the Stage09 audit, not rerun here.",
+  "reviewed_methods": [
+    {
+      "method": "Full",
+      "status": "pass",
+      "completed": 1000,
+      "failed": 0,
+      "covered_bins": 4125,
+      "denominator": 4507,
+      "coverage_percent": 91.5242955402707,
+      "new_bins": 3617,
+      "last_100_new_bins": 56,
+      "simulator_cpu_seconds": 175218.55000000028,
+      "wall_seconds": 30043.10699057579,
+      "last_feedback_wall_seconds": 30036.398995637894,
+      "reporting_tail_seconds": 6.7079949378967285,
+      "milestones": {
+        "30": 914,
+        "100": 1628,
+        "200": 2427,
+        "500": 3595,
+        "750": 3962,
+        "900": 4069,
+        "1000": 4125
+      },
+      "sequence_usage": {
+        "aon_timer_stress_all_vseq": 854,
+        "aon_timer_smoke_vseq": 27,
+        "aon_timer_jump_vseq": 96,
+        "aon_timer_prescaler_vseq": 23
+      },
+      "raw_files_rechecked": true,
+      "manifest_files_verified": 12,
+      "export_manifest_sha256": "a69f71a24e00e831ce1412a3402b891d9fe95d1edbbc4e5b2120b2e3f4e25939",
+      "protocol_sha256": "050a026b862893074347b50db0256c1ce2600e5fa62e2d8c38be561ec0cc419a",
+      "summary_sha256": "84273cb58630c94807f5c29754c295308eb81bc4cc0c5e0ff15b90ba70561be9"
+    }
+  ],
+  "missing_methods": [
+    "NoIncrementalRefill",
+    "NoRuntimePenalty",
+    "RandomSelection",
+    "SequenceUCBOnly",
+    "ClusterUCBOnly"
+  ],
+  "raw_recheck_required_for_final": true,
+  "same_controls_among_available_methods": true,
+  "initial_csv_sha256": "a73d5cd6bd413d63894a8798ca3f6c20e31d1ebc4e3ddc3459d8b88696536f7d",
+  "mapping_sha256": "b75779c622cc03df467e0a9a13f24b6492ebbff86dd8253899e9ce88c621712f",
+  "preregistration_sha256": "fb840f3240d05f7fdd468bda80b09cab78df10d479691a048b8ddd0c09cab036",
+  "paper_reference_sha256": "5bf5d2f58e851ae73b9aa7e67f31e5401c85d32fde4d9245a35faf77fd0d558f",
+  "verifier_sha256": "876150d6bec13f3d5f4c7068f3892101953b2cd3d5099c55ed981a603f15c779",
+  "limitations": [
+    "Single local seed; paper denominator, sequence pool, seed and timing semantics remain unaligned.",
+    "Coverage differences from paper are descriptive; no algorithmic advantage or speedup claim.",
+    "The scoreboard uses a bounded interrupt-arrival window, not a complete cycle-accurate golden model.",
+    "Raw files and URG databases remain on server. Export hashes alone are not an independent physical bin oracle."
+  ]
+}
