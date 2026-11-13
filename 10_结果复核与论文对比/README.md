@@ -1,8 +1,8 @@
 # 阶段 10：结果复核与论文对比
 
-**状态（2026-11-12 21:05）：准备程序和 Full 部分复核已完成，阶段 10 尚未完成。** 按用户继续推进的要求，阶段 09 仿真运行期间先准备独立复核工具，并复核唯一已验收的 Full。其余五种方法尚无正式最终结果，不能生成六方法最终结论。
+**状态（2026-11-13 09:14）：四方法部分复核已完成，阶段 10 尚未完成。** 使用同一冻结复核程序，新增复核 NoIncrementalRefill、NoRuntimePenalty 和 RandomSelection，连同原 Full 共重读 4000 份原始日志、执行记录和覆盖计数，全部通过。当前仍缺少 SequenceUCBOnly 和 ClusterUCBOnly 两份正式结果，不能生成六方法最终结论。
 
-[部分复核报告](evidence/stage10_v30_partial_20261112/README.md)、[机器可读复核](evidence/stage10_v30_partial_20261112/verification.json) 和 [论文参考比较表（缺项为空）](evidence/stage10_v30_partial_20261112/comparison.csv) 已生成。Full 原始日志/执行记录/覆盖计数全部重新读取，4125/4507（91.5243%）、0 失败，最后 100 次新增 56 bins；全局和目标 cluster 收益、CPU、walltime 及逐次曲线重算通过。此处为第九步关闭参数定向的共同 Full 对照；第八步启用定向的 V30 4127/4507 单独保留。
+最新 [四方法部分复核报告](evidence/stage10_v30_partial_20261113/README.md)、[机器可读复核](evidence/stage10_v30_partial_20261113/verification.json) 和 [论文参考比较表（缺项为空）](evidence/stage10_v30_partial_20261113/comparison.csv) 已生成。四方法覆盖依次为 4125、4096、4156、3274/4507，均为零失败；最后 100 次新增依次为 56、29、46、141 bins。四方法共享输入/预算/seed/worker/超时/覆盖定义一致；事件、全局与目标 cluster 收益、CPU/wall 曲线和已有 URG 合并审计核对通过。新输出的五份文件与源码/输入六项来源哈希均与服务器一致。[前一天仅 Full 的部分复核](evidence/stage10_v30_partial_20261112/README.md) 保留，作为历史快照。此处为第九步统一关闭参数定向的矩阵，第八步定向 V30 4127/4507 单独保留。
 
 ## 已实施的独立复核
 
@@ -22,7 +22,7 @@
 python 10_结果复核与论文对比/tools/verify_stage10_v30.py --evidence-root 09_对照与消融/evidence --initial-csv 10_结果复核与论文对比/inputs/v30_20261112/coverage_bin_by_run.csv --mapping 10_结果复核与论文对比/inputs/v30_20261112/bin_to_cluster.csv --preregistration 10_结果复核与论文对比/inputs/v30_20261112/preregistration_v30_20261111.json --paper-reference 10_结果复核与论文对比/inputs/v30_20261112/reference_results.csv --output <新的输出目录>
 ```
 
-在学校服务器运行时，使用服务器项目根目录的 `evidence`、真实初始 CSV 和 mapping，并加入 `--raw-runs-root <服务器项目根目录>/runs`。本轮隔离工具和运行日志保存于服务器项目根目录下 `scratch/stage10_v30_review_20261112/`，脱敏输出为 `evidence/stage10_v30_partial_20261112/`。
+在学校服务器运行时，使用服务器项目根目录的 `evidence`、真实初始 CSV 和 mapping，并加入 `--raw-runs-root <服务器项目根目录>/runs`。隔离工具和运行日志保存于服务器项目根目录下 `scratch/stage10_v30_review_20261112/`；原输出为 `evidence/stage10_v30_partial_20261112/`，四方法新输出为 `evidence/stage10_v30_partial_20261113/`，新运行日志为 `review_20261113.log`。
 
 Full 的 walltime 摘要为 30043.107 秒，最后一次覆盖反馈为 30036.399 秒，报告尾部开销约 6.708 秒。分别记录这三个量，避免把摘要收尾时间解释为纯仿真时间。论文覆盖分母、pool、seed 和 runtime 定义未完全对齐，报告只列描述性差值，不计算算法加速比。
 

@@ -1,6 +1,8 @@
 # 阶段 09：对照与消融
 
-**最新状态（2026-11-12 21:06）：六方法矩阵已完成并验收其中 1 种，尚未整体完成。** 新的非定向 Full 已完成 1000/1000，0 失败、0 重试，覆盖 4125/4507（91.5243%）；事件/向量/奖励、1000 份原始 UVM 日志及 1039-VDB 独立 URG 合并审计通过。第二种方法 NoIncrementalRefill smoke 已完成 30/30、0 失败，880/4507，全部审计通过；正式 1000 次已提交 860、完成 853、0 失败，当前覆盖 4033/4507（89.4830%）。其余四种方法等待顺序执行。按用户继续推进的要求，已先完成[第十步准备及 Full 部分复核](../10_结果复核与论文对比/README.md)，最终比较仍需等待本矩阵完成。旧 RandomSelection 的 1000 次原始结果保留为历史实验，使用旧解析器与旧 build，不能作为 V30 的同协议对照。见 [Full 正式结果](evidence/stage09_v30_Full_full1000_20261111/README.md)、[NoIncrementalRefill smoke 证据](evidence/stage09_v30_NoIncrementalRefill_smoke30_20261111/README.md)、[运行前协议与方法定义](V30统一环境对照与消融_20261111.md)、[冻结预注册](preregistration_v30_20261111.json)、[六方法 preflight 证据](evidence/stage09_v30_preflight_20261111/preflight_audit.json) 和 [Full smoke 证据](evidence/stage09_v30_Full_smoke30_20261111/README.md)。
+**最新状态（2026-11-13 09:16）：六方法矩阵已完成并验收 4 种，尚未整体完成。** Full 4125/4507（91.5243%）、NoIncrementalRefill 4096/4507（90.8809%）、NoRuntimePenalty 4156/4507（92.2121%）、RandomSelection 3274/4507（72.6426%），均为 1000/1000 成功、0 失败、0 重试；事件/向量/奖励、原始 UVM 日志及各自 1039-VDB 独立合并审计通过。SequenceUCBOnly smoke 已验收，正式运行完成 262/1000、0 失败，当前 2228/4507；ClusterUCBOnly 等待顺序执行。
+
+已新增六轮完成运行的 72 份脱敏导出文件，哈希与服务器一致；[第十步四方法独立复核](../10_结果复核与论文对比/evidence/stage10_v30_partial_20261113/README.md) 重新读取共 4000 份原始日志和覆盖计数后通过，仍明确为部分复核。原始数据库、完整日志和 simv 只留服务器。旧随机结果和第八步定向 V30 单独保留，不能填入当前矩阵。最新方法表、证据入口和分析见 [运行协议与进度](V30统一环境对照与消融_20261111.md)；[预注册](preregistration_v30_20261111.json) 与所有冻结算法保持原样。
 
 ## 目标
 

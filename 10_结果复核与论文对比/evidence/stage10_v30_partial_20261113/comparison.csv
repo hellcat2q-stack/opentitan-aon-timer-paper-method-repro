@@ -1,0 +1,7 @@
+method,local_status,local_coverage_percent,paper_reference_percent,descriptive_difference_pp,local_simulator_cpu_seconds,paper_runtime_seconds_unaligned,local_wall_seconds,paper_wall_seconds_unaligned,last_100_new_bins
+Full,verified,91.5242955402707,75.33,16.1942955402707,175218.55000000028,2928.25,30043.10699057579,4764.13,56
+NoIncrementalRefill,verified,90.88085200798758,75.33,15.550852007987586,178658.62000000002,3009.35,82737.2247428894,6160.74,29
+NoRuntimePenalty,verified,92.21211448857332,75.33,16.882114488573322,208566.72999999984,2949.53,22853.22355413437,4943.13,46
+RandomSelection,verified,72.64255602396273,16.67,55.972556023962724,66074.07999999999,15355.71,7277.287216901779,4450.20,141
+SequenceUCBOnly,pending,,52.15,,,9594.78,,4698.70,
+ClusterUCBOnly,pending,,27.17,,,47728.17,,6629.73,

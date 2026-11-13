@@ -1,0 +1,13 @@
+test_actual_full_recalculates_coverage_cpu_and_late_gain (__main__.ReviewTests.test_actual_full_recalculates_coverage_cpu_and_late_gain) ... ok
+test_missing_five_methods_stays_partial (__main__.ReviewTests.test_missing_five_methods_stays_partial) ... ok
+test_modified_export_fails_before_trusting_summary (__main__.ReviewTests.test_modified_export_fails_before_trusting_summary) ... ok
+test_rehashed_changed_worker_protocol_is_rejected (__main__.ReviewTests.test_rehashed_changed_worker_protocol_is_rejected) ... ok
+test_rehashed_wrong_cpu_is_rejected (__main__.ReviewTests.test_rehashed_wrong_cpu_is_rejected) ... ok
+test_rehashed_wrong_new_bin_reward_is_rejected (__main__.ReviewTests.test_rehashed_wrong_new_bin_reward_is_rejected) ... ok
+test_rehashed_wrong_urg_union_is_rejected (__main__.ReviewTests.test_rehashed_wrong_urg_union_is_rejected) ... ok
+test_rehashed_wrong_vector_is_rejected (__main__.ReviewTests.test_rehashed_wrong_vector_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 11.698s
+
+OK
