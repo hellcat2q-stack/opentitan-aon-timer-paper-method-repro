@@ -1,0 +1,16 @@
+Stage 10 final review validation
+Date: 2026-11-14 (Asia/Shanghai)
+
+Behavior tests: 8 passed using the server repository Python environment and the
+standard-library unittest runner. Cases cover the accepted Full export, hash
+tampering, new-bin reward, CPU, vector, URG union, worker protocol, and partial
+report behavior.
+
+Final raw review: status=pass; complete=true; reviewed_methods=6/6;
+missing_methods=0. The verifier reread each method's raw UVM log, execution.json,
+and coverage_counts.json, in addition to event, vector, reward, CPU/wall, and
+existing independent URG audit checks. All six methods had zero failures.
+
+The verifier's generated report manifest passed sha256sum -c on the server
+before transfer. The README was corrected after transfer to remove a stale
+partial-run sentence; its manifest entry was refreshed in this repository.
