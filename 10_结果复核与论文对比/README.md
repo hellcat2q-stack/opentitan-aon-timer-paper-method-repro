@@ -4,6 +4,8 @@
 
 最新 [六方法最终报告](evidence/stage10_v30_final_20261114/README.md)、[机器可读复核](evidence/stage10_v30_final_20261114/verification.json) 和 [论文参考比较表](evidence/stage10_v30_final_20261114/comparison.csv) 已生成。覆盖依次为 4125、4096、4156、3274、4023、3695/4507；各方法最后 100 次新增分别为 56、29、46、141、56、149 bins。8 项阶段 10 行为测试通过；最终报告文件哈希已复核。[11 月 12 日和 13 日的 partial 报告](evidence/stage10_v30_partial_20261113/README.md) 保留为历史快照。此处对比为第九步统一关闭参数定向的矩阵，第八步定向 V30 4127/4507 单独保留。
 
+最终交付的[复现索引](evidence/stage10_v30_final_20261114/reproducibility_index.md)汇总六种方法的逐次证据、比较图、冻结输入及[六项来源哈希](evidence/stage10_v30_final_20261114/source_sha256.txt)，可从报告追溯到每项正式运行。
+
 ## 已实施的独立复核
 
 - 冻结输入为当前真正使用的 39 条初始语料、4507 个 bin、508-bin 初始并集、751 个 cluster；[输入副本与哈希](inputs/v30_20261112/README.md) 保留原始字节，不沿用旧解析器的数据。

@@ -1,0 +1,31 @@
+{
+  "schema": "aon-timer-stage09-v30-summary-v1",
+  "method": "ClusterUCBOnly",
+  "status": "completed",
+  "submitted": 1000,
+  "completed": 1000,
+  "failed": 0,
+  "retried": 0,
+  "accepted": 1000,
+  "max_active_workers": 10,
+  "bin_count": 4507,
+  "initial_union_bins": 508,
+  "final_covered_bins": 3695,
+  "final_coverage_percent": 81.98358109607278,
+  "new_bins_beyond_initial": 3187,
+  "accumulated_simulator_cpu_seconds_all_attempts": 103732.03000000007,
+  "accepted_simulator_cpu_seconds": 103732.03000000007,
+  "wall_seconds": 11745.986556053162,
+  "sequence_usage": {
+    "aon_timer_stress_all_vseq": 452,
+    "aon_timer_smoke_vseq": 170,
+    "aon_timer_jump_vseq": 203,
+    "aon_timer_prescaler_vseq": 175
+  },
+  "steering_enabled": false,
+  "steering_counts": {
+    "disabled": 1000
+  },
+  "policy_sha256": "e8ebdeac4781772f782ff657ca296db3b569f742c7daa8e2a05e67b4aba8c5c4",
+  "event_chain_head": "4f45e29068b113af8b6c795281317ff6956dd232797f2453d6dfb73fc1052a8f"
+}

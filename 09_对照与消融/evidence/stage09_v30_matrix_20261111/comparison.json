@@ -1,0 +1,229 @@
+{
+  "status": "pass",
+  "scope": "Six methods under uniform V30 no-steering protocol",
+  "preregistration_sha256": "fb840f3240d05f7fdd468bda80b09cab78df10d479691a048b8ddd0c09cab036",
+  "methods": [
+    {
+      "schema": "aon-timer-stage09-v30-summary-v1",
+      "method": "Full",
+      "status": "completed",
+      "submitted": 1000,
+      "completed": 1000,
+      "failed": 0,
+      "retried": 0,
+      "accepted": 1000,
+      "max_active_workers": 10,
+      "bin_count": 4507,
+      "initial_union_bins": 508,
+      "final_covered_bins": 4125,
+      "final_coverage_percent": 91.5242955402707,
+      "new_bins_beyond_initial": 3617,
+      "accumulated_simulator_cpu_seconds_all_attempts": 175218.55000000028,
+      "accepted_simulator_cpu_seconds": 175218.55000000028,
+      "wall_seconds": 30043.10699057579,
+      "sequence_usage": {
+        "aon_timer_stress_all_vseq": 854,
+        "aon_timer_smoke_vseq": 27,
+        "aon_timer_jump_vseq": 96,
+        "aon_timer_prescaler_vseq": 23
+      },
+      "steering_enabled": false,
+      "steering_counts": {
+        "disabled": 1000
+      },
+      "policy_sha256": "050a026b862893074347b50db0256c1ce2600e5fa62e2d8c38be561ec0cc419a",
+      "event_chain_head": "11b641e8ffa8a9882050dffa413db4c1a21c267a33d35ae1e056e2f2f535ab2d"
+    },
+    {
+      "schema": "aon-timer-stage09-v30-summary-v1",
+      "method": "NoIncrementalRefill",
+      "status": "completed",
+      "submitted": 1000,
+      "completed": 1000,
+      "failed": 0,
+      "retried": 0,
+      "accepted": 1000,
+      "max_active_workers": 10,
+      "bin_count": 4507,
+      "initial_union_bins": 508,
+      "final_covered_bins": 4096,
+      "final_coverage_percent": 90.88085200798758,
+      "new_bins_beyond_initial": 3588,
+      "accumulated_simulator_cpu_seconds_all_attempts": 178658.62000000002,
+      "accepted_simulator_cpu_seconds": 178658.62000000002,
+      "wall_seconds": 82737.2247428894,
+      "sequence_usage": {
+        "aon_timer_stress_all_vseq": 830,
+        "aon_timer_smoke_vseq": 30,
+        "aon_timer_jump_vseq": 110,
+        "aon_timer_prescaler_vseq": 30
+      },
+      "steering_enabled": false,
+      "steering_counts": {
+        "disabled": 1000
+      },
+      "policy_sha256": "1026194c61d0af4d0f613c1a8bb57acd85b396676c1dac447d0b918ca6d8a1d0",
+      "event_chain_head": "f0f6b71f0126381d7189910c94b97be1027baef8deb9bbf00a9021f681f5fba8"
+    },
+    {
+      "schema": "aon-timer-stage09-v30-summary-v1",
+      "method": "NoRuntimePenalty",
+      "status": "completed",
+      "submitted": 1000,
+      "completed": 1000,
+      "failed": 0,
+      "retried": 0,
+      "accepted": 1000,
+      "max_active_workers": 10,
+      "bin_count": 4507,
+      "initial_union_bins": 508,
+      "final_covered_bins": 4156,
+      "final_coverage_percent": 92.21211448857332,
+      "new_bins_beyond_initial": 3648,
+      "accumulated_simulator_cpu_seconds_all_attempts": 208566.72999999984,
+      "accepted_simulator_cpu_seconds": 208566.72999999984,
+      "wall_seconds": 22853.22355413437,
+      "sequence_usage": {
+        "aon_timer_stress_all_vseq": 957,
+        "aon_timer_smoke_vseq": 10,
+        "aon_timer_prescaler_vseq": 9,
+        "aon_timer_jump_vseq": 24
+      },
+      "steering_enabled": false,
+      "steering_counts": {
+        "disabled": 1000
+      },
+      "policy_sha256": "c2cc40d4054252c94c0a0ea26194e76a6e9d06c5350c953385eeb6ff7e746f79",
+      "event_chain_head": "9a5b5f03dcfd168b5e2eb7719a1186fc961b367f74a7b17789fbac7c275cfc1d"
+    },
+    {
+      "schema": "aon-timer-stage09-v30-summary-v1",
+      "method": "RandomSelection",
+      "status": "completed",
+      "submitted": 1000,
+      "completed": 1000,
+      "failed": 0,
+      "retried": 0,
+      "accepted": 1000,
+      "max_active_workers": 10,
+      "bin_count": 4507,
+      "initial_union_bins": 508,
+      "final_covered_bins": 3274,
+      "final_coverage_percent": 72.64255602396273,
+      "new_bins_beyond_initial": 2766,
+      "accumulated_simulator_cpu_seconds_all_attempts": 66074.07999999999,
+      "accepted_simulator_cpu_seconds": 66074.07999999999,
+      "wall_seconds": 7277.287216901779,
+      "sequence_usage": {
+        "aon_timer_jump_vseq": 250,
+        "aon_timer_smoke_vseq": 243,
+        "aon_timer_prescaler_vseq": 243,
+        "aon_timer_stress_all_vseq": 264
+      },
+      "steering_enabled": false,
+      "steering_counts": {
+        "disabled": 1000
+      },
+      "policy_sha256": "9d3f13a9bd32dadf60e37a375e80b13f19e2dc81e92280ac2f89fb4b4a81a796",
+      "event_chain_head": "c7856b1a2afa1f92aba8da0f81d4543321f3a117599484575ea63c65dc573615"
+    },
+    {
+      "schema": "aon-timer-stage09-v30-summary-v1",
+      "method": "SequenceUCBOnly",
+      "status": "completed",
+      "submitted": 1000,
+      "completed": 1000,
+      "failed": 0,
+      "retried": 0,
+      "accepted": 1000,
+      "max_active_workers": 10,
+      "bin_count": 4507,
+      "initial_union_bins": 508,
+      "final_covered_bins": 4023,
+      "final_coverage_percent": 89.2611493232749,
+      "new_bins_beyond_initial": 3515,
+      "accumulated_simulator_cpu_seconds_all_attempts": 142950.5299999999,
+      "accepted_simulator_cpu_seconds": 142950.5299999999,
+      "wall_seconds": 15304.772373199463,
+      "sequence_usage": {
+        "aon_timer_smoke_vseq": 10,
+        "aon_timer_jump_vseq": 303,
+        "aon_timer_prescaler_vseq": 11,
+        "aon_timer_stress_all_vseq": 676
+      },
+      "steering_enabled": false,
+      "steering_counts": {
+        "disabled": 1000
+      },
+      "policy_sha256": "54e1db2f117fae2df8e221f81937113dfb7ff3225af27b608fcca6c4d5675f3a",
+      "event_chain_head": "57e6f3047768f737ccd1a4ca2d472443a8b9b66c4c621d71127cd437ab0b4771"
+    },
+    {
+      "schema": "aon-timer-stage09-v30-summary-v1",
+      "method": "ClusterUCBOnly",
+      "status": "completed",
+      "submitted": 1000,
+      "completed": 1000,
+      "failed": 0,
+      "retried": 0,
+      "accepted": 1000,
+      "max_active_workers": 10,
+      "bin_count": 4507,
+      "initial_union_bins": 508,
+      "final_covered_bins": 3695,
+      "final_coverage_percent": 81.98358109607278,
+      "new_bins_beyond_initial": 3187,
+      "accumulated_simulator_cpu_seconds_all_attempts": 103732.03000000007,
+      "accepted_simulator_cpu_seconds": 103732.03000000007,
+      "wall_seconds": 11745.986556053162,
+      "sequence_usage": {
+        "aon_timer_stress_all_vseq": 452,
+        "aon_timer_smoke_vseq": 170,
+        "aon_timer_jump_vseq": 203,
+        "aon_timer_prescaler_vseq": 175
+      },
+      "steering_enabled": false,
+      "steering_counts": {
+        "disabled": 1000
+      },
+      "policy_sha256": "e8ebdeac4781772f782ff657ca296db3b569f742c7daa8e2a05e67b4aba8c5c4",
+      "event_chain_head": "4f45e29068b113af8b6c795281317ff6956dd232797f2453d6dfb73fc1052a8f"
+    }
+  ],
+  "v30_steered_full_reference": {
+    "schema": "aon-timer-stage08-summary-v1",
+    "method": "Full",
+    "status": "completed",
+    "submitted": 1000,
+    "completed": 1000,
+    "failed": 0,
+    "retried": 0,
+    "accepted": 1000,
+    "max_active_workers": 10,
+    "bin_count": 4507,
+    "initial_union_bins": 508,
+    "final_covered_bins": 4127,
+    "final_coverage_percent": 91.5686709562902,
+    "new_bins_beyond_initial": 3619,
+    "accumulated_simulator_cpu_seconds_all_attempts": 179038.03000000014,
+    "accepted_simulator_cpu_seconds": 179038.03000000014,
+    "wall_seconds": 19175.477298498154,
+    "sequence_usage": {
+      "aon_timer_stress_all_vseq": 844,
+      "aon_timer_smoke_vseq": 24,
+      "aon_timer_jump_vseq": 111,
+      "aon_timer_prescaler_vseq": 21
+    },
+    "steering_enabled": true,
+    "steering_counts": {
+      "no_sequence_compatible_bin": 338,
+      "no_mappable_bin": 610,
+      "targeted": 20,
+      "applied_confirmed": 20,
+      "target_bin_hits": 20,
+      "no_uncovered_mappable_bin": 32
+    },
+    "policy_sha256": "a956eb379ec53b7c965c3699356b476520f3e03f6c9d6883bee1f0fd31d15601",
+    "event_chain_head": "69d7976a89ea22bd31912f866980ec90e7ccee41a116414a89b290fb37fd0fe3"
+  }
+}

@@ -14,3 +14,10 @@ existing independent URG audit checks. All six methods had zero failures.
 The verifier's generated report manifest passed sha256sum -c on the server
 before transfer. The README was corrected after transfer to remove a stale
 partial-run sentence; its manifest entry was refreshed in this repository.
+
+Local delivery checks: the same 8 unittest cases passed. All six exported
+methods were independently recalculated locally and matched the server raw
+review in coverage, rewards, CPU, walltime, milestones, sequence usage, and
+protocol/summary/export hashes. Without raw files the local verifier correctly
+retained partial status. All 6 frozen source/input hashes matched, and the 41
+new Stage 09 manifest entries matched the server exports.
