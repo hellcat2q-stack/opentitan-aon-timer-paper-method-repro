@@ -26,8 +26,8 @@ def export_run(run, output):
                  "coverage_curve.csv", "raw_uvm_audit.json", "union_audit.json", "input_comparison.json"):
         shutil.copyfile(run / name, output / name)
     # Whitelist the original V30 export schema, excluding raw errors and paths.
-    safe = {"run_id", "status", "test_description", "global_run_id", "test_name", "sequence",
-            "seed", "vcs_return_code", "urg_return_code", "simulator_cpu_seconds", "uvm_pass",
+    safe = {"run_id", "status", "test_description", "test_id", "official_test", "global_run_id", "test_name", "sequence",
+            "seed", "test_run_options", "vcs_return_code", "urg_return_code", "simulator_cpu_seconds", "uvm_pass",
             "uvm_error", "uvm_fatal", "run_covered_bins", "parsed_bin_count", "worker_start_time",
             "worker_end_time", "worker_wall_seconds", "feedback_order", "target", "new_bins",
             "target_category_gain", "weighted_info_gain", "accumulated_covered", "coverage_percent"}

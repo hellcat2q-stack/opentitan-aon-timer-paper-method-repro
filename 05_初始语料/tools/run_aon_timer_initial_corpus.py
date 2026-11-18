@@ -80,6 +80,10 @@ def run_one(job: dict[str, Any]) -> dict[str, Any]:
     sequence = job["sequence"]
     test_name = job["test_name"]
     extra_plusargs = job.get("extra_plusargs", [])
+    # The official AON Timer common sequence is parameterized by DVSIM
+    # plusargs for CSR, memory, interrupt, and TileLink tests.  Keep the
+    # legacy defaults, but let an explicit catalog entry override them.
+    test_run_options = tuple(job.get("test_run_options", TEST_RUN_OPTIONS.get(test_name, ())))
     if any(not arg.startswith("+aon_steer_") for arg in extra_plusargs):
         raise ValueError("extra_plusargs may only contain AON Timer steering plusargs")
     command = [
@@ -97,7 +101,7 @@ def run_one(job: dict[str, Any]) -> dict[str, Any]:
         "+UVM_TESTNAME=aon_timer_base_test",
         f"+UVM_TEST_SEQ={sequence}",
         "+en_cov=1",
-        *TEST_RUN_OPTIONS.get(test_name, ()),
+        *test_run_options,
         *extra_plusargs,
         "-cm",
         "line+cond+fsm+tgl+branch+assert",
@@ -190,7 +194,7 @@ def run_one(job: dict[str, Any]) -> dict[str, Any]:
         "global_run_id": job["global_run_id"],
         "test_name": test_name,
         "sequence": sequence,
-        "test_run_options": list(TEST_RUN_OPTIONS.get(test_name, ())),
+        "test_run_options": list(test_run_options),
         "extra_plusargs": list(extra_plusargs),
         "sequence_run_index": job["index"],
         "seed": seed,

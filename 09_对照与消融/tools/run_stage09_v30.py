@@ -34,6 +34,7 @@ from aon_timer_coverage_steering_v22 import (
 )
 from stage08_stable_coverage_v20 import StableCoverageSchema
 from stage09_policy import METHODS, configure_policy
+from test_catalog import entries_by_id, load_catalog, selected_ids
 from verify_stage08_uvm_replay import inspect_log
 
 
@@ -256,6 +257,8 @@ def main():
                         help="steer an uncovered, mappable bin in the selected cluster")
     parser.add_argument("--sv-source", type=Path, action="append", default=[])
     parser.add_argument("--sv-patch", type=Path)
+    parser.add_argument("--catalog", type=Path,
+                        help="explicit test catalog; when set, the scheduler uses its selected test IDs")
     args = parser.parse_args()
     if args.steering:
         parser.error("Stage09 controls require steering disabled for every method")
@@ -272,6 +275,8 @@ def main():
     author = configure_policy(author, args.method, args.author_source)
     converter = load_module(args.conversion_source, "conversion")
     corpus = load_module(args.corpus_source, "corpus")
+    catalog = load_catalog(args.catalog) if args.catalog else None
+    catalog_entries = entries_by_id(catalog) if catalog else {}
     initial = pd.read_csv(args.initial_csv)
     with args.mapping.open(encoding="utf-8", newline="") as f:
         pairs = list(csv.DictReader(f))
@@ -285,12 +290,32 @@ def main():
     stable_schema = StableCoverageSchema(converter, args.canonical_report, bin_names)
     if stable_schema.expected_count != 4507:
         raise ValueError("canonical XML schema differs from the frozen 4507-bin universe")
-    sequences = list(dict.fromkeys(initial.sequence.tolist()))
-    if len(sequences) != 4:
-        raise ValueError("expected four frozen sequences")
+    if catalog:
+        sequences = selected_ids(catalog)
+        # The frozen initial corpus still supplies the 39-run coverage prior.
+        # Its four historical IDs remain valid members of the selected catalog;
+        # the four added official tests start with no historical vectors.
+        initial_ids = set(str(value).strip() for value in initial.sequence.tolist())
+        if not initial_ids.issubset(set(sequences)):
+            raise ValueError("initial corpus contains a test outside the selected catalog")
+        sequence_configs = []
+        for test_id in sequences:
+            entry = catalog_entries[test_id]
+            sequence_configs.append({
+                "name": test_id,
+                "seq": entry["sequence"],
+                "official_test": entry["official_test"],
+                "run_options": entry["run_options"],
+                "timeout_seconds": entry["timeout_seconds"],
+            })
+    else:
+        sequences = list(dict.fromkeys(initial.sequence.tolist()))
+        if len(sequences) != 4:
+            raise ValueError("expected four frozen sequences")
+        sequence_configs = [{"name": seq, "seq": seq} for seq in sequences]
     config = {
         "test_name": "aon_timer_vcs_full",
-        "test_sequences": [{"name": seq, "seq": seq} for seq in sequences],
+        "test_sequences": sequence_configs,
         "test_variants": [], "base_run_cmd": [], "verisim_config": {},
     }
     args.result_dir.mkdir(parents=True)
@@ -303,6 +328,9 @@ def main():
     random_schedule = [selection_rng.choice(sequences) for _ in range(args.submissions)]
     policy_manifest = {
         "schema": "aon-timer-stage09-v30-v1", "method": args.method,
+        "catalog_sha256": sha(args.catalog) if args.catalog else None,
+        "catalog_source_revision": catalog.get("source_revision") if catalog else None,
+        "catalog_selection_rule": catalog.get("selection_rule") if catalog else None,
         "policy_extension_sha256": sha(Path(__file__).with_name("stage09_policy.py")),
         "sequence_pool": sequences, "selection_seed": args.seed,
         "random_sequence_schedule": random_schedule if args.method == "RandomSelection" else None,
@@ -311,7 +339,7 @@ def main():
             "Full": "Frozen V30 Full policy with steering disabled",
             "NoIncrementalRefill": "Full with a barrier after every 10 submitted jobs",
             "NoRuntimePenalty": "Full with adaptive sequence and fixed pool runtime penalties disabled; actual CPU accounting retained",
-            "RandomSelection": "Uniform with replacement from the four frozen sequences; no cluster or sequence UCB",
+            "RandomSelection": f"Uniform with replacement from the {len(sequences)} selected tests; no cluster or sequence UCB",
             "SequenceUCBOnly": "Global online new-bin sequence UCB, no cluster target, with Full exploration/runtime schedules",
             "ClusterUCBOnly": "Full cluster priority, uniform historical target-relevant sequences, no sequence UCB scores",
         }[args.method],
@@ -460,20 +488,32 @@ def main():
             run_dir.mkdir(exist_ok=False)
             steering = test_config.get("_steering", {"status": "disabled"})
             directed_plusargs = steering_plusargs(steering)
+            seq_config = test_config.get("seq_config", {})
+            test_id = test_config.get("name", test_config.get("test_id", seq_config.get("name", test_config["seq"])))
+            official_test = test_config.get("official_test", seq_config.get("official_test", test_id))
+            run_name = test_config.get("run_name", seq_config.get("official_test", official_test))
+            test_run_options = list(test_config.get("run_options", seq_config.get("run_options", [])))
+            timeout_seconds = int(test_config.get("timeout_seconds", seq_config.get(
+                "timeout_seconds", 10800 if "stress_all" in test_config["seq"] else 1200)))
             job = {
-                "result_root": str(run_dir / "raw"), "test_name": test_config["seq"].removesuffix("_vseq"),
+                "result_root": str(run_dir / "raw"), "test_name": run_name,
                 "index": 0, "global_run_id": run_id, "seed": seed, "sequence": test_config["seq"],
                 "simv": str(args.simv), "dv_root": str(args.dv_root),
-                "timeout_seconds": 10800 if "stress_all" in test_config["seq"] else 1200,
+                "timeout_seconds": timeout_seconds,
+                "test_run_options": test_run_options,
                 "extra_plusargs": directed_plusargs,
             }
             started = time.time()
-            result = {"run_id": run_id, "status": "error", "test_description": test_config["seq"],
+            result = {"run_id": run_id, "status": "error", "test_description": test_id,
+                      "test_id": test_id, "official_test": official_test,
                       "steering": steering, "steering_plusargs": directed_plusargs}
             try:
                 execution = corpus.run_one(job)
                 raw_dir = run_dir / "raw" / job["test_name"] / "0"
                 result.update(execution)
+                result["test_id"] = test_id
+                result["official_test"] = official_test
+                result["test_description"] = test_id
                 checked = inspect_log((raw_dir / "run.log").read_text(errors="replace"),
                                       execution["vcs_return_code"])
                 result["strict_uvm_check"] = checked
