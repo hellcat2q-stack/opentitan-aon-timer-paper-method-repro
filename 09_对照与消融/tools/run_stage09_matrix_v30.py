@@ -63,7 +63,7 @@ def prepare(root, work):
     required = [v30 / "source_sha256.txt", v30 / "finalization_status.json"]
     missing = [str(path) for path in required if not path.is_file()]
     for key, path in paths(root).items():
-        valid = path.is_dir() if key == "dv-root" else path.is_file()
+        valid = path.is_dir() if key in {"dv-root", "canonical-report"} else path.is_file()
         if not valid:
             missing.append(f"{key}={path}")
     if missing:
