@@ -1,6 +1,9 @@
 # Preserve exported evidence bytes so SHA-256 manifests verify on every host.
 evidence/stage09_8test_*/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 evidence/stage09_6test_*/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+evidence/stage09_identityfix_*/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+09_*/tools/audit_stage09_arm_identity.py text eol=lf
+09_*/tests/test_stage09_arm_identity.py text eol=lf
 08_*/evidence/stage08_vcs_paper_ucb_*_20261109_v19/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 08_*/evidence/stage08_v19_diagnosis_20261109/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 08_*/evidence/stage08_v22_*_20261110/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

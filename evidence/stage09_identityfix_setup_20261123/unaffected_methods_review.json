@@ -1,0 +1,42 @@
+{
+  "status": "pass",
+  "scope": "Read-only review of existing eight-test unaffected methods. No simulator runs. Six-test unaffected methods have no complete formal result and are not scheduled by this repair.",
+  "methods": [
+    {
+      "method": "RandomSelection",
+      "checked_runs": 1000,
+      "identity_mismatches": 0,
+      "catalog_sequence_and_options_match": true,
+      "evidence_sha256": {
+        "protocol.json": "f6ad1582c2d883a48ab499882ba84a57f68f4eb9a51e013af29f3e75840046f9",
+        "run_results.json": "9ca55e849138a5024228f6ef98b1df19f7b407518cd9116d57c39aaac491c5d0",
+        "events.jsonl": "9d8b67876a4db4ba2e4892ac3b8b3fea8a02cd2dbe44b58cbcfbe4f72f5ac3da",
+        "summary.json": "98c9e9b5deb3ff1ffa050b1875bec35c3743c6a22ec38281ac4e7cb618f6a71e"
+      }
+    },
+    {
+      "method": "SequenceUCBOnly",
+      "checked_runs": 1000,
+      "identity_mismatches": 0,
+      "catalog_sequence_and_options_match": true,
+      "evidence_sha256": {
+        "protocol.json": "54123d594c05c400df28342144ea78f9f51b89b083809ab9adc92e5f788fd7af",
+        "run_results.json": "47fcfbd18cf0377b2141ee945c8266e8a7041d209bc2edec3c6a4e5f3ac0e6a5",
+        "events.jsonl": "5d5da7f4f726388da27cad618059862a0823982abe121851b08431d78109097e",
+        "summary.json": "d04e2276840df6d2e71eb34b58e8cb1a3645f861df03c74a476171317c7df06c"
+      }
+    },
+    {
+      "method": "ClusterUCBOnly",
+      "checked_runs": 1000,
+      "identity_mismatches": 0,
+      "catalog_sequence_and_options_match": true,
+      "evidence_sha256": {
+        "protocol.json": "73c9c427d31ac43b08c69af2a747179c1bb2fa6dedc706d2f9b10772343decbf",
+        "run_results.json": "325270c06be38752a023f3d9929de6aa57941430bf83b63aedec4ee59abfbb7b",
+        "events.jsonl": "a7de9359191ae2ba33640f970bb92a0e7f436a0d06f14bd909eb23b6b41ca8b5",
+        "summary.json": "e5ab03b062faa7e170d7df97f260cc8eb1fec81db516e10d55edbf00b03cb61f"
+      }
+    }
+  ]
+}

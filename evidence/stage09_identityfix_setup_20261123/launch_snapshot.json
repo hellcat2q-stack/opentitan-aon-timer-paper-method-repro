@@ -1,0 +1,13 @@
+{
+  "observed_at_server": "2026-11-23T12:21:08.193650+08:00",
+  "workflow": {
+    "status": "running",
+    "completed": [],
+    "pool": 8,
+    "method": "Full",
+    "phase": "smoke30",
+    "run_name": "stage09_8test_idfix_Full_smoke30_20261123",
+    "observed_at_server": "2026-11-23T12:19:35.820171+08:00"
+  },
+  "actual_phase": "smoke; formal results not yet available"
+}

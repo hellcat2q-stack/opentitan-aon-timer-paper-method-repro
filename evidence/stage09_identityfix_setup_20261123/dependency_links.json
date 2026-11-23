@@ -1,0 +1,67 @@
+[
+  {
+    "path": ".venv",
+    "target_exists": true,
+    "target_is_directory": true
+  },
+  {
+    "path": "src",
+    "target_exists": true,
+    "target_is_directory": true
+  },
+  {
+    "path": "runtime",
+    "target_exists": true,
+    "target_is_directory": true
+  },
+  {
+    "path": "scratch/stage08_v30_wkup_phase_bound_20261111",
+    "target_exists": true,
+    "target_is_directory": true
+  },
+  {
+    "path": "scratch/stage08_vcs_paper_ucb_20261109_v19",
+    "target_exists": true,
+    "target_is_directory": true
+  },
+  {
+    "path": "scratch/stage08_v20_20261110",
+    "target_exists": true,
+    "target_is_directory": true
+  },
+  {
+    "path": "scratch/stage08_v22_inputs_20261110",
+    "target_exists": true,
+    "target_is_directory": true
+  },
+  {
+    "path": "runs/stage08_inputs_xml_20261110_v20_retry1",
+    "target_exists": true,
+    "target_is_directory": true
+  },
+  {
+    "path": "runs/stage07_recluster_xml_20261110_v20",
+    "target_exists": true,
+    "target_is_directory": true
+  },
+  {
+    "path": "runs/stage06_conversion_20261101T_v10",
+    "target_exists": true,
+    "target_is_directory": true
+  },
+  {
+    "path": "runs/stage08_vcs_ucb_full1000_20261111_v30",
+    "target_exists": true,
+    "target_is_directory": true
+  },
+  {
+    "path": "runs/stage05_initial_corpus_20261101T",
+    "target_exists": true,
+    "target_is_directory": true
+  },
+  {
+    "path": "runs/stage05_timeout_fix_20261101T",
+    "target_exists": true,
+    "target_is_directory": true
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "status": "stopped",
+  "reason": "Confirmed test arm identity mismatch; preserve affected incomplete run; no resume as corrected result",
+  "observed_at_server": "2026-11-23T12:11:52.241572+08:00",
+  "workflow_pid": 223704,
+  "submitted": 361,
+  "completed": 352,
+  "failed_feedback": 0,
+  "active": 9,
+  "covered_bins": 1307,
+  "preserved_run": "stage09_6test_Full_full1000_20261123",
+  "preserved_artifact_sha256": {
+    "events.jsonl": "74a6eef48703b58d06f16ad0831967e208b373899a0c3fb1b11f40dbfee6ecbf",
+    "protocol.json": "8ac1f07f62bebfdf9a6ba1cbebd287f4b947fb71d110a7036d45b70ef861756a",
+    "vectors.csv": "4f1976d748c672c90217477e767d6060ef1fc14047a35e5c4c77fa95655eaca6"
+  },
+  "remaining_live_target_processes": 0,
+  "events_unchanged_after_stop": true,
+  "stop_verification": "Direct owned /proc process group and session check; SIGTERM requested stop, two residual processes required SIGKILL.",
+  "residual_processes_killed": 2,
+  "verified_at_server": "2026-11-23T12:12:34.427453+08:00",
+  "final_submitted": 361,
+  "final_completed": 352,
+  "final_preserved_artifact_sha256": {
+    "events.jsonl": "74a6eef48703b58d06f16ad0831967e208b373899a0c3fb1b11f40dbfee6ecbf",
+    "protocol.json": "8ac1f07f62bebfdf9a6ba1cbebd287f4b947fb71d110a7036d45b70ef861756a",
+    "vectors.csv": "4f1976d748c672c90217477e767d6060ef1fc14047a35e5c4c77fa95655eaca6"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "status": "launched",
+  "pid": 81984,
+  "observed_at_server": "2026-11-23T12:18:29.258338+08:00",
+  "source_revision": "47c4a89021f4a5d2085035d91051406f6e40def8",
+  "driver_sha256": "6c622e1e134819eea679c3ff2b7547a79ce54bc04b014a0d5c66d0bae6f8d77b",
+  "preregistration_sha256": "b790eebceed62a37e434c7907934b98c09782e07065d021770bbc23540ccd15d",
+  "log": "scratch/stage09_identity_repair_20261123.log",
+  "global_method_concurrency": 1
+}

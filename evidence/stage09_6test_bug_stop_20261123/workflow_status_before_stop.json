@@ -1,0 +1,10 @@
+{
+  "status": "running",
+  "phase": "full1000",
+  "completed": [
+    "stage09_6test_Full_smoke30_20261123"
+  ],
+  "method": "Full",
+  "run_name": "stage09_6test_Full_full1000_20261123",
+  "observed_at_server": "2026-11-23T11:39:32+08:00"
+}

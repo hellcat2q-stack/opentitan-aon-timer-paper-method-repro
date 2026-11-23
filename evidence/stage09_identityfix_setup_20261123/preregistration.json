@@ -1,0 +1,58 @@
+{
+  "schema": "stage09-identity-repair-preregistration-v1",
+  "source_revision": "47c4a89021f4a5d2085035d91051406f6e40def8",
+  "created_at_server": "2026-11-23T12:18:12.942238+08:00",
+  "affected_methods_to_rerun": [
+    "Full",
+    "NoIncrementalRefill",
+    "NoRuntimePenalty"
+  ],
+  "unaffected_methods_not_rerun": [
+    "RandomSelection",
+    "SequenceUCBOnly",
+    "ClusterUCBOnly"
+  ],
+  "order": [
+    {
+      "pool": 8,
+      "method": "Full"
+    },
+    {
+      "pool": 6,
+      "method": "Full"
+    },
+    {
+      "pool": 8,
+      "method": "NoIncrementalRefill"
+    },
+    {
+      "pool": 6,
+      "method": "NoIncrementalRefill"
+    },
+    {
+      "pool": 8,
+      "method": "NoRuntimePenalty"
+    },
+    {
+      "pool": 6,
+      "method": "NoRuntimePenalty"
+    }
+  ],
+  "smoke_per_job": 30,
+  "formal_per_job": 1000,
+  "seed": 42,
+  "workers": 10,
+  "global_method_concurrency": 1,
+  "initial_runs": 39,
+  "initial_bins": 508,
+  "bin_count": 4507,
+  "batch_size": 10,
+  "steering": false,
+  "retry": false,
+  "change": "Use catalog test ID as scheduling and feedback arm; preserve SV class, official options and all UCB scoring formulas.",
+  "old_results_policy": "Preserve all old completed and stopped runs. Never concatenate smoke or stopped feedback with new formal runs.",
+  "per_pool_frozen_manifests": {
+    "8": "ad27cbc706b2ca5d3c54598d41cfc28438af117bbdae5af870deb5b23c613904",
+    "6": "3df1e409b96876a5821671df33b8ef8bacd50e33ac4c763c102b95db9b16c921"
+  }
+}

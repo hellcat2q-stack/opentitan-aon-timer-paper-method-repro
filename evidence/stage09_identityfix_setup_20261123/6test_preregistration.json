@@ -1,0 +1,24 @@
+{
+  "schema": "stage09-v30-preregistration-v1",
+  "methods": [
+    "Full",
+    "NoIncrementalRefill",
+    "NoRuntimePenalty"
+  ],
+  "budget_per_method": 1000,
+  "smoke_budget_per_method": 30,
+  "workers_per_method": 10,
+  "global_method_concurrency": 1,
+  "seed": 42,
+  "initial_runs": 39,
+  "initial_bins": 508,
+  "bin_count": 4507,
+  "steering_for_all_methods": false,
+  "retry": false,
+  "created_at_server": "2026-11-23T12:18:12+08:00",
+  "reference_full": "stage08_vcs_ucb_full1000_20261111_v30",
+  "selected_test_count": 6,
+  "catalog_sha256": "1231e0856eb93fd981a80e75ed3cdc053560b661e5db78c9814575e54455ad38",
+  "reference_scope": "Steered V30 reference only; not the uniform no-steering matrix Full",
+  "frozen_dependency_manifest_sha256": "3df1e409b96876a5821671df33b8ef8bacd50e33ac4c763c102b95db9b16c921"
+}
