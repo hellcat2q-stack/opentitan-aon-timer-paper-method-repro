@@ -26,6 +26,11 @@ def main():
     root = args.run_dir
     protocol, summary = read(root / "protocol.json"), read(root / "summary.json")
     results = read(root / "run_results.json")
+    identity_verified = False
+    if protocol.get("arm_identity"):
+        from audit_stage09_arm_identity import verify_identity
+        verify_identity(root, args.initial_csv)
+        identity_verified = True
     n = protocol["budget"]
     policy_hash = sha(root / "protocol.json")
     assert protocol["initial_csv_sha256"] == sha(args.initial_csv)
@@ -189,6 +194,7 @@ def main():
         "batch_barriers_verified": barrier,
         "random_schedule_verified": protocol["method"] == "RandomSelection",
         "all_target_rewards_match_cluster_union_deltas": True,
+        "catalog_arm_identity_and_policy_state_verified": identity_verified,
         "protocol_sha256": policy_hash, "event_chain_head": previous,
         "steering_enabled": steering_enabled, "steering_targets": steering_targets,
         "steering_applied_confirmed": steering_applied, "steering_target_bin_hits": steering_hits,

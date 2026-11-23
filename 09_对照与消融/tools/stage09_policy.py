@@ -11,6 +11,11 @@ METHODS = ("Full", "NoIncrementalRefill", "NoRuntimePenalty", "RandomSelection",
            "SequenceUCBOnly", "ClusterUCBOnly")
 
 
+def test_arm_identifier(config, fallback):
+    """Keep official tests distinct even when they execute the same SV class."""
+    return config.get("seq_config", {}).get("name", fallback)
+
+
 def no_runtime_selection(source, namespace, filename):
     """Remove both adaptive weight endpoints without changing measured runtimes."""
     tree = ast.parse(source, filename=filename)
@@ -60,6 +65,13 @@ def configure_policy(author, method, source_path):
             if method == "NoRuntimePenalty":
                 self.runtime_penalty_weight = 0.0
 
+        def canonical_selection(self, selection):
+            config, identifier, target = selection
+            arm = test_arm_identifier(config, identifier)
+            if arm not in self.test_config.get_all_test_identifiers():
+                raise ValueError(f"Selected test arm is outside the catalog: {arm}")
+            return config, arm, target
+
         def select_next_sequence(self, batch_num):
             if method == "RandomSelection":
                 # The schedule is addressed by run_id in the adapter. Selection
@@ -87,7 +99,7 @@ def configure_policy(author, method, source_path):
                                                "selected": arm, "successful_online_runs": total}
                 return self.test_config.parse_test_identifier(arm), arm, None
             if runtime_free is not None:
-                return runtime_free(self, batch_num)
+                return self.canonical_selection(runtime_free(self, batch_num))
             if method == "ClusterUCBOnly":
                 # Keep exactly Full's cluster decision, including its phase and
                 # MI rules. Its sequence ranking uses equal scores and has no
@@ -110,7 +122,7 @@ def configure_policy(author, method, source_path):
                 self.last_ablation_decision = {"rule": "uniform_target_relevant_sequence",
                                                "candidates": candidates, "selected": arm}
                 return self.test_config.parse_test_identifier(arm), arm, target
-            return super().select_next_sequence(batch_num)
+            return self.canonical_selection(super().select_next_sequence(batch_num))
 
         def compute_sequence_ucb_score(self, *args, **kwargs):
             if method == "ClusterUCBOnly":

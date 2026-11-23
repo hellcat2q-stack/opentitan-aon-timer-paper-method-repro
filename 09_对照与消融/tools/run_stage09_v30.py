@@ -33,7 +33,7 @@ from aon_timer_coverage_steering_v22 import (
     select_target,
 )
 from stage08_stable_coverage_v20 import StableCoverageSchema
-from stage09_policy import METHODS, configure_policy
+from stage09_policy import METHODS, configure_policy, test_arm_identifier
 from test_catalog import entries_by_id, load_catalog, selected_ids
 from verify_stage08_uvm_replay import inspect_log
 
@@ -379,6 +379,8 @@ def main():
         "algorithm_changes": ["allow consecutive and concurrent selection of the current top-ranked sequence", "inner sequence UCB reward is 80% target-cluster new-bin gain and 20% global new-bin gain; initial vectors remain candidate priors only", "sequence exploration counts use successful online observations across targets", "cluster and sequence UCB observation counts advance only after successful, parsed coverage feedback; every attempt still counts toward the budget", "UCB policy, reward, cluster map, initial vectors, seed, budget and worker count match the v20 control; v22 changes jump parameter sampling, zero-target constraints and complete coverage feedback for target eligibility", "all threshold targets, including timer_cfg_cg, require jump_vseq; smoke/stress-all wait from zero and are not safe for wide threshold targets; prescaler bins remain prescaler_vseq-compatible"],
     }
     policy_manifest["policy"] = policy_manifest["method_definition"]
+    policy_manifest["arm_identity"] = "catalog test ID for selection, submission, feedback, gain, history and CPU; SV sequence class is execution metadata only"
+    policy_manifest["test_catalog_entries"] = catalog["tests"] if catalog else []
     if args.method in ("RandomSelection", "SequenceUCBOnly"):
         policy_manifest["reward"] = "global successful online new-bin union delta; no cluster target or target reward"
     dump(args.result_dir / "protocol.json", policy_manifest)
@@ -452,6 +454,8 @@ def main():
                 test_identifier = random_schedule[run_id]
                 test_config = self.test_config.parse_test_identifier(test_identifier)
                 target_category = None
+            assert test_identifier == test_arm_identifier(test_config, test_identifier)
+            assert test_identifier in self.test_config.get_all_test_identifiers()
             target_bins = target_category.get("bin_names", []) if target_category else []
             if self.steering_enabled:
                 # Preserve the sequence selected by the two-layer UCB policy.
@@ -548,6 +552,8 @@ def main():
             return Path(result["report_dir"]) / "dashboard.html" if result["status"] == "success" else None
 
         def process_completed_run(self, result, context):
+            assert context["test_identifier"] == result["test_id"]
+            assert context["test_identifier"] == test_arm_identifier(context["test_config"], context["test_identifier"])
             try:
                 info = super().process_completed_run(result, context)
             except Exception as exc:
@@ -604,6 +610,19 @@ def main():
             return info
 
         def generate_final_report(self):
+            ids = self.test_config.get_all_test_identifiers()
+            stores = {"successful_run_count": self.sequence_run_count,
+                      "gain_history": self.sequence_gain_history,
+                      "runtime_history": self.sequence_runtimes,
+                      "historical_vectors": self.historical_data}
+            assert all(not (set(values) - set(ids)) for values in stores.values())
+            dump(self.result_dir / "policy_arm_state.json", {
+                "schema": "stage09-catalog-arm-state-v1",
+                "successful_run_counts": {arm: self.sequence_run_count[arm] for arm in ids},
+                "gain_history": {arm: list(self.sequence_gain_history[arm]) for arm in ids},
+                "runtime_history": {arm: list(self.sequence_runtimes[arm]) for arm in ids},
+                "historical_vector_counts": {arm: len(self.historical_data.get(arm, [])) for arm in ids},
+            })
             cpu = sum(float(row.get("simulator_cpu_seconds") or 0) for row in self.results)
             self.emit("finished", submitted=self.submitted, completed=self.completed, failed=self.failed)
             summary = {

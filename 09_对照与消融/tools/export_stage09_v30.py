@@ -25,6 +25,9 @@ def export_run(run, output):
     for name in ("protocol.json", "summary.json", "audit.json", "events.jsonl", "vectors.csv",
                  "coverage_curve.csv", "raw_uvm_audit.json", "union_audit.json", "input_comparison.json"):
         shutil.copyfile(run / name, output / name)
+    for name in ("policy_arm_state.json", "arm_identity_audit.json"):
+        if (run / name).exists():
+            shutil.copyfile(run / name, output / name)
     # Whitelist the original V30 export schema, excluding raw errors and paths.
     safe = {"run_id", "status", "test_description", "test_id", "official_test", "global_run_id", "test_name", "sequence",
             "seed", "test_run_options", "vcs_return_code", "urg_return_code", "simulator_cpu_seconds", "uvm_pass",
