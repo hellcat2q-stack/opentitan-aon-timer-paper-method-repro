@@ -1,0 +1,144 @@
+{
+  "schema": "stage09-catalog-arm-state-v1",
+  "successful_run_counts": {
+    "aon_timer_smoke_vseq": 2,
+    "aon_timer_prescaler_vseq": 0,
+    "aon_timer_jump_vseq": 0,
+    "aon_timer_stress_all_vseq": 25,
+    "aon_timer_intr_test": 1,
+    "aon_timer_csr_rw": 2
+  },
+  "gain_history": {
+    "aon_timer_smoke_vseq": [
+      0,
+      0
+    ],
+    "aon_timer_prescaler_vseq": [],
+    "aon_timer_jump_vseq": [],
+    "aon_timer_stress_all_vseq": [
+      44,
+      44,
+      25,
+      20,
+      26,
+      30,
+      20,
+      16,
+      15,
+      31,
+      22,
+      18,
+      0,
+      12,
+      16,
+      5,
+      9,
+      6,
+      0,
+      23,
+      4,
+      13,
+      5,
+      3,
+      14
+    ],
+    "aon_timer_intr_test": [
+      0
+    ],
+    "aon_timer_csr_rw": [
+      2,
+      0
+    ]
+  },
+  "runtime_history": {
+    "aon_timer_smoke_vseq": [
+      1.65,
+      1.69,
+      1.44,
+      1.23,
+      2.15,
+      2.07,
+      1.58,
+      2.06,
+      0.96,
+      1.21,
+      1.15,
+      2.03
+    ],
+    "aon_timer_prescaler_vseq": [
+      7.74,
+      102.67,
+      70.18,
+      4.6,
+      10.92,
+      141.99,
+      6.33,
+      111.82,
+      143.03,
+      91.41
+    ],
+    "aon_timer_jump_vseq": [
+      1.23,
+      1.36,
+      1.12,
+      1.23,
+      1.75,
+      2.41,
+      1.84,
+      1.19,
+      1.46,
+      2.79
+    ],
+    "aon_timer_stress_all_vseq": [
+      124.08,
+      94.22,
+      133.32,
+      530.85,
+      142.86,
+      1174.04,
+      897.91,
+      157.57,
+      938.75,
+      7.53,
+      30.36,
+      37.42,
+      43.83,
+      102.89,
+      108.73,
+      153.41,
+      39.58,
+      44.69,
+      135.87,
+      315.85,
+      331.56,
+      266.19,
+      290.19,
+      35.97,
+      75.36,
+      439.39,
+      461.38,
+      154.27,
+      42.64,
+      51.32,
+      383.54,
+      613.72,
+      437.59,
+      891.12
+    ],
+    "aon_timer_intr_test": [
+      0.95
+    ],
+    "aon_timer_csr_rw": [
+      0.97,
+      0.98
+    ]
+  },
+  "historical_vector_counts": {
+    "aon_timer_smoke_vseq": 12,
+    "aon_timer_prescaler_vseq": 10,
+    "aon_timer_jump_vseq": 10,
+    "aon_timer_stress_all_vseq": 34,
+    "aon_timer_intr_test": 1,
+    "aon_timer_csr_rw": 2
+  }
+}

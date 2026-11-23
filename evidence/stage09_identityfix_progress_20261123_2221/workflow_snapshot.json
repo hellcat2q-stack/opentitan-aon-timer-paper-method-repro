@@ -1,0 +1,13 @@
+{
+  "status": "running",
+  "completed": [
+    "stage09_8test_idfix_Full_smoke30_20261123",
+    "stage09_8test_idfix_Full_full1000_20261123",
+    "stage09_6test_idfix_Full_smoke30_20261123"
+  ],
+  "pool": 6,
+  "method": "Full",
+  "phase": "full1000",
+  "run_name": "stage09_6test_idfix_Full_full1000_20261123",
+  "observed_at_server": "2026-11-23T18:28:12.693784+08:00"
+}

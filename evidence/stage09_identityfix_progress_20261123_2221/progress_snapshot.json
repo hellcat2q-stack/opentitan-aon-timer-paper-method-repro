@@ -1,0 +1,48 @@
+{
+  "schema": "stage09-identity-repair-progress-snapshot-v1",
+  "observed_at_server": "2026-11-23T22:21:24.631542+08:00",
+  "status": "in_progress_not_final",
+  "method": "Full",
+  "test_pool_size": 6,
+  "run_name": "stage09_6test_idfix_Full_full1000_20261123",
+  "budget": 1000,
+  "submitted": 715,
+  "completed": 705,
+  "failed_feedback": 0,
+  "active": 10,
+  "coverage_bins": 3883,
+  "denominator": 4507,
+  "coverage_percent": 86.15487020190814,
+  "completed_simulator_cpu_seconds": 118169.45000000006,
+  "elapsed_wall_seconds": 13986.496419668198,
+  "successful_counts_by_test": {
+    "aon_timer_stress_all_vseq": 581,
+    "aon_timer_intr_test": 15,
+    "aon_timer_csr_rw": 18,
+    "aon_timer_smoke_vseq": 14,
+    "aon_timer_jump_vseq": 64,
+    "aon_timer_prescaler_vseq": 13
+  },
+  "new_bins_by_test": {
+    "aon_timer_stress_all_vseq": 3243,
+    "aon_timer_intr_test": 0,
+    "aon_timer_csr_rw": 5,
+    "aon_timer_smoke_vseq": 0,
+    "aon_timer_jump_vseq": 127,
+    "aon_timer_prescaler_vseq": 0
+  },
+  "completed_execution_test_ids_match_submission": true,
+  "captured_event_chain_valid": true,
+  "captured_event_count": 1420,
+  "captured_event_chain_head": "e9a749fd2b9f8fccd260abfba63dd8df85942e1be902940ebaff6e336d57deb1",
+  "captured_event_bytes_sha256": "a282bec147fd06e7cbce0e14327c4f1266709f60bfe7ba9690c31b58057e08ee",
+  "protocol_sha256": "8227b38af47fb6e3187d58f8897a273743591ce7c280628f1fc5a9696b7f00ed",
+  "final_summary_exists": false,
+  "final_audits_available": false,
+  "queued_jobs": [
+    "8test NoIncrementalRefill",
+    "6test NoIncrementalRefill",
+    "8test NoRuntimePenalty",
+    "6test NoRuntimePenalty"
+  ]
+}

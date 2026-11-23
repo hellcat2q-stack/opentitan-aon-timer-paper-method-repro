@@ -1,0 +1,18 @@
+{
+  "status": "pass",
+  "checked_runs": 1000,
+  "test_pool_size": 8,
+  "all_submissions_match_executed_test_id": true,
+  "all_official_sequence_and_options_match_catalog": true,
+  "all_policy_counts_gains_runtimes_and_history_match_test_id": true,
+  "successful_run_counts": {
+    "aon_timer_smoke_vseq": 21,
+    "aon_timer_prescaler_vseq": 21,
+    "aon_timer_jump_vseq": 63,
+    "aon_timer_stress_all_vseq": 808,
+    "aon_timer_intr_test": 18,
+    "aon_timer_csr_rw": 22,
+    "aon_timer_mem_walk": 19,
+    "aon_timer_tl_errors": 28
+  }
+}
