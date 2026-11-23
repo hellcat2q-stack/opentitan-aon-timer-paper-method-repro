@@ -1,5 +1,7 @@
 # 第九步八测试池统一环境对照与消融：最终结果
 
+2026-11-23 诊断更新：Full、NoIncrementalRefill、NoRuntimePenalty 存在新增 test ID 与执行 sequence 类名的反馈身份错位。下表保留现场覆盖和耗时，但受影响方法不能据此形成预期算法性能结论；此前审计未检查此身份一致性。详见 [身份记账缺陷诊断](../stage09_8test_identity_diagnosis_20261123/README.md)。
+
 六种方法均完成 1000 次，全部通过事件/向量/奖励、原始 UVM 日志与独立 URG 合并审计。
 
 | 方法 | 覆盖 bins/4507 | 覆盖率 | 失败 | CPU 秒 | Wall 秒 |

@@ -1,0 +1,371 @@
+{
+  "schema": "stage09-test-arm-identity-diagnosis-v1",
+  "source_sha256": "5f14aae371c7b03a18193d151489cc4d0c90a7476a3e51f4f02dac9e8a8756ba",
+  "method": "Read-only join by run_id; execute four exact frozen-source methods in memory without simulator or coverage changes. Prefix comparisons are observational, not a controlled equal-CPU experiment.",
+  "in_memory_exact_source_reproduction": {
+    "catalog_arm": "aon_timer_intr_test",
+    "identifier_returned_by_frozen_source": "aon_timer_common_vseq",
+    "successful_feedback_calls": 695,
+    "stored_feedback_counts": {
+      "aon_timer_common_vseq": 695
+    },
+    "observations_read_for_catalog_arm": 0,
+    "score_for_catalog_arm_with_zero_reward_total305_c2": 4.786166627933966
+  },
+  "eight_test_results": {
+    "Full": {
+      "actual_test_counts": {
+        "aon_timer_stress_all_vseq": 260,
+        "aon_timer_intr_test": 695,
+        "aon_timer_jump_vseq": 27,
+        "aon_timer_smoke_vseq": 9,
+        "aon_timer_prescaler_vseq": 9
+      },
+      "submitted_feedback_identity_counts": {
+        "aon_timer_stress_all_vseq": 260,
+        "aon_timer_common_vseq": 695,
+        "aon_timer_jump_vseq": 27,
+        "aon_timer_smoke_vseq": 9,
+        "aon_timer_prescaler_vseq": 9
+      },
+      "new_bins_by_test": {
+        "aon_timer_stress_all_vseq": 2393,
+        "aon_timer_intr_test": 0,
+        "aon_timer_jump_vseq": 77,
+        "aon_timer_smoke_vseq": 0,
+        "aon_timer_prescaler_vseq": 1
+      },
+      "mismatch_count": 695,
+      "mismatch_examples": [
+        {
+          "run_id": 24,
+          "actual_test_id": "aon_timer_intr_test",
+          "submission_feedback_identity": "aon_timer_common_vseq"
+        },
+        {
+          "run_id": 25,
+          "actual_test_id": "aon_timer_intr_test",
+          "submission_feedback_identity": "aon_timer_common_vseq"
+        },
+        {
+          "run_id": 26,
+          "actual_test_id": "aon_timer_intr_test",
+          "submission_feedback_identity": "aon_timer_common_vseq"
+        }
+      ],
+      "final_covered_bins": 2979,
+      "final_percent": 66.09718216108276,
+      "observed_prefix_at_cpu_seconds_59442_40": {
+        "feedback_order": "1000",
+        "run_id": "997",
+        "accepted": "True",
+        "accumulated_simulator_cpu_seconds": "59442.39999999998",
+        "wall_seconds": "8413.371757030487",
+        "covered_bins": "2979",
+        "coverage_percent": "66.09718216108276",
+        "new_bins": "4"
+      },
+      "author_source_hash_matches_protocol": true,
+      "evidence_sha256": {
+        "events.jsonl": "fcfa7688e9c166e8e0c4f109b817677ba5059c8469362e17d9246e87c699f84b",
+        "run_results.json": "72e583de7b491c1ed09510e4d13aef2bc275a9e3662a7497142aebdc1cf1402a",
+        "coverage_curve.csv": "875ca56f1a8f7d2dd0fa0eeb5617e72d2fec37d6dd6fbf0ccb88a4a30a6ffc09",
+        "protocol.json": "8d3ee1cc788e94da5c5207ac1fa8aefc536423e91971b09498a97cdfe1e4f233"
+      }
+    },
+    "NoIncrementalRefill": {
+      "actual_test_counts": {
+        "aon_timer_stress_all_vseq": 170,
+        "aon_timer_intr_test": 790,
+        "aon_timer_smoke_vseq": 10,
+        "aon_timer_jump_vseq": 20,
+        "aon_timer_prescaler_vseq": 10
+      },
+      "submitted_feedback_identity_counts": {
+        "aon_timer_stress_all_vseq": 170,
+        "aon_timer_common_vseq": 790,
+        "aon_timer_smoke_vseq": 10,
+        "aon_timer_jump_vseq": 20,
+        "aon_timer_prescaler_vseq": 10
+      },
+      "new_bins_by_test": {
+        "aon_timer_stress_all_vseq": 1969,
+        "aon_timer_intr_test": 0,
+        "aon_timer_smoke_vseq": 0,
+        "aon_timer_jump_vseq": 49,
+        "aon_timer_prescaler_vseq": 0
+      },
+      "mismatch_count": 790,
+      "mismatch_examples": [
+        {
+          "run_id": 21,
+          "actual_test_id": "aon_timer_intr_test",
+          "submission_feedback_identity": "aon_timer_common_vseq"
+        },
+        {
+          "run_id": 28,
+          "actual_test_id": "aon_timer_intr_test",
+          "submission_feedback_identity": "aon_timer_common_vseq"
+        },
+        {
+          "run_id": 24,
+          "actual_test_id": "aon_timer_intr_test",
+          "submission_feedback_identity": "aon_timer_common_vseq"
+        }
+      ],
+      "final_covered_bins": 2526,
+      "final_percent": 56.046150432660305,
+      "observed_prefix_at_cpu_seconds_59442_40": {
+        "feedback_order": "1000",
+        "run_id": "993",
+        "accepted": "True",
+        "accumulated_simulator_cpu_seconds": "43711.23000000001",
+        "wall_seconds": "14090.923578500748",
+        "covered_bins": "2526",
+        "coverage_percent": "56.046150432660305",
+        "new_bins": "0"
+      },
+      "author_source_hash_matches_protocol": true,
+      "evidence_sha256": {
+        "events.jsonl": "77d962b959d642742c319a4e0cb0a115039c62f8669206d725c6386e02b72761",
+        "run_results.json": "5a8f59bdb3f4ac804c033adc07f24fe398fc3505edb7e8ecc11f4643cb4110fc",
+        "coverage_curve.csv": "7fa6290922257bd6639ffae86c7f0a837a2d29a116c422040b8780f6e1a69e12",
+        "protocol.json": "96b484b2a1ffa5154afcd09ba63db49d875a7a17221d1050bff19667ab89f6fc"
+      }
+    },
+    "NoRuntimePenalty": {
+      "actual_test_counts": {
+        "aon_timer_stress_all_vseq": 419,
+        "aon_timer_smoke_vseq": 5,
+        "aon_timer_prescaler_vseq": 5,
+        "aon_timer_jump_vseq": 12,
+        "aon_timer_intr_test": 559
+      },
+      "submitted_feedback_identity_counts": {
+        "aon_timer_stress_all_vseq": 419,
+        "aon_timer_smoke_vseq": 5,
+        "aon_timer_prescaler_vseq": 5,
+        "aon_timer_jump_vseq": 12,
+        "aon_timer_common_vseq": 559
+      },
+      "new_bins_by_test": {
+        "aon_timer_stress_all_vseq": 2976,
+        "aon_timer_smoke_vseq": 0,
+        "aon_timer_prescaler_vseq": 0,
+        "aon_timer_jump_vseq": 28,
+        "aon_timer_intr_test": 0
+      },
+      "mismatch_count": 559,
+      "mismatch_examples": [
+        {
+          "run_id": 35,
+          "actual_test_id": "aon_timer_intr_test",
+          "submission_feedback_identity": "aon_timer_common_vseq"
+        },
+        {
+          "run_id": 36,
+          "actual_test_id": "aon_timer_intr_test",
+          "submission_feedback_identity": "aon_timer_common_vseq"
+        },
+        {
+          "run_id": 37,
+          "actual_test_id": "aon_timer_intr_test",
+          "submission_feedback_identity": "aon_timer_common_vseq"
+        }
+      ],
+      "final_covered_bins": 3512,
+      "final_percent": 77.92323053028622,
+      "observed_prefix_at_cpu_seconds_59442_40": {
+        "feedback_order": "853",
+        "run_id": "853",
+        "accepted": "True",
+        "accumulated_simulator_cpu_seconds": "58867.190000000024",
+        "wall_seconds": "8115.901751279831",
+        "covered_bins": "3095",
+        "coverage_percent": "68.67095629021523",
+        "new_bins": "3"
+      },
+      "author_source_hash_matches_protocol": true,
+      "evidence_sha256": {
+        "events.jsonl": "181f9b49655394b06e580449bce5dfea24fdb7ab70cc2c0900fab576981a652e",
+        "run_results.json": "4bc742e32c1a86c9860f8787908051a396ba8396cbf3249c5e41699c1ad778ef",
+        "coverage_curve.csv": "ee4d585788d6b4a7737fac599722d3863d3010fffee84fbcaf7af36dbc21da5c",
+        "protocol.json": "9f9e5be85e9fa3ba8392b722ed4a09e6e345acb36de13ade28cd2f46882dc58b"
+      }
+    },
+    "RandomSelection": {
+      "actual_test_counts": {
+        "aon_timer_intr_test": 141,
+        "aon_timer_smoke_vseq": 110,
+        "aon_timer_mem_walk": 128,
+        "aon_timer_jump_vseq": 106,
+        "aon_timer_prescaler_vseq": 133,
+        "aon_timer_tl_errors": 136,
+        "aon_timer_csr_rw": 109,
+        "aon_timer_stress_all_vseq": 137
+      },
+      "submitted_feedback_identity_counts": {
+        "aon_timer_prescaler_vseq": 133,
+        "aon_timer_smoke_vseq": 110,
+        "aon_timer_intr_test": 141,
+        "aon_timer_stress_all_vseq": 137,
+        "aon_timer_jump_vseq": 106,
+        "aon_timer_mem_walk": 128,
+        "aon_timer_tl_errors": 136,
+        "aon_timer_csr_rw": 109
+      },
+      "new_bins_by_test": {
+        "aon_timer_intr_test": 0,
+        "aon_timer_smoke_vseq": 0,
+        "aon_timer_mem_walk": 0,
+        "aon_timer_jump_vseq": 336,
+        "aon_timer_prescaler_vseq": 3,
+        "aon_timer_tl_errors": 16,
+        "aon_timer_csr_rw": 5,
+        "aon_timer_stress_all_vseq": 1538
+      },
+      "mismatch_count": 0,
+      "mismatch_examples": [],
+      "final_covered_bins": 2406,
+      "final_percent": 53.38362547148879,
+      "observed_prefix_at_cpu_seconds_59442_40": {
+        "feedback_order": "1000",
+        "run_id": "997",
+        "accepted": "True",
+        "accumulated_simulator_cpu_seconds": "36805.56999999999",
+        "wall_seconds": "5482.959211111069",
+        "covered_bins": "2406",
+        "coverage_percent": "53.38362547148879",
+        "new_bins": "8"
+      },
+      "author_source_hash_matches_protocol": true,
+      "evidence_sha256": {
+        "events.jsonl": "9d8b67876a4db4ba2e4892ac3b8b3fea8a02cd2dbe44b58cbcfbe4f72f5ac3da",
+        "run_results.json": "9ca55e849138a5024228f6ef98b1df19f7b407518cd9116d57c39aaac491c5d0",
+        "coverage_curve.csv": "6d6bb7ba32e4cdcfed7659fde6f5bc8ff54ddbc40e81aa86312f22e6a81f878d",
+        "protocol.json": "f6ad1582c2d883a48ab499882ba84a57f68f4eb9a51e013af29f3e75840046f9"
+      }
+    },
+    "SequenceUCBOnly": {
+      "actual_test_counts": {
+        "aon_timer_intr_test": 10,
+        "aon_timer_csr_rw": 11,
+        "aon_timer_mem_walk": 10,
+        "aon_timer_tl_errors": 15,
+        "aon_timer_smoke_vseq": 9,
+        "aon_timer_jump_vseq": 301,
+        "aon_timer_prescaler_vseq": 11,
+        "aon_timer_stress_all_vseq": 633
+      },
+      "submitted_feedback_identity_counts": {
+        "aon_timer_intr_test": 10,
+        "aon_timer_csr_rw": 11,
+        "aon_timer_mem_walk": 10,
+        "aon_timer_tl_errors": 15,
+        "aon_timer_smoke_vseq": 9,
+        "aon_timer_jump_vseq": 301,
+        "aon_timer_prescaler_vseq": 11,
+        "aon_timer_stress_all_vseq": 633
+      },
+      "new_bins_by_test": {
+        "aon_timer_intr_test": 0,
+        "aon_timer_csr_rw": 5,
+        "aon_timer_mem_walk": 0,
+        "aon_timer_tl_errors": 16,
+        "aon_timer_smoke_vseq": 0,
+        "aon_timer_jump_vseq": 701,
+        "aon_timer_prescaler_vseq": 1,
+        "aon_timer_stress_all_vseq": 2779
+      },
+      "mismatch_count": 0,
+      "mismatch_examples": [],
+      "final_covered_bins": 4010,
+      "final_percent": 88.97270911914799,
+      "observed_prefix_at_cpu_seconds_59442_40": {
+        "feedback_order": "485",
+        "run_id": "473",
+        "accepted": "True",
+        "accumulated_simulator_cpu_seconds": "59149.53000000003",
+        "wall_seconds": "7600.379932880402",
+        "covered_bins": "3322",
+        "coverage_percent": "73.70756600843133",
+        "new_bins": "6"
+      },
+      "author_source_hash_matches_protocol": true,
+      "evidence_sha256": {
+        "events.jsonl": "5d5da7f4f726388da27cad618059862a0823982abe121851b08431d78109097e",
+        "run_results.json": "47fcfbd18cf0377b2141ee945c8266e8a7041d209bc2edec3c6a4e5f3ac0e6a5",
+        "coverage_curve.csv": "a3c7ec9930fcc2ad77987aa1892e4d892e5b2140675aa1cc780c198cedf7824d",
+        "protocol.json": "54123d594c05c400df28342144ea78f9f51b89b083809ab9adc92e5f788fd7af"
+      }
+    },
+    "ClusterUCBOnly": {
+      "actual_test_counts": {
+        "aon_timer_stress_all_vseq": 298,
+        "aon_timer_smoke_vseq": 91,
+        "aon_timer_intr_test": 110,
+        "aon_timer_jump_vseq": 102,
+        "aon_timer_prescaler_vseq": 105,
+        "aon_timer_mem_walk": 102,
+        "aon_timer_csr_rw": 85,
+        "aon_timer_tl_errors": 107
+      },
+      "submitted_feedback_identity_counts": {
+        "aon_timer_stress_all_vseq": 298,
+        "aon_timer_smoke_vseq": 91,
+        "aon_timer_intr_test": 110,
+        "aon_timer_jump_vseq": 102,
+        "aon_timer_prescaler_vseq": 105,
+        "aon_timer_mem_walk": 102,
+        "aon_timer_csr_rw": 85,
+        "aon_timer_tl_errors": 107
+      },
+      "new_bins_by_test": {
+        "aon_timer_stress_all_vseq": 2377,
+        "aon_timer_smoke_vseq": 0,
+        "aon_timer_intr_test": 0,
+        "aon_timer_jump_vseq": 300,
+        "aon_timer_prescaler_vseq": 1,
+        "aon_timer_mem_walk": 0,
+        "aon_timer_csr_rw": 5,
+        "aon_timer_tl_errors": 16
+      },
+      "mismatch_count": 0,
+      "mismatch_examples": [],
+      "final_covered_bins": 3207,
+      "final_percent": 71.15597958730862,
+      "observed_prefix_at_cpu_seconds_59442_40": {
+        "feedback_order": "945",
+        "run_id": "947",
+        "accepted": "True",
+        "accumulated_simulator_cpu_seconds": "59183.369999999995",
+        "wall_seconds": "11489.383200883865",
+        "covered_bins": "3053",
+        "coverage_percent": "67.73907255380519",
+        "new_bins": "6"
+      },
+      "author_source_hash_matches_protocol": true,
+      "evidence_sha256": {
+        "events.jsonl": "a7de9359191ae2ba33640f970bb92a0e7f436a0d06f14bd909eb23b6b41ca8b5",
+        "run_results.json": "325270c06be38752a023f3d9929de6aa57941430bf83b63aedec4ee59abfbb7b",
+        "coverage_curve.csv": "264b9eaebd2521350a2d7d084edf8562f7060bea42100dceab04c6e7ee3d8cbf",
+        "protocol.json": "73c9c427d31ac43b08c69af2a747179c1bb2fa6dedc706d2f9b10772343decbf"
+      }
+    }
+  },
+  "six_test_readonly_snapshot": {
+    "observed_at_server": "2026-11-23T11:56:01.928248+08:00",
+    "submitted": 152,
+    "completed": 143,
+    "accepted": 143,
+    "submission_identity_counts": {
+      "aon_timer_stress_all_vseq": 33,
+      "aon_timer_common_vseq": 115,
+      "aon_timer_jump_vseq": 4
+    },
+    "latest_feedback_covered_bins": 1007,
+    "last_selected_arm_in_log": "aon_timer_intr_test",
+    "last_selected_score": 5.6336
+  },
+  "interpretation": "Confirmed test-arm identity mismatch in the expanded-catalog adapter and inherited Full selector. Existing coverage is real, but affected runs do not establish intended Full-versus-ablation performance. A corrected independent run is required to measure impact. No running process, configuration, old result or algorithm was modified."
+}
