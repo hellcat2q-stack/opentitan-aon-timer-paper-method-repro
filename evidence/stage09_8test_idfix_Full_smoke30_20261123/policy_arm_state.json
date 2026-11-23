@@ -1,0 +1,153 @@
+{
+  "schema": "stage09-catalog-arm-state-v1",
+  "successful_run_counts": {
+    "aon_timer_smoke_vseq": 0,
+    "aon_timer_prescaler_vseq": 0,
+    "aon_timer_jump_vseq": 0,
+    "aon_timer_stress_all_vseq": 24,
+    "aon_timer_intr_test": 1,
+    "aon_timer_csr_rw": 3,
+    "aon_timer_mem_walk": 2,
+    "aon_timer_tl_errors": 0
+  },
+  "gain_history": {
+    "aon_timer_smoke_vseq": [],
+    "aon_timer_prescaler_vseq": [],
+    "aon_timer_jump_vseq": [],
+    "aon_timer_stress_all_vseq": [
+      44,
+      44,
+      25,
+      20,
+      26,
+      30,
+      20,
+      16,
+      15,
+      31,
+      22,
+      12,
+      18,
+      0,
+      16,
+      5,
+      9,
+      4,
+      6,
+      0,
+      14,
+      6,
+      3,
+      14
+    ],
+    "aon_timer_intr_test": [
+      0
+    ],
+    "aon_timer_csr_rw": [
+      2,
+      0,
+      3
+    ],
+    "aon_timer_mem_walk": [
+      0,
+      0
+    ],
+    "aon_timer_tl_errors": []
+  },
+  "runtime_history": {
+    "aon_timer_smoke_vseq": [
+      1.65,
+      1.69,
+      1.44,
+      1.23,
+      2.15,
+      2.07,
+      1.58,
+      2.06,
+      0.96,
+      1.21
+    ],
+    "aon_timer_prescaler_vseq": [
+      7.74,
+      102.67,
+      70.18,
+      4.6,
+      10.92,
+      141.99,
+      6.33,
+      111.82,
+      143.03,
+      91.41
+    ],
+    "aon_timer_jump_vseq": [
+      1.23,
+      1.36,
+      1.12,
+      1.23,
+      1.75,
+      2.41,
+      1.84,
+      1.19,
+      1.46,
+      2.79
+    ],
+    "aon_timer_stress_all_vseq": [
+      124.08,
+      94.22,
+      133.32,
+      530.85,
+      142.86,
+      1174.04,
+      897.91,
+      157.57,
+      938.75,
+      7.17,
+      30.46,
+      33.24,
+      45.06,
+      105.96,
+      108.69,
+      158.24,
+      42.53,
+      42.28,
+      127.06,
+      305.66,
+      286.8,
+      333.65,
+      263.1,
+      36.6,
+      74.68,
+      442.72,
+      51.98,
+      471.34,
+      175.55,
+      388.62,
+      622.25,
+      457.06,
+      915.92
+    ],
+    "aon_timer_intr_test": [
+      0.92
+    ],
+    "aon_timer_csr_rw": [
+      0.94,
+      0.89,
+      0.99
+    ],
+    "aon_timer_mem_walk": [
+      1.64,
+      1.06
+    ],
+    "aon_timer_tl_errors": []
+  },
+  "historical_vector_counts": {
+    "aon_timer_smoke_vseq": 10,
+    "aon_timer_prescaler_vseq": 10,
+    "aon_timer_jump_vseq": 10,
+    "aon_timer_stress_all_vseq": 33,
+    "aon_timer_intr_test": 1,
+    "aon_timer_csr_rw": 3,
+    "aon_timer_mem_walk": 2,
+    "aon_timer_tl_errors": 0
+  }
+}

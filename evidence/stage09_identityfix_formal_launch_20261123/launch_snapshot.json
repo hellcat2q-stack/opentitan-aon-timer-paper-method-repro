@@ -1,0 +1,37 @@
+{
+  "schema": "stage09-identity-repair-formal-launch-v1",
+  "observed_at_server": "2026-11-23T12:36:46.212469+08:00",
+  "workflow": {
+    "status": "running",
+    "completed": [
+      "stage09_8test_idfix_Full_smoke30_20261123"
+    ],
+    "pool": 8,
+    "method": "Full",
+    "phase": "full1000",
+    "run_name": "stage09_8test_idfix_Full_full1000_20261123",
+    "observed_at_server": "2026-11-23T12:36:11.081146+08:00"
+  },
+  "formal_submitted": 11,
+  "formal_completed": 1,
+  "formal_failed_feedback": 0,
+  "formal_active": 10,
+  "formal_policy_sha256": "f56016874e3d4a026cb3b81a61aeaf4ff76192e83781bfcd91647b66d5169afc",
+  "formal_event_chain_head": "ec4bf486bf88284e2d84ec2415dc2a72a660a09e1b289442cce95338a367465b",
+  "source_revision": "47c4a89021f4a5d2085035d91051406f6e40def8",
+  "smoke_audits": {
+    "audit.json": "pass",
+    "arm_identity_audit.json": "pass",
+    "raw_uvm_audit.json": "pass",
+    "union_audit.json": "pass",
+    "input_comparison.json": "pass"
+  },
+  "queued_jobs": [
+    "6test Full",
+    "8test NoIncrementalRefill",
+    "6test NoIncrementalRefill",
+    "8test NoRuntimePenalty",
+    "6test NoRuntimePenalty"
+  ],
+  "queued_jobs_each_smoke_gated": true
+}
