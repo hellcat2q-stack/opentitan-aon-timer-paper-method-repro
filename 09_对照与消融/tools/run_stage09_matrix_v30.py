@@ -16,6 +16,10 @@ from export_stage09_v30 import export_run, manifest, plot
 
 WORK_NAME = "stage09_8test_ablation_20261119"
 RUN_PREFIX = "stage09_8test"
+RUN_DATE = "20261119"
+SELECTED_TEST_COUNT = 8
+CATALOG_PATH = "configs/aon_timer_8test_catalog.json"
+POOL_LABEL = "八测试池"
 
 
 def read(path):
@@ -53,7 +57,7 @@ def paths(root):
         "baseline-source": v19 / "source/generic_adaptive_runner_ucb_continuous_refill_norepeat_poolmi.py",
         "conversion-source": v20 / "tools/run_stage06_conversion_stable.py",
         "corpus-source": root / "05_初始语料/tools/run_aon_timer_initial_corpus.py",
-        "catalog": root / "configs/aon_timer_8test_catalog.json",
+        "catalog": root / CATALOG_PATH,
     }
 
 
@@ -68,12 +72,14 @@ def prepare(root, work):
             missing.append(f"{key}={path}")
     if missing:
         raise RuntimeError(
-            "8-test matrix requires the verified school-server VCS artifacts; "
+            f"{SELECTED_TEST_COUNT}-test matrix requires the verified school-server VCS artifacts; "
             "missing: " + ", ".join(missing)
         )
     verify_manifest(v30 / "source_sha256.txt")
     final = read(v30 / "finalization_status.json")
     assert final["status"] == "pass" and final["completed"] == 1000 and final["failed"] == 0
+    from test_catalog import load_catalog
+    assert len(load_catalog(paths(root)["catalog"])["tests"]) == SELECTED_TEST_COUNT
     work.mkdir(exist_ok=False)
     shutil.copytree(v30 / "tools", work / "tools")
     for path in source_tools.glob("*.py"):
@@ -93,7 +99,7 @@ def prepare(root, work):
         "bin_count": 4507, "steering_for_all_methods": False, "retry": False,
         "created_at_server": datetime.now().astimezone().isoformat(timespec="seconds"),
         "reference_full": "stage08_vcs_ucb_full1000_20261111_v30",
-        "selected_test_count": 8,
+        "selected_test_count": SELECTED_TEST_COUNT,
         "catalog_sha256": sha(paths(root)["catalog"]),
         "reference_scope": "Steered V30 reference only; not the uniform no-steering matrix Full",
         "frozen_dependency_manifest_sha256": sha(work / "frozen_sha256.txt"),
@@ -114,7 +120,7 @@ def verify_run(root, work, run):
     matching["seeds"] = protocol["seeds"] == baseline["seeds"][:protocol["budget"]]
     assert all(matching.values()), matching
     assert protocol.get("catalog_sha256") == sha(paths(root)["catalog"])
-    assert protocol.get("sequence_pool") and len(protocol["sequence_pool"]) == 8
+    assert protocol.get("sequence_pool") and len(protocol["sequence_pool"]) == SELECTED_TEST_COUNT
     assert protocol["steering"]["enabled"] is False
     write(run / "input_comparison.json", {"status": "pass", "matching_fields": matching,
           "scope": "Same V30 build and all frozen inputs; method policy/adapter and uniformly disabled steering intentionally differ"})
@@ -149,11 +155,11 @@ def verify_run(root, work, run):
 
 
 def compare(root, work):
-    output = root / "evidence/stage09_8test_matrix_20261119"
+    output = root / "evidence" / f"{RUN_PREFIX}_matrix_{RUN_DATE}"
     output.mkdir(exist_ok=False)
     records, series = [], []
     for method in METHODS:
-        run = root / "runs" / f"{RUN_PREFIX}_{method}_full1000_20261119"
+        run = root / "runs" / f"{RUN_PREFIX}_{method}_full1000_{RUN_DATE}"
         summary = read(run / "summary.json")
         assert read(run / "audit.json")["status"] == read(run / "union_audit.json")["status"] == "pass"
         records.append(summary)
@@ -167,10 +173,10 @@ def compare(root, work):
         table += (f"| {s['method']} | {s['final_covered_bins']} | {s['final_coverage_percent']:.4f}% | {s['failed']} | "
                   f"{s['accumulated_simulator_cpu_seconds_all_attempts']:.2f} | {s['wall_seconds']:.2f} |\n")
     (output / "README.md").write_text(
-        "# 第九步八测试池统一环境对照与消融：最终结果\n\n六种方法均完成 1000 次，"
+        f"# 第九步{POOL_LABEL}统一环境对照与消融：最终结果\n\n六种方法均完成 1000 次，"
         "全部通过事件/向量/奖励、原始 UVM 日志与独立 URG 合并审计。\n\n" + table +
         "\n统一初始 39 条语料、508/4507、V30 build、seed 42、10 workers、1000 次预算，全部关闭 steering。"
-        "测试池由独立 catalog 冻结为 8 个官方 AON Timer test，common_vseq 的官方 plusarg 随 test 一起记录。"
+        f"测试池由独立 catalog 冻结为 {SELECTED_TEST_COUNT} 个官方 AON Timer test，common_vseq 的官方 plusarg 随 test 一起记录。"
         "逐方法的 30 次 smoke 为独立门禁，不拼入正式预算。\n\n"
         "本表为单 seed 本地作者衍生实现；论文隐藏回归池、seed 和覆盖分母尚未完全对齐，不能声称逐数复现论文。"
         "原 V30 4127/4507 为开启额外 steering 的单独参考；旧随机基线使用旧解析器，也不作为本表对照。"
@@ -211,7 +217,7 @@ def main():
         env.update(PYTHONHASHSEED="0", OPENBLAS_NUM_THREADS="1", OMP_NUM_THREADS="1", MKL_NUM_THREADS="1")
         for method in METHODS:
             for phase, budget in (("smoke30", 30), ("full1000", 1000)):
-                name = f"{RUN_PREFIX}_{method}_{phase}_20261119"
+                name = f"{RUN_PREFIX}_{method}_{phase}_{RUN_DATE}"
                 run = root / "runs" / name
                 export = root / "evidence" / name
                 status(method=method, phase=phase, run_name=name)

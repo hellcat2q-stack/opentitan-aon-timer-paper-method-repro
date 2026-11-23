@@ -294,7 +294,7 @@ def main():
         sequences = selected_ids(catalog)
         # The frozen initial corpus still supplies the 39-run coverage prior.
         # Its four historical IDs remain valid members of the selected catalog;
-        # the four added official tests start with no historical vectors.
+        # added official tests start with no historical vectors.
         initial_ids = set(str(value).strip() for value in initial.sequence.tolist())
         if not initial_ids.issubset(set(sequences)):
             raise ValueError("initial corpus contains a test outside the selected catalog")

@@ -9,8 +9,9 @@ def load_catalog(path: str | Path) -> dict:
     catalog_path = Path(path)
     catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
     tests = catalog.get("tests")
-    if not isinstance(tests, list) or len(tests) != 8:
-        raise ValueError("the selected catalog must contain exactly eight tests")
+    expected_count = catalog.get("selected_test_count", 8)
+    if expected_count not in (6, 8) or not isinstance(tests, list) or len(tests) != expected_count:
+        raise ValueError("the selected catalog must match its declared six or eight tests")
     ids = [item.get("id") for item in tests]
     if any(not item for item in ids) or len(set(ids)) != len(ids):
         raise ValueError("catalog test ids must be unique and non-empty")
