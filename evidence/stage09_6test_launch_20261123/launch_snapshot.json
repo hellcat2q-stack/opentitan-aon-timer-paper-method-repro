@@ -1,0 +1,38 @@
+{
+  "schema": "six-test-launch-snapshot-v1",
+  "observed_at_server": "2026-11-23T11:40:10+08:00",
+  "status": "formal_running",
+  "source_revision": "434d9e6cf33ed250aee3539af68ec56af2782afc",
+  "branch": "codex/6-test-aon-timer-ablation",
+  "method": "Full",
+  "formal_run_name": "stage09_6test_Full_full1000_20261123",
+  "formal_budget": 1000,
+  "formal_progress": {
+    "submitted": 10,
+    "completed": 1,
+    "failed": 0,
+    "active": 9,
+    "coverage_bins": 552,
+    "denominator": 4507,
+    "event_head": "9e2ce49581f47fee701e58432a4bf48ce37bdac7ba3298551e388498787108ae"
+  },
+  "active_vcs_processes_observed": 10,
+  "first_smoke": {
+    "method": "Full",
+    "completed": 30,
+    "failed": 0,
+    "coverage_bins": 929,
+    "coverage_percent": 20.612380741069448,
+    "all_audits": "pass"
+  },
+  "six_test_pool": [
+    "aon_timer_smoke_vseq",
+    "aon_timer_prescaler_vseq",
+    "aon_timer_jump_vseq",
+    "aon_timer_stress_all_vseq",
+    "aon_timer_intr_test",
+    "aon_timer_csr_rw"
+  ],
+  "remaining_methods": "Each method is independently smoke-gated; their formal runs have not started at this snapshot",
+  "raw_logs_exported": false
+}

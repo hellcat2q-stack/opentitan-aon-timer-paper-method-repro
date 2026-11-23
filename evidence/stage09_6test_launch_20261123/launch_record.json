@@ -1,0 +1,10 @@
+{
+  "status": "started",
+  "started_at_server": "2026-11-23T11:19:49+08:00",
+  "pid": 123997,
+  "source_revision": "434d9e6cf33ed250aee3539af68ec56af2782afc",
+  "entrypoint": "09_\u5bf9\u7167\u4e0e\u6d88\u878d/tools/run_stage09_6test_matrix_v30.py",
+  "log": "scratch/stage09_6test_matrix_20261123.log",
+  "phase_order": "Each method: independent smoke30 and audits before formal1000",
+  "retry": false
+}

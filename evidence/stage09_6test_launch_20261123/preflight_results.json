@@ -1,0 +1,86 @@
+{
+  "status": "pass",
+  "behavior_tests": 8,
+  "catalog_tests": 7,
+  "frozen_inputs_match_8test": true,
+  "methods": [
+    {
+      "method": "Full",
+      "status": "pass",
+      "catalog_sha256": "1231e0856eb93fd981a80e75ed3cdc053560b661e5db78c9814575e54455ad38",
+      "pool": [
+        "aon_timer_smoke_vseq",
+        "aon_timer_prescaler_vseq",
+        "aon_timer_jump_vseq",
+        "aon_timer_stress_all_vseq",
+        "aon_timer_intr_test",
+        "aon_timer_csr_rw"
+      ]
+    },
+    {
+      "method": "NoIncrementalRefill",
+      "status": "pass",
+      "catalog_sha256": "1231e0856eb93fd981a80e75ed3cdc053560b661e5db78c9814575e54455ad38",
+      "pool": [
+        "aon_timer_smoke_vseq",
+        "aon_timer_prescaler_vseq",
+        "aon_timer_jump_vseq",
+        "aon_timer_stress_all_vseq",
+        "aon_timer_intr_test",
+        "aon_timer_csr_rw"
+      ]
+    },
+    {
+      "method": "NoRuntimePenalty",
+      "status": "pass",
+      "catalog_sha256": "1231e0856eb93fd981a80e75ed3cdc053560b661e5db78c9814575e54455ad38",
+      "pool": [
+        "aon_timer_smoke_vseq",
+        "aon_timer_prescaler_vseq",
+        "aon_timer_jump_vseq",
+        "aon_timer_stress_all_vseq",
+        "aon_timer_intr_test",
+        "aon_timer_csr_rw"
+      ]
+    },
+    {
+      "method": "RandomSelection",
+      "status": "pass",
+      "catalog_sha256": "1231e0856eb93fd981a80e75ed3cdc053560b661e5db78c9814575e54455ad38",
+      "pool": [
+        "aon_timer_smoke_vseq",
+        "aon_timer_prescaler_vseq",
+        "aon_timer_jump_vseq",
+        "aon_timer_stress_all_vseq",
+        "aon_timer_intr_test",
+        "aon_timer_csr_rw"
+      ]
+    },
+    {
+      "method": "SequenceUCBOnly",
+      "status": "pass",
+      "catalog_sha256": "1231e0856eb93fd981a80e75ed3cdc053560b661e5db78c9814575e54455ad38",
+      "pool": [
+        "aon_timer_smoke_vseq",
+        "aon_timer_prescaler_vseq",
+        "aon_timer_jump_vseq",
+        "aon_timer_stress_all_vseq",
+        "aon_timer_intr_test",
+        "aon_timer_csr_rw"
+      ]
+    },
+    {
+      "method": "ClusterUCBOnly",
+      "status": "pass",
+      "catalog_sha256": "1231e0856eb93fd981a80e75ed3cdc053560b661e5db78c9814575e54455ad38",
+      "pool": [
+        "aon_timer_smoke_vseq",
+        "aon_timer_prescaler_vseq",
+        "aon_timer_jump_vseq",
+        "aon_timer_stress_all_vseq",
+        "aon_timer_intr_test",
+        "aon_timer_csr_rw"
+      ]
+    }
+  ]
+}
