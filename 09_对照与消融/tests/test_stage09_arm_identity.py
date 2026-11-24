@@ -77,7 +77,7 @@ class ArmIdentityTests(unittest.TestCase):
         return runner
 
     def test_affected_selectors_and_feedback_preserve_each_shared_class_arm(self):
-        for count in (6, 8):
+        for count in (6, 8, 17):
             catalog = json.loads((ROOT / f"configs/aon_timer_{count}test_catalog.json").read_text())
             for method in ("Full", "NoIncrementalRefill", "NoRuntimePenalty"):
                 for entry in catalog["tests"][4:]:
@@ -108,7 +108,7 @@ class ArmIdentityTests(unittest.TestCase):
                 self.assertEqual(r.select_next_sequence(0)[1], "aon_timer_intr_test")
 
     def test_all_six_methods_return_ids_in_the_catalog(self):
-        for count in (6, 8):
+        for count in (6, 8, 17):
             catalog = json.loads((ROOT / f"configs/aon_timer_{count}test_catalog.json").read_text())
             ids = {e["id"] for e in catalog["tests"]}
             for method in METHODS:
