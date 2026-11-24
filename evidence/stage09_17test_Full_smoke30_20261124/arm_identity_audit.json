@@ -1,0 +1,27 @@
+{
+  "status": "pass",
+  "checked_runs": 30,
+  "test_pool_size": 17,
+  "all_submissions_match_executed_test_id": true,
+  "all_official_sequence_and_options_match_catalog": true,
+  "all_policy_counts_gains_runtimes_and_history_match_test_id": true,
+  "successful_run_counts": {
+    "aon_timer_smoke_vseq": 0,
+    "aon_timer_prescaler_vseq": 0,
+    "aon_timer_jump_vseq": 0,
+    "aon_timer_stress_all_vseq": 26,
+    "aon_timer_intr_test": 1,
+    "aon_timer_csr_rw": 2,
+    "aon_timer_mem_walk": 1,
+    "aon_timer_tl_errors": 0,
+    "aon_timer_stress_all_with_rand_reset": 0,
+    "aon_timer_csr_hw_reset": 0,
+    "aon_timer_csr_bit_bash": 0,
+    "aon_timer_csr_aliasing": 0,
+    "aon_timer_same_csr_outstanding": 0,
+    "aon_timer_csr_mem_rw_with_rand_reset": 0,
+    "aon_timer_mem_partial_access": 0,
+    "aon_timer_tl_intg_err": 0,
+    "aon_timer_sec_cm": 0
+  }
+}

@@ -178,7 +178,10 @@ def main():
     configure()
     work = root / "scratch" / WORK_NAME
     if args.prepare:
+        from ensure_stage09_initial_vdb_links import ensure_initial_vdb_links
+        initial_vdb_audit = ensure_initial_vdb_links(root)
         matrix.prepare(root, work)
+        matrix.write(work / "initial_vdb_link_audit.json", initial_vdb_audit)
         verify_official_catalog(root, work / "official_catalog_audit.json")
         audit = matrix.read(work / "official_catalog_audit.json")
         src = matrix.paths(root)["dv-root"].parents[1]

@@ -1,0 +1,17 @@
+{
+  "status": "initial_database_paths_repaired",
+  "observed_at_server": "2026-11-25T00:20:46.802416+08:00",
+  "reason": "Isolated checkout omitted two Stage05 raw VDB directories required by the independent URG auditor. All 39 original cumulative XML hashes match the original frozen input manifest.",
+  "simulation_or_algorithm_bug": false,
+  "smoke_simulations_repeated": false,
+  "frozen_workflow_modified": false,
+  "budget_changed": false,
+  "source_files_before": {
+    "protocol.json": "7ec7e82f7bda5aad087ab8d99742354a2f8fc4d9c19a8b8bd30dbde481509543",
+    "summary.json": "e6e8fbab4a8d6d0745dad322a971b8bb208d3b7d9b3d34109617a1a621d033fb",
+    "events.jsonl": "027c3106b3b7a366df5b57af83fd3ec43f46e444236276ff092e02629d6c5125",
+    "vectors.csv": "1209ec2aa52144495e96f9438aa069a6f337d0d533ca376633c2fff31fb2c8f5",
+    "run_results.json": "0b3e51cf846b33eadcfb095d5413cbeda219df3978d794db966356b1272b6465"
+  },
+  "next_action": "Re-audit the existing completed smoke; only then resume formal simulations."
+}

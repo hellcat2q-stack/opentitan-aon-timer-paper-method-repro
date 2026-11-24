@@ -1,0 +1,43 @@
+{
+  "observed_at_server": "2026-11-25T00:22:31.974463+08:00",
+  "status": "running",
+  "method": "Full",
+  "phase": "full1000",
+  "submitted": 13,
+  "feedback_completed": 3,
+  "executions_completed": 3,
+  "failed_executions": 0,
+  "formal_budget": 1000,
+  "selected_test_count": 17,
+  "formal_protocol_sha256": "13baaed0d9aa54a633fef55d995d909731763502892ae6f9a66675b32f21e15b",
+  "smoke_audits": {
+    "audit.json": "pass",
+    "arm_identity_audit.json": "pass",
+    "raw_uvm_audit.json": "pass",
+    "union_audit.json": "pass",
+    "input_comparison.json": "pass"
+  },
+  "frozen_files_verified": 87,
+  "smoke_data_hashes_unchanged": true,
+  "last_feedback": {
+    "event_index": 14,
+    "event": "feedback",
+    "timestamp": 1795537327.1612642,
+    "previous_hash": "60857087774a3862ab86262b45e4f6b04f4c68e5852b0381ede51a0f647c38ac",
+    "policy_hash": "13baaed0d9aa54a633fef55d995d909731763502892ae6f9a66675b32f21e15b",
+    "run_id": 7,
+    "accepted": true,
+    "active": 9,
+    "feedback_count": 3,
+    "new_bins": 25,
+    "target_gain": 1,
+    "steering_status": "disabled",
+    "steering_bin": null,
+    "steering_bin_hit": null,
+    "opportunity_gain": 47.845942717596884,
+    "accumulated_covered": 621,
+    "simulator_cpu_seconds": 33.76,
+    "vector_sha256": "0ec4c33239ad547bdb80e0b9d06a06468840fa9bf318ec396185f6ee28d5904f",
+    "event_hash": "9c0758268f45811c0e52681e44c9d5f53d7319b035ceccba81bd8c1c8c69fa86"
+  }
+}

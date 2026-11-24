@@ -1,0 +1,11 @@
+{
+  "status": "failed",
+  "phase": "smoke30_audit",
+  "completed": [],
+  "observed_at_server": "2026-11-24T15:47:32.357915+08:00",
+  "probe_completed": 17,
+  "probe_failed": 0,
+  "method": "Full",
+  "run_name": "stage09_17test_Full_smoke30_20261124",
+  "error": "CalledProcessError: Command '['<ROOT>/.venv/bin/python', '<ROOT>/scratch/stage08_v22_inputs_20261110/audit_stage08_urg_union_v22.py', '--root', '<ROOT>', '--run-dir', '<ROOT>/runs/stage09_17test_Full_smoke30_20261124', '--output-dir', '<ROOT>/runs/stage09_17test_Full_smoke30_20261124_urg_union']' returned non-zero exit status 1."
+}

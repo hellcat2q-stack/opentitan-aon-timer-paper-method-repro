@@ -1,0 +1,9 @@
+{
+  "status": "resumed_after_directory_repair",
+  "pid": 295232,
+  "observed_at_server": "2026-11-25T00:21:03.481254+08:00",
+  "same_frozen_workflow": true,
+  "same_smoke_data": true,
+  "same_budget_and_seed": true,
+  "formal_starts_only_after_smoke_audits": true
+}
