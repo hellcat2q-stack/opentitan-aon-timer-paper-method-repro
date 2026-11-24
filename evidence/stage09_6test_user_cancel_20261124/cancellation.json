@@ -1,0 +1,24 @@
+{
+  "status": "cancelled_by_user",
+  "observed_at_server": "2026-11-24T15:14:55.656968+08:00",
+  "reason": "User cancelled all remaining six-test simulations and requested a complete seventeen-test matrix.",
+  "stopped_run": "stage09_6test_idfix_NoIncrementalRefill_smoke30_20261123",
+  "stopped_process_count": 3,
+  "completed_results_preserved": [
+    "stage09_8test_idfix_Full_smoke30_20261123",
+    "stage09_8test_idfix_Full_full1000_20261123",
+    "stage09_6test_idfix_Full_smoke30_20261123",
+    "stage09_6test_idfix_Full_full1000_20261123",
+    "stage09_8test_idfix_NoIncrementalRefill_smoke30_20261123",
+    "stage09_8test_idfix_NoIncrementalRefill_full1000_20261123"
+  ],
+  "cancelled_pending": [
+    "6test NoIncrementalRefill smoke/formal",
+    "6test NoRuntimePenalty smoke/formal"
+  ],
+  "eight_test_pending_preserved": [
+    "8test NoRuntimePenalty smoke30/formal1000"
+  ],
+  "raw_results_deleted": false,
+  "budget_or_algorithm_changed": false
+}

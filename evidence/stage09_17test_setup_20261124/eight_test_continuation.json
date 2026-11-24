@@ -1,0 +1,9 @@
+{
+  "status": "queued_after_17test",
+  "pid": 224058,
+  "script_sha256": "be720c1c3a4c5df6d6fce9df89a0de7cccb7c5fd40c10028255144e177ba35d3",
+  "created_at_server": "2026-11-24T15:25:21.949655+08:00",
+  "pool": 8,
+  "method": "NoRuntimePenalty",
+  "six_test_jobs_included": false
+}

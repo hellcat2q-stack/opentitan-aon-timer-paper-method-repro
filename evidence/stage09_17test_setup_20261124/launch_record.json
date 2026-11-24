@@ -1,0 +1,16 @@
+{
+  "status": "launched",
+  "pid": 217307,
+  "created_at_server": "2026-11-24T15:23:30.881741+08:00",
+  "source_revision": "230a8c9a1d2cdbd7c0600a2e8a5079d17cb81377",
+  "root": "<ROOT>",
+  "entrypoint": "<ROOT>/scratch/stage09_17test_all_20261124/tools/run_stage09_17test_matrix_v30.py",
+  "methods": 6,
+  "selected_test_count": 17,
+  "formal_submissions_per_method": 1000,
+  "smoke_submissions_per_method": 30,
+  "catalog_probe_attempts": 17,
+  "workers": 10,
+  "seed": 42,
+  "steering": false
+}

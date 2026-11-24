@@ -1,0 +1,16 @@
+{
+  "status": "running",
+  "completed": [
+    "stage09_8test_idfix_Full_smoke30_20261123",
+    "stage09_8test_idfix_Full_full1000_20261123",
+    "stage09_6test_idfix_Full_smoke30_20261123",
+    "stage09_6test_idfix_Full_full1000_20261123",
+    "stage09_8test_idfix_NoIncrementalRefill_smoke30_20261123",
+    "stage09_8test_idfix_NoIncrementalRefill_full1000_20261123"
+  ],
+  "pool": 6,
+  "method": "NoIncrementalRefill",
+  "phase": "smoke30",
+  "run_name": "stage09_6test_idfix_NoIncrementalRefill_smoke30_20261123",
+  "observed_at_server": "2026-11-24T14:52:49.273840+08:00"
+}

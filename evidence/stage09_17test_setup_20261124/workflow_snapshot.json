@@ -1,0 +1,8 @@
+{
+  "status": "running",
+  "phase": "catalog_probe17",
+  "completed": [],
+  "observed_at_server": "2026-11-24T15:26:02.595305+08:00",
+  "probe_completed": 16,
+  "probe_failed": 0
+}

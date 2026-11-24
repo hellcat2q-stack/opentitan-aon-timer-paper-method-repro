@@ -1,0 +1,14 @@
+{
+  "status": "pass",
+  "methods": {
+    "preflight_Full": "pass",
+    "preflight_NoIncrementalRefill": "pass",
+    "preflight_NoRuntimePenalty": "pass",
+    "preflight_RandomSelection": "pass",
+    "preflight_SequenceUCBOnly": "pass",
+    "preflight_ClusterUCBOnly": "pass"
+  },
+  "selected_test_count": 17,
+  "algorithm_changed": false,
+  "arm_identity_fix_inherited": true
+}
