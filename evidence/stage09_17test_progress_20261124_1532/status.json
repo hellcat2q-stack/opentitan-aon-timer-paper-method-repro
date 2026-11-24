@@ -1,0 +1,21 @@
+{
+  "observed_at_server": "2026-11-24T15:32:56.915052+08:00",
+  "status": "running",
+  "phase": "smoke30",
+  "method": "Full",
+  "selected_test_count": 17,
+  "catalog_probe_completed": 17,
+  "catalog_probe_failed": 0,
+  "catalog_probe_wall_seconds": 427.52839282527566,
+  "catalog_probe_cpu_seconds": 569.8000000000001,
+  "current_method_event_counts": {
+    "submit": 14,
+    "feedback": 4,
+    "complete": 0
+  },
+  "active_six_test_processes": [],
+  "formal_budget_per_method": 1000,
+  "formal_methods": 6,
+  "smoke_budget_per_method": 30,
+  "server_root": "<ROOT>"
+}
