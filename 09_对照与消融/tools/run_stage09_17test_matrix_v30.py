@@ -43,7 +43,8 @@ def verify_official_catalog(root, output):
         files[str(path.relative_to(src.resolve()))] = matrix.sha(path)
         data = hjson.loads(path.read_text())
         for imp in data.get("import_cfgs", []):
-            visit(Path(imp.replace("{proj_root}", str(src))))
+            visit(Path(imp.replace("{proj_root}", str(src)).replace("{dv_root}", str(src / "hw/dv"))
+                       .replace("{tool}", "vcs")))
         for item in data.get("run_modes", []):
             modes[item["name"]] = item
         for item in data.get("tests", []):
