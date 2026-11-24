@@ -1,0 +1,100 @@
+{
+  "observed_at_server": "2026-11-24T12:15:43.251875+08:00",
+  "status": "in_progress_not_final",
+  "workflow": {
+    "status": "running",
+    "completed": [
+      "stage09_8test_idfix_Full_smoke30_20261123",
+      "stage09_8test_idfix_Full_full1000_20261123",
+      "stage09_6test_idfix_Full_smoke30_20261123",
+      "stage09_6test_idfix_Full_full1000_20261123",
+      "stage09_8test_idfix_NoIncrementalRefill_smoke30_20261123"
+    ],
+    "pool": 8,
+    "method": "NoIncrementalRefill",
+    "phase": "full1000",
+    "run_name": "stage09_8test_idfix_NoIncrementalRefill_full1000_20261123",
+    "observed_at_server": "2026-11-24T00:26:30.217930+08:00"
+  },
+  "current_run": "stage09_8test_idfix_NoIncrementalRefill_full1000_20261123",
+  "submitted": 840,
+  "completed": 838,
+  "failed_feedback": 0,
+  "active": 2,
+  "coverage_bins": 3934,
+  "denominator": 4507,
+  "coverage_percent": 87.28644331040604,
+  "completed_simulator_cpu_seconds": 125856.52000000009,
+  "elapsed_wall_seconds": 42546.036187410355,
+  "live_processes": [
+    {
+      "pid": 81984,
+      "state": "S",
+      "cpu_seconds": 7.9,
+      "role": "workflow_or_worker"
+    },
+    {
+      "pid": 242861,
+      "state": "R",
+      "cpu_seconds": 490.85,
+      "role": "simulator"
+    },
+    {
+      "pid": 242868,
+      "state": "R",
+      "cpu_seconds": 495.08,
+      "role": "simulator"
+    },
+    {
+      "pid": 246534,
+      "state": "S",
+      "cpu_seconds": 998.07,
+      "role": "simulator"
+    }
+  ],
+  "six_test_full_complete": {
+    "schema": "aon-timer-stage09-v30-summary-v1",
+    "method": "Full",
+    "status": "completed",
+    "submitted": 1000,
+    "completed": 1000,
+    "failed": 0,
+    "retried": 0,
+    "accepted": 1000,
+    "max_active_workers": 10,
+    "bin_count": 4507,
+    "initial_union_bins": 508,
+    "final_covered_bins": 4080,
+    "final_coverage_percent": 90.52584867983138,
+    "new_bins_beyond_initial": 3572,
+    "accumulated_simulator_cpu_seconds_all_attempts": 169149.04000000004,
+    "accepted_simulator_cpu_seconds": 169149.04000000004,
+    "wall_seconds": 20000.169026374817,
+    "sequence_usage": {
+      "aon_timer_stress_all_vseq": 807,
+      "aon_timer_intr_test": 21,
+      "aon_timer_csr_rw": 25,
+      "aon_timer_smoke_vseq": 20,
+      "aon_timer_jump_vseq": 108,
+      "aon_timer_prescaler_vseq": 19
+    },
+    "steering_enabled": false,
+    "steering_counts": {
+      "disabled": 1000
+    },
+    "policy_sha256": "8227b38af47fb6e3187d58f8897a273743591ce7c280628f1fc5a9696b7f00ed",
+    "event_chain_head": "10b13de80573262dc989c982136413e781d46de62be201592015b227f2819a2a"
+  },
+  "remaining_repair_jobs": [
+    "6test NoIncrementalRefill",
+    "8test NoRuntimePenalty",
+    "6test NoRuntimePenalty"
+  ],
+  "six_test_methods_without_formal_results": [
+    "RandomSelection",
+    "SequenceUCBOnly",
+    "ClusterUCBOnly"
+  ],
+  "requested_document_status": "not_created_complete_eighteen_run_comparison_not_available",
+  "event_snapshot_sha256": "1c61d75dc97b137bf1e959d14319aef10f17a085cf4d789f3f7d2024843fdffc"
+}
