@@ -1,0 +1,148 @@
+{
+  "schema": "stage09-partial-document-build-v1",
+  "snapshot": "stage09_partial_document_snapshot_20261124_123158",
+  "document_filename": "AON_Timer_4test_6test_8test覆盖率对比_阶段结果_20261124.docx",
+  "document_sha256": "629472c3cb960f7b45ab070548022925444a10a12a10ccb754b9df6d7a25ac1c",
+  "pages": 5,
+  "charts": 6,
+  "source_curves": 12,
+  "complete_results": 11,
+  "in_progress_results": 1,
+  "missing_results": 6,
+  "snapshot_time": "2026-11-24T12:31:58.774842+08:00",
+  "visual_review": "All five final page images inspected; no clipped legends, table overflow, title border or missing glyphs.",
+  "sources": [
+    {
+      "pool": 4,
+      "method": "Full",
+      "status": "完成",
+      "source": "09_对照与消融\\evidence\\stage09_v30_Full_full1000_20261111",
+      "files": {
+        "protocol.json": "050a026b862893074347b50db0256c1ce2600e5fa62e2d8c38be561ec0cc419a",
+        "coverage_curve.csv": "77514d274f82479be095cab4ae549324b0ce982779748aaba4ddee15bd94f6d7",
+        "summary.json": "84273cb58630c94807f5c29754c295308eb81bc4cc0c5e0ff15b90ba70561be9"
+      }
+    },
+    {
+      "pool": 4,
+      "method": "NoIncrementalRefill",
+      "status": "完成",
+      "source": "09_对照与消融\\evidence\\stage09_v30_NoIncrementalRefill_full1000_20261111",
+      "files": {
+        "protocol.json": "1026194c61d0af4d0f613c1a8bb57acd85b396676c1dac447d0b918ca6d8a1d0",
+        "coverage_curve.csv": "7dd2a109ffbc3797fb95add952f381ed0cc05c73be2d503f44eb08c0178d6548",
+        "summary.json": "cae7574ed4ec1653fc5d58c0890f7ff8996b6a86c839b9b8fa684e2123aba89a"
+      }
+    },
+    {
+      "pool": 4,
+      "method": "NoRuntimePenalty",
+      "status": "完成",
+      "source": "09_对照与消融\\evidence\\stage09_v30_NoRuntimePenalty_full1000_20261111",
+      "files": {
+        "protocol.json": "c2cc40d4054252c94c0a0ea26194e76a6e9d06c5350c953385eeb6ff7e746f79",
+        "coverage_curve.csv": "9da5b66f74f5327d6dc32a09acfa4ce45066b41922d10f9f20b9c2544c132442",
+        "summary.json": "6b1ad006db2dcddb1dfa59c197e112c133dc4c47f4393f2d1ea4c88a88d316e7"
+      }
+    },
+    {
+      "pool": 4,
+      "method": "RandomSelection",
+      "status": "完成",
+      "source": "09_对照与消融\\evidence\\stage09_v30_RandomSelection_full1000_20261111",
+      "files": {
+        "protocol.json": "9d3f13a9bd32dadf60e37a375e80b13f19e2dc81e92280ac2f89fb4b4a81a796",
+        "coverage_curve.csv": "f5331ffdcbf1e694c6be92c950d12656f1b9222231011ca112bbf5a9d87a3576",
+        "summary.json": "8cbc0f59a80f6d56f1ff16ef02ff2fd8bb818a1ee57f2b672a33c4313d67bbb1"
+      }
+    },
+    {
+      "pool": 4,
+      "method": "SequenceUCBOnly",
+      "status": "完成",
+      "source": "09_对照与消融\\evidence\\stage09_v30_SequenceUCBOnly_full1000_20261111",
+      "files": {
+        "protocol.json": "54e1db2f117fae2df8e221f81937113dfb7ff3225af27b608fcca6c4d5675f3a",
+        "coverage_curve.csv": "f23fa73314634671c15ab505ffe5099f81d8b187d08c58b2411d96733dbe88b5",
+        "summary.json": "6c9e2051e0f4c119ead06a5367a82f30fb57874e61fe4ec48458cf98b98b09a6"
+      }
+    },
+    {
+      "pool": 4,
+      "method": "ClusterUCBOnly",
+      "status": "完成",
+      "source": "09_对照与消融\\evidence\\stage09_v30_ClusterUCBOnly_full1000_20261111",
+      "files": {
+        "protocol.json": "e8ebdeac4781772f782ff657ca296db3b569f742c7daa8e2a05e67b4aba8c5c4",
+        "coverage_curve.csv": "26f1280bc89e57779570c3040ed0a1b7a6678d0c1c0cfd53a07d45d211ed9943",
+        "summary.json": "da3d4977c216233d60f8a37ded05afe5466596dd3cad5a0f6caf4b50b363b11d"
+      }
+    },
+    {
+      "pool": 6,
+      "method": "Full",
+      "status": "完成",
+      "source": "evidence\\stage09_6test_idfix_Full_full1000_20261123",
+      "files": {
+        "protocol.json": "8227b38af47fb6e3187d58f8897a273743591ce7c280628f1fc5a9696b7f00ed",
+        "coverage_curve.csv": "041fe7b22af6816be5148400312cdb3103747b744d5c66f098591aad76fa5e66",
+        "summary.json": "80b7a01f9a409d01309f45c2c19bfc6605d1403cd5c237b7f6e2c06e45623e69"
+      }
+    },
+    {
+      "pool": 8,
+      "method": "Full",
+      "status": "完成",
+      "source": "evidence\\stage09_8test_idfix_Full_full1000_20261123",
+      "files": {
+        "protocol.json": "f56016874e3d4a026cb3b81a61aeaf4ff76192e83781bfcd91647b66d5169afc",
+        "coverage_curve.csv": "ea63878310613510bf2e93c806c7996dd45681e4af0344eda6f306d0b5ad6327",
+        "summary.json": "f488bd6bb30589cc49e61639bc26090470b14db66d40bf2741c7571996801a51"
+      }
+    },
+    {
+      "pool": 8,
+      "method": "NoIncrementalRefill",
+      "status": "运行中",
+      "source": "evidence\\stage09_partial_document_snapshot_20261124_123158",
+      "files": {
+        "protocol.json": "d793055f1c2eb88fa15ffa4b8789d8073d53ea1fa219a0adfa2a9ed4986dcf01",
+        "coverage_curve.csv": "3105a034a06917d6012ddf9778488bc83f7145a7467a74b4214cf0d4940a2f9f",
+        "snapshot.json": "91fb6f2429eefb9818a930aa78ec4273c58135849bc5ae5133f13095269629a0"
+      }
+    },
+    {
+      "pool": 8,
+      "method": "RandomSelection",
+      "status": "完成",
+      "source": "evidence\\stage09_8test_RandomSelection_full1000_20261119",
+      "files": {
+        "protocol.json": "f6ad1582c2d883a48ab499882ba84a57f68f4eb9a51e013af29f3e75840046f9",
+        "coverage_curve.csv": "6d6bb7ba32e4cdcfed7659fde6f5bc8ff54ddbc40e81aa86312f22e6a81f878d",
+        "summary.json": "98c9e9b5deb3ff1ffa050b1875bec35c3743c6a22ec38281ac4e7cb618f6a71e"
+      }
+    },
+    {
+      "pool": 8,
+      "method": "SequenceUCBOnly",
+      "status": "完成",
+      "source": "evidence\\stage09_8test_SequenceUCBOnly_full1000_20261119",
+      "files": {
+        "protocol.json": "54123d594c05c400df28342144ea78f9f51b89b083809ab9adc92e5f788fd7af",
+        "coverage_curve.csv": "a3c7ec9930fcc2ad77987aa1892e4d892e5b2140675aa1cc780c198cedf7824d",
+        "summary.json": "d04e2276840df6d2e71eb34b58e8cb1a3645f861df03c74a476171317c7df06c"
+      }
+    },
+    {
+      "pool": 8,
+      "method": "ClusterUCBOnly",
+      "status": "完成",
+      "source": "evidence\\stage09_8test_ClusterUCBOnly_full1000_20261119",
+      "files": {
+        "protocol.json": "73c9c427d31ac43b08c69af2a747179c1bb2fa6dedc706d2f9b10772343decbf",
+        "coverage_curve.csv": "264b9eaebd2521350a2d7d084edf8562f7060bea42100dceab04c6e7ee3d8cbf",
+        "summary.json": "e5ab03b062faa7e170d7df97f260cc8eb1fec81db516e10d55edbf00b03cb61f"
+      }
+    }
+  ]
+}

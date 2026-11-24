@@ -1,0 +1,26 @@
+{
+  "schema": "stage09-partial-document-snapshot-v1",
+  "observed_at_server": "2026-11-24T12:31:58.774842+08:00",
+  "run_name": "stage09_8test_idfix_NoIncrementalRefill_full1000_20261123",
+  "method": "NoIncrementalRefill",
+  "test_pool_size": 8,
+  "status": "in_progress",
+  "budget": 1000,
+  "submitted": 850,
+  "completed": 849,
+  "failed": 0,
+  "active": 1,
+  "covered_bins": 3943,
+  "coverage_percent": 87.4861326824939,
+  "completed_cpu_seconds": 128958.97000000007,
+  "wall_seconds_through_last_feedback": 43386.63719034195,
+  "source_event_bytes_sha256": "a41061689f87194f9aaa5fc1e3ecd4131006bc07651d9aa05c7ed4e5dcad34eb",
+  "verified_prefix_hash_chain": true,
+  "executed_test_ids_match_submission": true,
+  "final_urg_audit_available": false,
+  "queued_methods": [
+    "6test NoIncrementalRefill",
+    "8test NoRuntimePenalty",
+    "6test NoRuntimePenalty"
+  ]
+}
