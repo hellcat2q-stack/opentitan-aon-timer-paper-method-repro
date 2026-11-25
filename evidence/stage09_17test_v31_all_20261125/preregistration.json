@@ -23,7 +23,7 @@
   "selected_test_count": 17,
   "catalog_sha256": "da9c77709ead6ce483b801ed21209b36a03c33200f2399ddb357a6e29eae8596",
   "reference_scope": "Steered V30 reference only; not the uniform no-steering matrix Full",
-  "frozen_dependency_manifest_sha256": "632ab2427625ed02e18bc04124e46dd0c5ca7af2c60bc05ba04a133a88235871",
+  "frozen_dependency_manifest_sha256": "82e75d1f0a174ed8a7ce2f90e24a0cde94b2ee68277c379784b5b2afd6ed0cc3",
   "catalog_probe_attempts": 17,
   "catalog_probe_excluded_from_formal_budget": true,
   "official_catalog_audit_sha256": "5171736a7c718eb5596ffd97967cc7269bb1d0fb9ddc94b4daeea903dcd7bbfa",
@@ -39,5 +39,23 @@
   ],
   "gates_excluded_from_formal_budget": true,
   "negative_fault_excluded_from_formal_budget": true,
-  "formal_failure_gate": "Stop and preserve the failed attempt; no automatic retries or failure suppression"
+  "formal_failure_gate": "Stop and preserve the failed attempt; no automatic retries or failure suppression",
+  "method_execution_order": [
+    "RandomSelection",
+    "NoIncrementalRefill",
+    "NoRuntimePenalty",
+    "SequenceUCBOnly",
+    "ClusterUCBOnly",
+    "Full"
+  ],
+  "random_selection_priority_requested": true,
+  "priority_switch_observed_at_server": "2026-11-25T21:01:18.911107+08:00",
+  "interrupted_no_incremental_refill_attempt": {
+    "submitted": 10,
+    "completed": 6,
+    "failed": 0,
+    "counted_in_formal_budget": false,
+    "archived_run": "runs/stage09_17test_v31_NoIncrementalRefill_full1000_20261125_interrupted_priority_switch"
+  },
+  "priority_guard_sha256": "3787080dd1d275d0e474484c537336772f64bc73f87715b2c8316d9b7f3f0b17"
 }

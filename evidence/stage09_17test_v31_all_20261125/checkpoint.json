@@ -1,12 +1,62 @@
 {
-  "observed_at_server": "2026-11-25T12:38:03.374339+08:00",
+  "observed_at_server": "2026-11-25T21:03:40.877089+08:00",
   "old_full_unchanged": true,
   "state": {
     "status": "running",
-    "phase": "catalog_smoke_and_formal_matrix",
-    "observed_at_server": "2026-11-25T12:08:11.208026+08:00"
+    "phase": "smoke30",
+    "observed_at_server": "2026-11-25T21:01:28.415109+08:00",
+    "method": "RandomSelection",
+    "run_name": "stage09_17test_v31_RandomSelection_smoke30_20261125"
   },
-  "completed_formal_runs": [],
+  "completed_formal_runs": [
+    {
+      "run_name": "stage09_17test_v31_Full_full1000_20261125",
+      "summary": {
+        "schema": "aon-timer-stage09-v30-summary-v1",
+        "method": "Full",
+        "status": "completed",
+        "submitted": 1000,
+        "completed": 1000,
+        "failed": 0,
+        "retried": 0,
+        "accepted": 1000,
+        "max_active_workers": 10,
+        "bin_count": 4507,
+        "initial_union_bins": 508,
+        "final_covered_bins": 4124,
+        "final_coverage_percent": 91.50210783226093,
+        "new_bins_beyond_initial": 3616,
+        "accumulated_simulator_cpu_seconds_all_attempts": 228945.62000000005,
+        "accepted_simulator_cpu_seconds": 228945.62000000005,
+        "wall_seconds": 28547.180221796036,
+        "sequence_usage": {
+          "aon_timer_stress_all_vseq": 711,
+          "aon_timer_intr_test": 8,
+          "aon_timer_csr_rw": 9,
+          "aon_timer_mem_walk": 8,
+          "aon_timer_tl_errors": 13,
+          "aon_timer_stress_all_with_rand_reset": 129,
+          "aon_timer_csr_hw_reset": 9,
+          "aon_timer_csr_bit_bash": 8,
+          "aon_timer_csr_aliasing": 8,
+          "aon_timer_same_csr_outstanding": 8,
+          "aon_timer_csr_mem_rw_with_rand_reset": 8,
+          "aon_timer_mem_partial_access": 8,
+          "aon_timer_tl_intg_err": 13,
+          "aon_timer_sec_cm": 8,
+          "aon_timer_smoke_vseq": 11,
+          "aon_timer_jump_vseq": 32,
+          "aon_timer_prescaler_vseq": 9
+        },
+        "steering_enabled": false,
+        "steering_counts": {
+          "disabled": 1000
+        },
+        "policy_sha256": "dd74b18941e97645f23522a47cc5b7829a0bd1fa9d957e4e4bb7aabc01d52355",
+        "event_chain_head": "6b649a99a710a2720cd18aaa6ee5c257e52b0f9e85208401d4938e957fa21601"
+      }
+    }
+  ],
   "completed_smoke_runs": [
     {
       "run_name": "stage09_17test_v31_Full_smoke30_20261125",
@@ -41,16 +91,48 @@
         "policy_sha256": "62510db6010c624e26b4bf8ca1974550ee9d9104698fc3e11b787daac918ccaa",
         "event_chain_head": "a061b99004533d7b1d95293f85a5e838bf44883a42d017443b15ef760cdb3075"
       }
+    },
+    {
+      "run_name": "stage09_17test_v31_NoIncrementalRefill_smoke30_20261125",
+      "summary": {
+        "schema": "aon-timer-stage09-v30-summary-v1",
+        "method": "NoIncrementalRefill",
+        "status": "completed",
+        "submitted": 30,
+        "completed": 30,
+        "failed": 0,
+        "retried": 0,
+        "accepted": 30,
+        "max_active_workers": 10,
+        "bin_count": 4507,
+        "initial_union_bins": 508,
+        "final_covered_bins": 880,
+        "final_coverage_percent": 19.52518304859108,
+        "new_bins_beyond_initial": 372,
+        "accumulated_simulator_cpu_seconds_all_attempts": 4649.449999999998,
+        "accepted_simulator_cpu_seconds": 4649.449999999998,
+        "wall_seconds": 1373.4276058673859,
+        "sequence_usage": {
+          "aon_timer_stress_all_vseq": 20,
+          "aon_timer_intr_test": 10
+        },
+        "steering_enabled": false,
+        "steering_counts": {
+          "disabled": 30
+        },
+        "policy_sha256": "6705fd66a5f9c4103f47944c814ae468aab51ef23f7c4a5f7f0f102ee106b75d",
+        "event_chain_head": "397067356ecfbdb73586bb311fa14893685a35e944b65f75f4bd4d9df5d5497e"
+      }
     }
   ],
   "stage09_17test_v31_Full_full1000_20261125": {
-    "submitted": 18,
-    "completed": 9,
+    "submitted": 1000,
+    "completed": 1000,
     "failed": 0,
-    "active": 9,
-    "coverage_bins": 748,
+    "active": 0,
+    "coverage_bins": 4124,
     "denominator": 4507,
-    "event_head": "40506e0f15ef324651310968ae6b81d910bc8aa40178fa557e9beaee4db1a432"
+    "event_head": "40893e491394afa7de6f68e52b793a8a9197a49b587f80db72322004fb39f95c"
   },
   "stage09_17test_v31_Full_smoke30_20261125": {
     "submitted": 30,
@@ -60,6 +142,24 @@
     "coverage_bins": 909,
     "denominator": 4507,
     "event_head": "9b50df8e02064e5be792f5eed394e3b1c2792050cb449759c15ef16f9a506f40"
+  },
+  "stage09_17test_v31_NoIncrementalRefill_smoke30_20261125": {
+    "submitted": 30,
+    "completed": 30,
+    "failed": 0,
+    "active": 0,
+    "coverage_bins": 880,
+    "denominator": 4507,
+    "event_head": "b62bdaf54e906636125884f4f6cb8891231f15b769de8237244365359681efb2"
+  },
+  "stage09_17test_v31_RandomSelection_smoke30_20261125": {
+    "submitted": 30,
+    "completed": 25,
+    "failed": 0,
+    "active": 5,
+    "coverage_bins": 544,
+    "denominator": 4507,
+    "event_head": "b992cefde1541f642567038e3b96e58da33dba1073fe57426537c73227e12d8f"
   },
   "stage09_17test_v31_catalog_probe17_20261125": {
     "completed": 17,

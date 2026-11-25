@@ -1,5 +1,7 @@
 {
   "status": "running",
-  "phase": "catalog_smoke_and_formal_matrix",
-  "observed_at_server": "2026-11-25T12:08:11.208026+08:00"
+  "phase": "smoke30",
+  "observed_at_server": "2026-11-25T21:01:28.415109+08:00",
+  "method": "RandomSelection",
+  "run_name": "stage09_17test_v31_RandomSelection_smoke30_20261125"
 }
