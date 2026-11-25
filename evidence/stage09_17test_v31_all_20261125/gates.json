@@ -1,0 +1,136 @@
+{
+  "status": "pass",
+  "failed_seed_records": [
+    {
+      "status": "pass",
+      "execution": {
+        "global_run_id": 918,
+        "test_name": "aon_timer_stress_all_with_rand_reset",
+        "sequence": "aon_timer_common_vseq",
+        "test_run_options": [
+          "+run_stress_all_with_rand_reset",
+          "+test_timeout_ns=10000000000",
+          "+stress_seq=aon_timer_stress_all_vseq"
+        ],
+        "extra_plusargs": [],
+        "sequence_run_index": 918,
+        "seed": 589693528,
+        "vcs_return_code": 0,
+        "urg_return_code": 0,
+        "wall_seconds": 82.743,
+        "simulator_cpu_seconds": 73.11,
+        "uvm_pass": true,
+        "uvm_error": 0,
+        "uvm_fatal": 0,
+        "covered_groups": 182,
+        "expected_groups": 4525,
+        "group_score_percent": 4.02,
+        "relative_run_dir": "aon_timer_stress_all_with_rand_reset/918"
+      },
+      "strict_uvm_check": {
+        "status": "pass",
+        "return_code": 0,
+        "uvm_error": 0,
+        "uvm_fatal": 0,
+        "simulation_time_ps": 6870085972,
+        "errors": []
+      },
+      "log_sha256": "7aa60fae188060f3ca29955112b0e54bc67df1ef61b61f72f436d7fb5d9aff31",
+      "result_sha256": "52b91539009268296076c1e6fb5219a1473c436ff954d2ce0ef1c6f88bf0b71f"
+    },
+    {
+      "status": "pass",
+      "execution": {
+        "global_run_id": 307,
+        "test_name": "aon_timer_stress_all_with_rand_reset",
+        "sequence": "aon_timer_common_vseq",
+        "test_run_options": [
+          "+run_stress_all_with_rand_reset",
+          "+test_timeout_ns=10000000000",
+          "+stress_seq=aon_timer_stress_all_vseq"
+        ],
+        "extra_plusargs": [],
+        "sequence_run_index": 307,
+        "seed": 969559112,
+        "vcs_return_code": 0,
+        "urg_return_code": 0,
+        "wall_seconds": 502.997,
+        "simulator_cpu_seconds": 467.61,
+        "uvm_pass": true,
+        "uvm_error": 0,
+        "uvm_fatal": 0,
+        "covered_groups": 332,
+        "expected_groups": 4525,
+        "group_score_percent": 7.34,
+        "relative_run_dir": "aon_timer_stress_all_with_rand_reset/307"
+      },
+      "strict_uvm_check": {
+        "status": "pass",
+        "return_code": 0,
+        "uvm_error": 0,
+        "uvm_fatal": 0,
+        "simulation_time_ps": 41371171842,
+        "errors": []
+      },
+      "log_sha256": "c6fe0212036e8a2b2e67b4e944b3fd1091730ad1b9c2edcdf58895929f351e65",
+      "result_sha256": "047e680ae9ab869495e725831d53a8b46ceb7bdf27e19fddfacb4634e06a5092"
+    },
+    {
+      "status": "pass",
+      "execution": {
+        "global_run_id": 547,
+        "test_name": "aon_timer_stress_all_with_rand_reset",
+        "sequence": "aon_timer_common_vseq",
+        "test_run_options": [
+          "+run_stress_all_with_rand_reset",
+          "+test_timeout_ns=10000000000",
+          "+stress_seq=aon_timer_stress_all_vseq"
+        ],
+        "extra_plusargs": [],
+        "sequence_run_index": 547,
+        "seed": 1885763299,
+        "vcs_return_code": 0,
+        "urg_return_code": 0,
+        "wall_seconds": 700.295,
+        "simulator_cpu_seconds": 650.36,
+        "uvm_pass": true,
+        "uvm_error": 0,
+        "uvm_fatal": 0,
+        "covered_groups": 272,
+        "expected_groups": 4525,
+        "group_score_percent": 6.01,
+        "relative_run_dir": "aon_timer_stress_all_with_rand_reset/547"
+      },
+      "strict_uvm_check": {
+        "status": "pass",
+        "return_code": 0,
+        "uvm_error": 0,
+        "uvm_fatal": 0,
+        "simulation_time_ps": 54448044429,
+        "errors": []
+      },
+      "log_sha256": "9e0f47113d1aee32a12b3f0becb8528d9857dcb902dbc75e5613a06b9d73599d",
+      "result_sha256": "132589dae1ec4ad7932ac598f17f5ce68a7c1a3e35df4ec2b4b0d1df95cdae27"
+    }
+  ],
+  "negative_fault_check": {
+    "status": "pass",
+    "purpose": "Intentional pin fault must fail the existing strict WKUP assertion",
+    "faulted_simulation_accepted_as_coverage": false,
+    "strict_wkup_assertion_fired": true,
+    "observed": {
+      "status": "fail",
+      "return_code": 0,
+      "uvm_error": 1,
+      "uvm_fatal": 0,
+      "simulation_time_ps": 20951801957,
+      "errors": [
+        "missing_test_pass_marker",
+        "missing_or_nonzero_uvm_error_counts",
+        "uvm_error_or_fatal_report"
+      ]
+    },
+    "log_sha256": "91f82c0c436a2e09413097c507db45c19056cb00255bb89b20c5d70f8fe49291",
+    "raw_logs_exported": false
+  }
+}

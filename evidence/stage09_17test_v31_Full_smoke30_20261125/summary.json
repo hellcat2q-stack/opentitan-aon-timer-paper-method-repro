@@ -1,0 +1,31 @@
+{
+  "schema": "aon-timer-stage09-v30-summary-v1",
+  "method": "Full",
+  "status": "completed",
+  "submitted": 30,
+  "completed": 30,
+  "failed": 0,
+  "retried": 0,
+  "accepted": 30,
+  "max_active_workers": 10,
+  "bin_count": 4507,
+  "initial_union_bins": 508,
+  "final_covered_bins": 909,
+  "final_coverage_percent": 20.168626580874196,
+  "new_bins_beyond_initial": 401,
+  "accumulated_simulator_cpu_seconds_all_attempts": 5212.59,
+  "accepted_simulator_cpu_seconds": 5212.59,
+  "wall_seconds": 971.1515400409698,
+  "sequence_usage": {
+    "aon_timer_stress_all_vseq": 23,
+    "aon_timer_intr_test": 1,
+    "aon_timer_csr_rw": 3,
+    "aon_timer_mem_walk": 3
+  },
+  "steering_enabled": false,
+  "steering_counts": {
+    "disabled": 30
+  },
+  "policy_sha256": "62510db6010c624e26b4bf8ca1974550ee9d9104698fc3e11b787daac918ccaa",
+  "event_chain_head": "a061b99004533d7b1d95293f85a5e838bf44883a42d017443b15ef760cdb3075"
+}

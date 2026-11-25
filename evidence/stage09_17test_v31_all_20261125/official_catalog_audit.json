@@ -1,0 +1,200 @@
+{
+  "status": "pass",
+  "official_count": 17,
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "source_files_sha256": {
+    "hw/ip/aon_timer/dv/aon_timer_sim_cfg.hjson": "33c928935c70d0db3a38ba624e4f26df31c39e91c937bb854c6a19387869957a",
+    "hw/dv/tools/dvsim/common_sim_cfg.hjson": "b134f0122f6d5551fd93124fb61be9ce6fbde83a528d0ef60682364d6c78bdf3",
+    "hw/data/common_project_cfg.hjson": "6b0d01dbb7c61e6d64864a727e64a7cce85363f83f6d7c464b308697f7dda131",
+    "hw/dv/tools/dvsim/common_modes.hjson": "0ee371607912bec4c40e657a2a0dd297f606ce8f90be8aa5c116e7105518cebc",
+    "hw/dv/tools/dvsim/fusesoc.hjson": "3a1a8dc3d7d68c750c5f4cf91c850d9fc5d2d4c83188bb376aa6113ba8a4197c",
+    "hw/dv/tools/dvsim/bazel.hjson": "b6f2db3f366773732902764b7587e2530f72aada12b83891e570a36d165cc88c",
+    "hw/dv/tools/dvsim/vcs.hjson": "c1d7a90be9c997d5b810522a99b395a90e1456c7bda5a3c6ea2c228f13e431f9",
+    "hw/dv/tools/dvsim/tests/csr_tests.hjson": "72aaa848a020afff6a155ed50f1801324d9b47aa3d01e5486070393f8e6b7cec",
+    "hw/dv/tools/dvsim/tests/mem_tests.hjson": "93f6f88de22afe86823bb750da78254a02c402b4af8ff4d30c0577d8836d71ba",
+    "hw/dv/tools/dvsim/tests/intr_test.hjson": "2619d894530d46764b23247e55d48d23d10ada3d5802a0c274c0d61cc4be619e",
+    "hw/dv/tools/dvsim/tests/tl_access_tests.hjson": "045776a76369c114fc0fb6b575a75705aa76e5c3ddec26d407ab2ffd8b166f3d",
+    "hw/dv/tools/dvsim/tests/sec_cm_tests.hjson": "ccde60beac57939e0d171e655e7cb74716362b9681e83f97a24cf11b79f15aac",
+    "hw/dv/tools/dvsim/tests/stress_tests.hjson": "085aaccb6e1f9eaf44c0d29901104311f2a8c09d7e9a8211252ce8b00ec30e97",
+    "hw/dv/tools/dvsim/tests/stress_all_test.hjson": "7c28ed874d2e4215de3518ffadf52d99917e04242f5fbd6db22de64869a252da"
+  },
+  "tests": [
+    {
+      "test_id": "aon_timer_smoke_vseq",
+      "official_test": "aon_timer_smoke",
+      "sequence": "aon_timer_smoke_vseq",
+      "run_options": [],
+      "official_build_mode": "default",
+      "executed_build": "shared repaired V31 simv; same coverage denominator across all methods"
+    },
+    {
+      "test_id": "aon_timer_prescaler_vseq",
+      "official_test": "aon_timer_prescaler",
+      "sequence": "aon_timer_prescaler_vseq",
+      "run_options": [],
+      "official_build_mode": "default",
+      "executed_build": "shared repaired V31 simv; same coverage denominator across all methods"
+    },
+    {
+      "test_id": "aon_timer_jump_vseq",
+      "official_test": "aon_timer_jump",
+      "sequence": "aon_timer_jump_vseq",
+      "run_options": [],
+      "official_build_mode": "default",
+      "executed_build": "shared repaired V31 simv; same coverage denominator across all methods"
+    },
+    {
+      "test_id": "aon_timer_stress_all_vseq",
+      "official_test": "aon_timer_stress_all",
+      "sequence": "aon_timer_stress_all_vseq",
+      "run_options": [
+        "+test_timeout_ns=10000000000"
+      ],
+      "official_build_mode": "default",
+      "executed_build": "shared repaired V31 simv; same coverage denominator across all methods"
+    },
+    {
+      "test_id": "aon_timer_intr_test",
+      "official_test": "aon_timer_intr_test",
+      "sequence": "aon_timer_common_vseq",
+      "run_options": [
+        "+run_intr_test"
+      ],
+      "official_build_mode": "cover_reg_top",
+      "executed_build": "shared repaired V31 simv; same coverage denominator across all methods"
+    },
+    {
+      "test_id": "aon_timer_csr_rw",
+      "official_test": "aon_timer_csr_rw",
+      "sequence": "aon_timer_common_vseq",
+      "run_options": [
+        "+en_scb=0",
+        "+csr_rw"
+      ],
+      "official_build_mode": "cover_reg_top",
+      "executed_build": "shared repaired V31 simv; same coverage denominator across all methods"
+    },
+    {
+      "test_id": "aon_timer_mem_walk",
+      "official_test": "aon_timer_mem_walk",
+      "sequence": "aon_timer_common_vseq",
+      "run_options": [
+        "+en_scb=0",
+        "+csr_mem_walk"
+      ],
+      "official_build_mode": "cover_reg_top",
+      "executed_build": "shared repaired V31 simv; same coverage denominator across all methods"
+    },
+    {
+      "test_id": "aon_timer_tl_errors",
+      "official_test": "aon_timer_tl_errors",
+      "sequence": "aon_timer_common_vseq",
+      "run_options": [
+        "+run_tl_errors"
+      ],
+      "official_build_mode": "cover_reg_top",
+      "executed_build": "shared repaired V31 simv; same coverage denominator across all methods"
+    },
+    {
+      "test_id": "aon_timer_stress_all_with_rand_reset",
+      "official_test": "aon_timer_stress_all_with_rand_reset",
+      "sequence": "aon_timer_common_vseq",
+      "run_options": [
+        "+run_stress_all_with_rand_reset",
+        "+test_timeout_ns=10000000000",
+        "+stress_seq=aon_timer_stress_all_vseq"
+      ],
+      "official_build_mode": "default",
+      "executed_build": "shared repaired V31 simv; same coverage denominator across all methods"
+    },
+    {
+      "test_id": "aon_timer_csr_hw_reset",
+      "official_test": "aon_timer_csr_hw_reset",
+      "sequence": "aon_timer_common_vseq",
+      "run_options": [
+        "+en_scb=0",
+        "+csr_hw_reset"
+      ],
+      "official_build_mode": "cover_reg_top",
+      "executed_build": "shared repaired V31 simv; same coverage denominator across all methods"
+    },
+    {
+      "test_id": "aon_timer_csr_bit_bash",
+      "official_test": "aon_timer_csr_bit_bash",
+      "sequence": "aon_timer_common_vseq",
+      "run_options": [
+        "+en_scb=0",
+        "+csr_bit_bash"
+      ],
+      "official_build_mode": "cover_reg_top",
+      "executed_build": "shared repaired V31 simv; same coverage denominator across all methods"
+    },
+    {
+      "test_id": "aon_timer_csr_aliasing",
+      "official_test": "aon_timer_csr_aliasing",
+      "sequence": "aon_timer_common_vseq",
+      "run_options": [
+        "+en_scb=0",
+        "+csr_aliasing"
+      ],
+      "official_build_mode": "cover_reg_top",
+      "executed_build": "shared repaired V31 simv; same coverage denominator across all methods"
+    },
+    {
+      "test_id": "aon_timer_same_csr_outstanding",
+      "official_test": "aon_timer_same_csr_outstanding",
+      "sequence": "aon_timer_common_vseq",
+      "run_options": [
+        "+en_scb=0",
+        "+run_same_csr_outstanding"
+      ],
+      "official_build_mode": "cover_reg_top",
+      "executed_build": "shared repaired V31 simv; same coverage denominator across all methods"
+    },
+    {
+      "test_id": "aon_timer_csr_mem_rw_with_rand_reset",
+      "official_test": "aon_timer_csr_mem_rw_with_rand_reset",
+      "sequence": "aon_timer_common_vseq",
+      "run_options": [
+        "+en_scb=0",
+        "+run_csr_mem_rw_with_rand_reset",
+        "+test_timeout_ns=10000000000"
+      ],
+      "official_build_mode": "cover_reg_top",
+      "executed_build": "shared repaired V31 simv; same coverage denominator across all methods"
+    },
+    {
+      "test_id": "aon_timer_mem_partial_access",
+      "official_test": "aon_timer_mem_partial_access",
+      "sequence": "aon_timer_common_vseq",
+      "run_options": [
+        "+en_scb=0",
+        "+run_mem_partial_access"
+      ],
+      "official_build_mode": "cover_reg_top",
+      "executed_build": "shared repaired V31 simv; same coverage denominator across all methods"
+    },
+    {
+      "test_id": "aon_timer_tl_intg_err",
+      "official_test": "aon_timer_tl_intg_err",
+      "sequence": "aon_timer_common_vseq",
+      "run_options": [
+        "+run_tl_intg_err",
+        "+en_scb=0"
+      ],
+      "official_build_mode": "cover_reg_top",
+      "executed_build": "shared repaired V31 simv; same coverage denominator across all methods"
+    },
+    {
+      "test_id": "aon_timer_sec_cm",
+      "official_test": "aon_timer_sec_cm",
+      "sequence": "aon_timer_common_vseq",
+      "run_options": [
+        "+run_sec_cm_fi",
+        "+en_scb=0"
+      ],
+      "official_build_mode": "default",
+      "executed_build": "shared repaired V31 simv; same coverage denominator across all methods"
+    }
+  ]
+}

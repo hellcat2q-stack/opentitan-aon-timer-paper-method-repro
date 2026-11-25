@@ -17,6 +17,9 @@ evidence/stage09_partial_document_snapshot_*/* -text whitespace=blank-at-eol,bla
 08_*/tools/*v30* text eol=lf
 08_*/tools/*v2[3-9].patch whitespace=-blank-at-eol
 08_*/tools/*v30.patch whitespace=-blank-at-eol
+08_*/tools/*v31.patch text eol=lf whitespace=-blank-at-eol
+09_*/tools/*v31.py text eol=lf
+evidence/stage09_17test_v31*/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 08_*/tools/verify_stage08_uvm_replay.py text eol=lf
 08_*/tests/test_stage08_uvm_replay.py text eol=lf
 08_*/tests/test_stage08_v30_finalizer.py text eol=lf

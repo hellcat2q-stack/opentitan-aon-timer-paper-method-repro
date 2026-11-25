@@ -1,0 +1,12 @@
+{
+  "status": "launched",
+  "pid": 297620,
+  "command": [
+    "<ROOT>/.venv/bin/python",
+    "-u",
+    "<ROOT>/scratch/stage09_17test_v31_all_20261125/run_stage09_17test_v31.py",
+    "--root",
+    "<ROOT>"
+  ],
+  "observed_at_server": "2026-11-25T11:56:23.398203+08:00"
+}

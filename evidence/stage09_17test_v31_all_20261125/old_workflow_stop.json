@@ -1,0 +1,94 @@
+{
+  "status": "stopped_old_workflow_preserving_all_data",
+  "observed_at_server": "2026-11-25T11:52:32.979284+08:00",
+  "files": {
+    "scratch/stage09_17test_all_20261124/workflow_status.json": {
+      "sha256": "ef092c14e854b34b32284edb1e2e91cf2a6624c224852664be425926b28ec9e0",
+      "size": 383,
+      "value": {
+        "status": "running",
+        "phase": "full1000",
+        "completed": [
+          "stage09_17test_Full_smoke30_20261124",
+          "stage09_17test_Full_full1000_20261124",
+          "stage09_17test_NoIncrementalRefill_smoke30_20261124"
+        ],
+        "observed_at_server": "2026-11-25T08:11:14.745956+08:00",
+        "method": "NoIncrementalRefill",
+        "run_name": "stage09_17test_NoIncrementalRefill_full1000_20261124"
+      }
+    },
+    "runs/stage09_17test_Full_full1000_20261124/summary.json": {
+      "sha256": "3f111c3c348243087480bece8b469f73333b0b95eaa71810cd0196d0562a8249",
+      "size": 1412,
+      "value": {
+        "schema": "aon-timer-stage09-v30-summary-v1",
+        "method": "Full",
+        "status": "completed",
+        "submitted": 1000,
+        "completed": 1000,
+        "failed": 3,
+        "retried": 0,
+        "accepted": 997,
+        "max_active_workers": 10,
+        "bin_count": 4507,
+        "initial_union_bins": 508,
+        "final_covered_bins": 4137,
+        "final_coverage_percent": 91.79054803638785,
+        "new_bins_beyond_initial": 3629,
+        "accumulated_simulator_cpu_seconds_all_attempts": 228817.90999999986,
+        "accepted_simulator_cpu_seconds": 228264.76999999984,
+        "wall_seconds": 26807.94253730774,
+        "sequence_usage": {
+          "aon_timer_stress_all_vseq": 733,
+          "aon_timer_intr_test": 8,
+          "aon_timer_csr_rw": 9,
+          "aon_timer_mem_walk": 8,
+          "aon_timer_tl_errors": 13,
+          "aon_timer_stress_all_with_rand_reset": 115,
+          "aon_timer_csr_hw_reset": 8,
+          "aon_timer_csr_bit_bash": 8,
+          "aon_timer_csr_aliasing": 8,
+          "aon_timer_same_csr_outstanding": 7,
+          "aon_timer_csr_mem_rw_with_rand_reset": 8,
+          "aon_timer_mem_partial_access": 8,
+          "aon_timer_tl_intg_err": 14,
+          "aon_timer_sec_cm": 8,
+          "aon_timer_smoke_vseq": 10,
+          "aon_timer_jump_vseq": 27,
+          "aon_timer_prescaler_vseq": 8
+        },
+        "steering_enabled": false,
+        "steering_counts": {
+          "disabled": 1000
+        },
+        "policy_sha256": "13baaed0d9aa54a633fef55d995d909731763502892ae6f9a66675b32f21e15b",
+        "event_chain_head": "1f180e214926b2a82e53c5f7638607d50aaef6fd315827e6c6a407b980a76121"
+      }
+    },
+    "runs/stage09_17test_Full_full1000_20261124/events.jsonl": {
+      "sha256": "fda30da400c0321deb045e2d0fc710dd931aff4428697b1d6c7ebaa60e9dbeb8",
+      "size": 1238804,
+      "event_counts": {
+        "submit": 1000,
+        "feedback": 1000,
+        "finished": 1
+      },
+      "failed_feedbacks": 3
+    },
+    "runs/stage09_17test_NoIncrementalRefill_full1000_20261124/events.jsonl": {
+      "sha256": "6058b9074bc97a5f3055597eb344b9b9b896ed0d3565a9536ab79e204aa6ac7f",
+      "size": 406462,
+      "event_counts": {
+        "submit": 330,
+        "feedback": 329,
+        "finished": 0
+      },
+      "failed_feedbacks": 0
+    }
+  },
+  "kill_required": [
+    69321,
+    277575
+  ]
+}

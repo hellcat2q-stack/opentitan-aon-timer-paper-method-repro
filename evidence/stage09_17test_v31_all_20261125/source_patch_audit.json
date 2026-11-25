@@ -1,0 +1,40 @@
+{
+  "status": "pass",
+  "patch_sha256": "92ba475b04ca930106dbc105972f6bd8ab729b8443939db54e654ed723e00ee8",
+  "simv_sha256": "8b0fd96293a6f85dc1fd3984edf1cdd68f16e6482802c85d784b3722cb0b2760",
+  "changed_files": {
+    "hw/ip/aon_timer/dv/env/aon_timer_env_cfg.sv": {
+      "old_sha256": "8820a5f9ce33b77a9c5285de5b7e7c74058ba7a66777e1251bd288a2bf12035f",
+      "new_sha256": "9cc1572411a7f61264ddeb5a0af8c2bf8a3346f31381898df99090f489f098b8",
+      "matches_applied_patch": true
+    },
+    "hw/ip/aon_timer/dv/env/seq_lib/aon_timer_base_vseq.sv": {
+      "old_sha256": "2430653be7f833a2abc1453320f7efc91d33583fe1a72425b5bae55ed60b2b0e",
+      "new_sha256": "cc0be3f48e1c209887506bee163c8aa35f0cc1d47fa8d42722fe1838cd2a2675",
+      "matches_applied_patch": true
+    },
+    "hw/ip/aon_timer/dv/env/seq_lib/aon_timer_jump_vseq.sv": {
+      "old_sha256": "a70149dc6f60e4e0b8ff293d17e373910f7c5e45d7d97cbc7bfe85e723ef9eda",
+      "new_sha256": "077101dcc045f7a3ccb167e552967766b1b0737dfe33fffca7e0bdd9fef5a362",
+      "matches_applied_patch": true
+    },
+    "hw/ip/aon_timer/dv/env/seq_lib/aon_timer_smoke_vseq.sv": {
+      "old_sha256": "b9c127945f25013bdaaf3f17ac4d0608ececae552e206972b2221d915cd90dbe",
+      "new_sha256": "5644f2c32a6a68ff75a1225248d08e7b0b3784988f401b1e6822fa6761a4f4f7",
+      "matches_applied_patch": true
+    },
+    "hw/ip/aon_timer/dv/env/seq_lib/aon_timer_prescaler_vseq.sv": {
+      "old_sha256": "9c31554553928c962ea622db96b2f9a12cbf19afc8262e879ea402e49babd601",
+      "new_sha256": "c9263d70615532d81fc6ecdc94342692a0cd16d3c05f01f6bb7f6854e8132c5b",
+      "matches_applied_patch": true
+    }
+  },
+  "unchanged_rtl_scoreboard_and_reset_audit": {
+    "hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv": "cc92b1dce6ba10997c4bc606db0bb4d7a1fc1c345302385fc787fd81a8557804",
+    "hw/dv/sv/cip_lib/seq_lib/cip_base_vseq.sv": "0a4f5c1516571daf9e8806b9db03e768af046dbdecb965cbe0faa1c16b11cbc8",
+    "hw/ip/aon_timer/rtl/aon_timer.sv": "46cd4ab123862c2c296a5ba7ea6216db1285a4fcdc5ce917b2c7fab2ac8c4fce",
+    "hw/ip/aon_timer/rtl/aon_timer_core.sv": "226ed77228b49c3d9231027410b5572ae7812bb0ed76dc6679c18ef028895d2b",
+    "hw/ip/aon_timer/rtl/aon_timer_reg_pkg.sv": "6bfe91df0de03239e1c73580ad4dec197194d69aeb6c5bdeced4ea818d7812d5",
+    "hw/ip/aon_timer/rtl/aon_timer_reg_top.sv": "e0037f2598cbcb15e540ba27242bf14e8956224cb9567cc3e339efbf71358200"
+  }
+}

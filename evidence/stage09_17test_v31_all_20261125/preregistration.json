@@ -1,0 +1,43 @@
+{
+  "schema": "stage09-v31-reset-race-rerun-v1",
+  "methods": [
+    "Full",
+    "NoIncrementalRefill",
+    "NoRuntimePenalty",
+    "RandomSelection",
+    "SequenceUCBOnly",
+    "ClusterUCBOnly"
+  ],
+  "budget_per_method": 1000,
+  "smoke_budget_per_method": 30,
+  "workers_per_method": 10,
+  "global_method_concurrency": 1,
+  "seed": 42,
+  "initial_runs": 39,
+  "initial_bins": 508,
+  "bin_count": 4507,
+  "steering_for_all_methods": false,
+  "retry": false,
+  "created_at_server": "2026-11-25T11:56:02.234005+08:00",
+  "reference_full": "stage08_vcs_ucb_full1000_20261111_v30",
+  "selected_test_count": 17,
+  "catalog_sha256": "da9c77709ead6ce483b801ed21209b36a03c33200f2399ddb357a6e29eae8596",
+  "reference_scope": "Steered V30 reference only; not the uniform no-steering matrix Full",
+  "frozen_dependency_manifest_sha256": "632ab2427625ed02e18bc04124e46dd0c5ca7af2c60bc05ba04a133a88235871",
+  "catalog_probe_attempts": 17,
+  "catalog_probe_excluded_from_formal_budget": true,
+  "official_catalog_audit_sha256": "5171736a7c718eb5596ffd97967cc7269bb1d0fb9ddc94b4daeea903dcd7bbfa",
+  "purpose": "User-requested clean rerun after fixing the shared UVM reset race",
+  "simv_sha256": "8b0fd96293a6f85dc1fd3984edf1cdd68f16e6482802c85d784b3722cb0b2760",
+  "patch_sha256": "92ba475b04ca930106dbc105972f6bd8ab729b8443939db54e654ed723e00ee8",
+  "previous_full_preserved": true,
+  "previous_incomplete_method_preserved": true,
+  "failed_seed_replays": [
+    969559112,
+    1885763299,
+    589693528
+  ],
+  "gates_excluded_from_formal_budget": true,
+  "negative_fault_excluded_from_formal_budget": true,
+  "formal_failure_gate": "Stop and preserve the failed attempt; no automatic retries or failure suppression"
+}
