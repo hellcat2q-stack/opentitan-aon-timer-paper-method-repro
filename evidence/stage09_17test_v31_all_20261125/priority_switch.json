@@ -1,5 +1,5 @@
 {
-  "observed_at_server": "2026-11-25T21:03:40.899626+08:00",
+  "observed_at_server": "2026-11-26T10:35:58.879863+08:00",
   "method_execution_order": [
     "RandomSelection",
     "NoIncrementalRefill",
@@ -11,19 +11,46 @@
   "random_selection_priority_requested": true,
   "active_workflow": {
     "status": "running",
-    "phase": "smoke30",
-    "method": "RandomSelection",
-    "run_name": "stage09_17test_v31_RandomSelection_smoke30_20261125",
-    "observed_at_server": "2026-11-25T21:01:28.415109+08:00"
+    "phase": "full1000",
+    "method": "NoIncrementalRefill",
+    "run_name": "stage09_17test_v31_NoIncrementalRefill_full1000_20261125",
+    "observed_at_server": "2026-11-25T23:34:41.058597+08:00"
   },
   "random_selection_smoke_progress": {
     "submitted": 30,
-    "completed": 25,
+    "completed": 30,
     "failed": 0,
-    "active": 5,
-    "coverage_bins": 544,
+    "active": 0,
+    "coverage_bins": 657,
     "denominator": 4507,
-    "event_head": "b992cefde1541f642567038e3b96e58da33dba1073fe57426537c73227e12d8f"
+    "event_head": "64c9e68903d8e39757ef51d136d708363470d11df86ae558e4bef1ecd514a87d"
+  },
+  "random_selection_formal_summary": {
+    "submitted": 1000,
+    "completed": 1000,
+    "failed": 0,
+    "retried": 0,
+    "final_covered_bins": 2353,
+    "final_coverage_percent": 52.20767694697138,
+    "accumulated_simulator_cpu_seconds_all_attempts": 60891.080000000045,
+    "wall_seconds": 8250.809239387512
+  },
+  "random_selection_urg_audit": {
+    "status": "pass",
+    "urg_test_count": 1039,
+    "denominator": 4507,
+    "urg_merged_covered_bins": 2353,
+    "python_union_bins": 2353,
+    "merged_xml_bin_identities_match_vector_union": true
+  },
+  "latest_active_run_progress": {
+    "submitted": 680,
+    "completed": 674,
+    "failed": 0,
+    "active": 6,
+    "coverage_bins": 3807,
+    "denominator": 4507,
+    "event_head": "213330c5227560af4e26397b766ff4089475128088728a4c4da31b7f907c8f72"
   },
   "interrupted_no_incremental_refill_attempt": {
     "submitted": 10,

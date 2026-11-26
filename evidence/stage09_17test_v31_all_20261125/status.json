@@ -1,7 +1,7 @@
 {
   "status": "running",
-  "phase": "smoke30",
-  "observed_at_server": "2026-11-25T21:01:28.415109+08:00",
-  "method": "RandomSelection",
-  "run_name": "stage09_17test_v31_RandomSelection_smoke30_20261125"
+  "phase": "full1000",
+  "observed_at_server": "2026-11-25T23:34:41.058597+08:00",
+  "method": "NoIncrementalRefill",
+  "run_name": "stage09_17test_v31_NoIncrementalRefill_full1000_20261125"
 }
