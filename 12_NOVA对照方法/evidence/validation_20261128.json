@@ -1,0 +1,69 @@
+{
+  "status": "pass",
+  "observed_at_server": "2026-11-28T23:52:13.548042+08:00",
+  "method": "NOVASelectionVCS",
+  "scope": "code preparation and read-only build/schema preflight",
+  "tests_run": 13,
+  "tests_passed": true,
+  "tests_log_sha256": "869147988a414ad1083c322c63c8a3d31af208b1cc5314310ec0f5fbfad6d352",
+  "simulation_executed": false,
+  "formal_runs_completed": 0,
+  "smoke_runs_completed": 0,
+  "prior_test_failure": "Linux exposed separate initial clock readings; fixed by using the first submit event timestamp for both scheduler and audit",
+  "preflight": {
+    "status": "pass",
+    "simulation_executed": false,
+    "initial_runs": 39,
+    "initial_bins": 508,
+    "bin_count": 4507,
+    "cluster_count": 751,
+    "test_count": 17,
+    "first_test_id": "aon_timer_intr_test",
+    "decision": {
+      "rule": "cold_start_empty_history",
+      "target": "category_700",
+      "scores": null,
+      "empty_history_arms": [
+        "aon_timer_intr_test",
+        "aon_timer_csr_rw",
+        "aon_timer_mem_walk",
+        "aon_timer_tl_errors",
+        "aon_timer_stress_all_with_rand_reset",
+        "aon_timer_csr_hw_reset",
+        "aon_timer_csr_bit_bash",
+        "aon_timer_csr_aliasing",
+        "aon_timer_same_csr_outstanding",
+        "aon_timer_csr_mem_rw_with_rand_reset",
+        "aon_timer_mem_partial_access",
+        "aon_timer_tl_intg_err",
+        "aon_timer_sec_cm"
+      ]
+    },
+    "source_sha256": {
+      "05_初始语料/tools/run_aon_timer_initial_corpus.py": "f2ae3ebe219c1740accd36f93b87cf9a22064f5486d40c936775a04388944b9c",
+      "08_两层UCB在线复现/tools/audit_stage08_urg_union_v22.py": "96e9531434af6e0832f19b2e2802be9b31525b99be6c308a6cd114d20a84e24c",
+      "08_两层UCB在线复现/tools/stage08_stable_coverage_v20.py": "77c7d1874e21967290a17f516b53d423a33f35f6b6fc333adebcfdbf78a309fc",
+      "08_两层UCB在线复现/tools/verify_stage08_uvm_replay.py": "1784516350c702732cb4d1d091f62ed024a6b3919418be18374725171274bc6b",
+      "12_NOVA对照方法/configs/nova_17test.json": "cb8ffac33092a0eaba560d9e2de39fa3a4ae6e41d97e026f9f4985678bd9c540",
+      "12_NOVA对照方法/inputs/aon_timer_17test_catalog.json": "da9c77709ead6ce483b801ed21209b36a03c33200f2399ddb357a6e29eae8596",
+      "12_NOVA对照方法/inputs/bin_to_cluster.csv": "b75779c622cc03df467e0a9a13f24b6492ebbff86dd8253899e9ce88c621712f",
+      "12_NOVA对照方法/inputs/coverage_bin_by_run_39.csv": "a73d5cd6bd413d63894a8798ca3f6c20e31d1ebc4e3ddc3459d8b88696536f7d",
+      "12_NOVA对照方法/tests/test_nova.py": "d0f02dc687154b405bf9231ff38bf022c485842bbdeac3bfc48ca38ccd91161b",
+      "12_NOVA对照方法/tools/audit_nova.py": "e319aaea7127eddb0ea336cde6618dfb30b3f46c3357e99ddca9848514c11e3e",
+      "12_NOVA对照方法/tools/nova_common.py": "eb71d53216d52d7c3c42580fe9fe791a983981e518a094c84b8d947ffb32776d",
+      "12_NOVA对照方法/tools/nova_policy.py": "878cf27d0b4f17bfbebadb6724263d1e8a4e9f094bd63770b47fc81d34a54c34",
+      "12_NOVA对照方法/tools/run_nova_vcs.py": "40521ffcd9de78e1e6520db3c65f8f2984e8e6dcbb372f8fd2c886586ea19caa",
+      "12_NOVA对照方法/tools/run_nova_workflow.py": "5776a2261167e775a89ebad05f277755fb4c090c84d044ac5160334cf3bf4a88",
+      "12_NOVA对照方法/vendor/run_stage06_conversion_stable.py": "2f750cf5c4a7dbb78953dad9a2605753dbe5ca6ed4ab807e938efa39ba99db15",
+      "configs/aon_timer_17test_catalog.json": "da9c77709ead6ce483b801ed21209b36a03c33200f2399ddb357a6e29eae8596"
+    },
+    "simv_sha256": "8b0fd96293a6f85dc1fd3984edf1cdd68f16e6482802c85d784b3722cb0b2760"
+  },
+  "workflow_status": {
+    "status": "preflight_pass",
+    "phase": "not_launched",
+    "completed": [],
+    "observed_at_server": "2026-11-28T23:52:13.446569+08:00",
+    "simulation_executed": false
+  }
+}

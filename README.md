@@ -1,5 +1,7 @@
 # OpenTitan AON Timer 论文方法复现（重设计）
 
+2026-11-28：新增独立 [NOVA 17test 对照适配目录](12_NOVA对照方法/README.md)，实现论文第4节的覆盖感知选择器及真实VCS执行/审计入口。复用39条初始语料、17test catalog、4507 bins、751簇和同一V31 build；未移植论文的solver级SAASBO/SHAP，不称为完整NOVA。当前为代码与preflight准备，尚无NOVA正式仿真结果。
+
 本分支新增 [六测试池实验](09_对照与消融/6test实验说明_20261123.md)：保留 smoke、prescaler、jump、stress_all、中断和 CSR 读写，在独立目录运行六方法 smoke 与正式矩阵。已完成的 [八测试池最终结果](evidence/stage09_8test_matrix_20261119/README.md) 单独归档，下面的历史四序列结果仍按原版本保留。
 
 六测试池实际启动（2026-11-23）：Full smoke 30/30、0 失败且全部审计通过，正式 Full 1000 次任务已启动；后续五方法按各自 smoke 门禁顺序执行。[启动证据与快照](evidence/stage09_6test_launch_20261123/README.md) 记录当前范围，不代表正式矩阵已经完成。

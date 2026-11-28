@@ -1,4 +1,10 @@
 # Preserve exported evidence bytes so SHA-256 manifests verify on every host.
+12_NOVA*/inputs/* -text whitespace=cr-at-eol
+12_NOVA*/vendor/* -text
+12_NOVA*/tools/*.py text eol=lf
+12_NOVA*/tests/*.py text eol=lf
+12_NOVA*/configs/*.json text eol=lf
+12_NOVA*/evidence/* -text
 evidence/stage09_8test_*/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 evidence/stage09_6test_*/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 evidence/stage09_identityfix_*/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

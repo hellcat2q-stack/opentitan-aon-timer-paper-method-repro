@@ -1,0 +1,41 @@
+{
+  "schema": "nova-aon-selection-port-v1",
+  "method": "NOVASelectionVCS",
+  "paper": {
+    "title": "NOVA: Coordinated Test Selection and Bayes-Optimized Constrained Randomization for Accelerated Coverage Closure",
+    "url": "https://arxiv.org/abs/2512.00688v1",
+    "pdf_sha256": "8262e68452a7cfeb5891aae5aed7bb56b86e8eb538765f90a970370a4db5735e"
+  },
+  "seed": 42,
+  "workers": 10,
+  "logical_batch_size": 10,
+  "smoke_budget": 30,
+  "formal_budget": 1000,
+  "initial_runs": 39,
+  "initial_union": 508,
+  "bin_count": 4507,
+  "cluster_count": 751,
+  "selected_test_count": 17,
+  "policy": {
+    "ensemble_size": 50,
+    "samples_per_bin": 1,
+    "sample_size": 8,
+    "top_fraction": 0.005
+  },
+  "solver_optimization": {
+    "enabled": false,
+    "scope": "Section 4 test selection adaptation; no SAASBO, SHAP or VCS solver-branch control",
+    "aon_timer_paper_parameters": "/"
+  },
+  "expected_sha256": {
+    "initial_csv": "a73d5cd6bd413d63894a8798ca3f6c20e31d1ebc4e3ddc3459d8b88696536f7d",
+    "mapping": "b75779c622cc03df467e0a9a13f24b6492ebbff86dd8253899e9ce88c621712f",
+    "catalog": "da9c77709ead6ce483b801ed21209b36a03c33200f2399ddb357a6e29eae8596",
+    "simv": "8b0fd96293a6f85dc1fd3984edf1cdd68f16e6482802c85d784b3722cb0b2760",
+    "canonical_report": "a20efe254a7160e46397b722f9bb08ada4ce249730e25432742d5f8c122cd94a",
+    "corpus_source": "f2ae3ebe219c1740accd36f93b87cf9a22064f5486d40c936775a04388944b9c",
+    "conversion_source": "2f750cf5c4a7dbb78953dad9a2605753dbe5ca6ed4ab807e938efa39ba99db15",
+    "stable_schema": "77c7d1874e21967290a17f516b53d423a33f35f6b6fc333adebcfdbf78a309fc",
+    "uvm_checker": "1784516350c702732cb4d1d091f62ed024a6b3919418be18374725171274bc6b"
+  }
+}
